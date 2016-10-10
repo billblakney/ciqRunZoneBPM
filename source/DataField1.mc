@@ -15,6 +15,7 @@ class DataField1 extends Ui.DataField
    // var value_picked = null;
 
    var currentTime = null;
+   var battery = null;
    var heartRate = null;
    var pace = null; // seconds/mile
    var duration = null; // seconds
@@ -34,6 +35,7 @@ class DataField1 extends Ui.DataField
    var yRow1Label;
    var yRow2Number;
    var yRow2Label;
+   var yRow3Label;
 
    // Constructor
    function initialize()
@@ -88,6 +90,8 @@ class DataField1 extends Ui.DataField
 */
       
       currentTime = fmtTime(Sys.getClockTime());
+      
+      battery = Sys.getSystemStats().battery;
 
       duration = info.timerTime * MILLISECONDS_TO_SECONDS;
 // TESTED
@@ -137,7 +141,7 @@ class DataField1 extends Ui.DataField
       var font;
       
       // current time
-      textC(dc, dc.getWidth()/2, yRow0Label, Gfx.FONT_XTINY,  currentTime);
+      //textC(dc, dc.getWidth()/2, yRow0Label, Gfx.FONT_XTINY,  currentTime);
 
       // heart rate
       textR(dc, xTopLine-14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
@@ -186,6 +190,10 @@ class DataField1 extends Ui.DataField
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
       textL(dc, xBottomLine+7, yRow2Number, font, distance);
+      
+      // current time
+      textC(dc, dc.getWidth()/2 - 25, yRow3Label, Gfx.FONT_XTINY,  currentTime);
+      textC(dc, dc.getWidth()/2 + 25, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
 
       // DRAW LINES
 
@@ -218,6 +226,9 @@ class DataField1 extends Ui.DataField
 
       // compute yRow0Label
       yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
+
+      // compute yRow3Label
+      yRow3Label = height - Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
 
       // compute yRow1Number and yRow1Label
       var fontHeightNum = Gfx.getFontHeight(Gfx.FONT_NUMBER_HOT);
@@ -321,6 +332,11 @@ class DataField1 extends Ui.DataField
 
       dist = dist / split;
       return dist.format("%.2f", dist);
+   }
+   
+   function fmtBattery(battery) {
+      var fmt = "" + battery.format("%2d") + "%";
+      return fmt;
    }
 
 }
