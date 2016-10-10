@@ -14,12 +14,22 @@ class DataField1 extends Ui.DataField
    var counter;
    // var value_picked = null;
 
+   var currentTime = null;
    var heartRate = null;
    var pace = null; // seconds/mile
    var duration = null; // seconds
    var distance = null;
 
    var split;
+
+   var xTopLine;
+   var xBottomLine;
+   var halfHeight;
+
+   var yRow1Number;
+   var yRow1Label;
+   var yRow2Number;
+   var yRow2Label;
 
    // Constructor
    function initialize()
@@ -72,6 +82,8 @@ class DataField1 extends Ui.DataField
             counter = 0;
         }
 */
+      
+      currentTime = fmtTime(Sys.getClockTime());
 
       duration = info.timerTime * MILLISECONDS_TO_SECONDS;
 // TESTED
@@ -114,35 +126,14 @@ class DataField1 extends Ui.DataField
 
    function onUpdate(dc) {
 
-      var width = dc.getWidth();
-      var height = dc.getHeight();
-
-      var halfHeight = height/2.0;
-
-      var xTopLine = 85;
-      var xBottomLine = 105;
-
-      var yLine2 = halfHeight;
-
-      // compute yRow1Number and yRow1Label
-      var fontHeightNum = Gfx.getFontHeight(Gfx.FONT_NUMBER_HOT);
-      var fontHeightTxt = Gfx.getFontHeight(Gfx.FONT_XTINY);
-
-      var yRow1Number = yLine2;
-      yRow1Number = yRow1Number - fontHeightNum/2 - 3;
-
-      var yRow1Label = yRow1Number - fontHeightNum/2;
-      yRow1Label = yRow1Label - fontHeightTxt/2 + 7;
-
-      // compute yRow2Number and yRow2Label
-      var yRow2Label = yLine2 + fontHeightTxt/2 + 0;
-
-      var yRow2Number = yRow2Label;
-      yRow2Number = yRow2Number + fontHeightNum/2 + 0;
+      setupGeometry(dc);
 
       // set black font color
       dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
       var font;
+      
+      // current time
+      textC(dc, dc.getWidth()/2, 10, Gfx.FONT_XTINY,  currentTime); //TODO
 
       // heart rate
       textR(dc, xTopLine-14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
@@ -208,6 +199,35 @@ class DataField1 extends Ui.DataField
 
       return true;
    }
+   
+   function setupGeometry(dc) {
+      
+      var width = dc.getWidth();
+      var height = dc.getHeight();
+
+      halfHeight = height/2.0;
+
+      xTopLine = 85;
+      xBottomLine = 105;
+
+      var yLine2 = halfHeight;
+
+      // compute yRow1Number and yRow1Label
+      var fontHeightNum = Gfx.getFontHeight(Gfx.FONT_NUMBER_HOT);
+      var fontHeightTxt = Gfx.getFontHeight(Gfx.FONT_XTINY);
+
+      yRow1Number = yLine2;
+      yRow1Number = yRow1Number - fontHeightNum/2 - 3;
+
+      yRow1Label = yRow1Number - fontHeightNum/2;
+      yRow1Label = yRow1Label - fontHeightTxt/2 + 7;
+
+      // compute yRow2Number and yRow2Label
+      yRow2Label = yLine2 + fontHeightTxt/2 + 0;
+
+      yRow2Number = yRow2Label;
+      yRow2Number = yRow2Number + fontHeightNum/2 + 0;
+   }
 
    function toPace(speed) {
       if (speed == null || speed == 0) {
@@ -246,7 +266,7 @@ class DataField1 extends Ui.DataField
    function fmtTime(clock) {
 
       var h = clock.hour;
-      timeFieldOffset = 0;
+      var timeFieldOffset = 0;
 
       if (!Sys.getDeviceSettings().is24Hour) {
          if (h > 12) {
