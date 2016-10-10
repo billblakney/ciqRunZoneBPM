@@ -23,6 +23,9 @@ class DataField1 extends Ui.DataField
 
    var split;
 
+   var width;
+   var height;
+
    var xTopLine;
    var xBottomLine;
 
@@ -36,6 +39,8 @@ class DataField1 extends Ui.DataField
    var yRow2Number;
    var yRow2Label;
    var yRow3Label;
+   
+   var firstUpdate = 1;
 
    // Constructor
    function initialize()
@@ -134,7 +139,10 @@ class DataField1 extends Ui.DataField
 
    function onUpdate(dc) {
 
-      setupGeometry(dc);
+      if (firstUpdate ==1) {
+         setupGeometry(dc);
+         firstUpdate = 0;
+      }
 
       // set black font color
       dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
@@ -201,21 +209,41 @@ class DataField1 extends Ui.DataField
       dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
 
       // horizontal lines
-      dc.drawLine(0, yTopLine, 215, yTopLine);
+//      dc.drawLine(0, yTopLine, 215, yTopLine);
       dc.drawLine(0, yMiddleLine, 215, yMiddleLine);
       dc.drawLine(0, yBottomLine, 215, yBottomLine);
 
       // vertical lines
       dc.drawLine(xTopLine,yTopLine,xTopLine,yMiddleLine);
       dc.drawLine(xBottomLine,yMiddleLine,xBottomLine,yBottomLine);
+      
+      // Draw heartRate color indicator
+      var color;
+      if (heartRate >= 160) {
+          color = Graphics.COLOR_PURPLE;
+      } else if (heartRate > 150) {
+          color = Graphics.COLOR_RED;
+      } else if (heartRate > 140) {
+          color = Graphics.COLOR_ORANGE;
+      } else if (heartRate > 130) {
+          color = Graphics.COLOR_YELLOW;
+      } else if (heartRate > 120) {
+          color = Graphics.COLOR_GREEN;
+      } else {
+          color = Graphics.COLOR_BLUE;
+      }
+
+      dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+      dc.fillRectangle(0, 0, width, yTopLine+1);
+
 
       return true;
    }
    
    function setupGeometry(dc) {
       
-      var width = dc.getWidth();
-      var height = dc.getHeight();
+      width = dc.getWidth();
+      height = dc.getHeight();
 
       yTopLine = Gfx.getFontHeight(Gfx.FONT_XTINY);
       yMiddleLine = height/2.0;
@@ -245,25 +273,6 @@ class DataField1 extends Ui.DataField
 
       yRow2Number = yRow2Label;
       yRow2Number = yRow2Number + fontHeightNum/2 + 0;
-      
-      var color;
-      if (heartRate >= 160) {
-          color = Graphics.COLOR_PURPLE;
-      } else if (heartRate > 150) {
-          color = Graphics.COLOR_RED;
-      } else if (heartRate > 140) {
-          color = Graphics.COLOR_ORANGE;
-      } else if (heartRate > 130) {
-          color = Graphics.COLOR_YELLOW;
-      } else if (heartRate > 120) {
-          color = Graphics.COLOR_GREEN;
-      } else {
-          color = Graphics.COLOR_BLUE;
-      }
-
-      dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-      dc.fillRectangle(0, 0, width, yTopLine);
-
    }
 
    function toPace(speed) {
