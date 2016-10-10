@@ -97,6 +97,8 @@ class DataField1 extends Ui.DataField
       currentTime = fmtTime(Sys.getClockTime());
       
       battery = Sys.getSystemStats().battery;
+// TESTED
+//      battery = 100;
 
       duration = info.timerTime * MILLISECONDS_TO_SECONDS;
 // TESTED
@@ -200,8 +202,8 @@ class DataField1 extends Ui.DataField
       textL(dc, xBottomLine+7, yRow2Number, font, distance);
       
       // current time
-      textC(dc, dc.getWidth()/2 - 25, yRow3Label, Gfx.FONT_XTINY,  currentTime);
-      textC(dc, dc.getWidth()/2 + 25, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
+      textC(dc, dc.getWidth()/2 - 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
+      textC(dc, dc.getWidth()/2 + 50, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
 
       // DRAW LINES
 
@@ -209,7 +211,7 @@ class DataField1 extends Ui.DataField
       dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
 
       // horizontal lines
-//      dc.drawLine(0, yTopLine, 215, yTopLine);
+      dc.drawLine(0, yTopLine, 215, yTopLine);
       dc.drawLine(0, yMiddleLine, 215, yMiddleLine);
       dc.drawLine(0, yBottomLine, 215, yBottomLine);
 
@@ -219,22 +221,24 @@ class DataField1 extends Ui.DataField
       
       // Draw heartRate color indicator
       var color;
-      if (heartRate >= 160) {
-          color = Graphics.COLOR_PURPLE;
-      } else if (heartRate > 150) {
-          color = Graphics.COLOR_RED;
-      } else if (heartRate > 140) {
-          color = Graphics.COLOR_ORANGE;
-      } else if (heartRate > 130) {
-          color = Graphics.COLOR_YELLOW;
-      } else if (heartRate > 120) {
-          color = Graphics.COLOR_GREEN;
-      } else {
-          color = Graphics.COLOR_BLUE;
-      }
+      if (heartRate != null) {
+         if (heartRate >= 160) {
+            color = Graphics.COLOR_PURPLE;
+         } else if (heartRate > 150) {
+            color = Graphics.COLOR_RED;
+         } else if (heartRate > 140) {
+            color = Graphics.COLOR_ORANGE;
+         } else if (heartRate > 130) {
+            color = Graphics.COLOR_YELLOW;
+         } else if (heartRate > 120) {
+            color = Graphics.COLOR_GREEN;
+         } else {
+            color = Graphics.COLOR_BLUE;
+         }
 
-      dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-      dc.fillRectangle(0, 0, width, yTopLine+1);
+         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+         dc.fillRectangle(0, 0, width, yTopLine+1);
+      }
 
 
       return true;
