@@ -245,6 +245,25 @@ class DataField1 extends Ui.DataField
 
       yRow2Number = yRow2Label;
       yRow2Number = yRow2Number + fontHeightNum/2 + 0;
+      
+      var color;
+      if (heartRate >= 160) {
+          color = Graphics.COLOR_PURPLE;
+      } else if (heartRate > 150) {
+          color = Graphics.COLOR_RED;
+      } else if (heartRate > 140) {
+          color = Graphics.COLOR_ORANGE;
+      } else if (heartRate > 130) {
+          color = Graphics.COLOR_YELLOW;
+      } else if (heartRate > 120) {
+          color = Graphics.COLOR_GREEN;
+      } else {
+          color = Graphics.COLOR_BLUE;
+      }
+
+      dc.setColor(color, Graphics.COLOR_TRANSPARENT);
+      dc.fillRectangle(0, 0, width, yTopLine);
+
    }
 
    function toPace(speed) {
@@ -284,6 +303,7 @@ class DataField1 extends Ui.DataField
    function fmtTime(clock) {
 
       var h = clock.hour;
+      var amPm = "";
       var timeFieldOffset = 0;
 
       if (!Sys.getDeviceSettings().is24Hour) {
@@ -292,13 +312,19 @@ class DataField1 extends Ui.DataField
          } else if (h == 0) {
             h += 12;
          }
+         if (h < 12) {
+            amPm = "am";
+         }
+         else {
+            amPm = "pm";
+         }
       }
 
       if (h >= 10) {
          timeFieldOffset = 2;
       }
 
-      return "" + h + ":" + clock.min.format("%02d");
+      return "" + h + ":" + clock.min.format("%02d") + amPm;
    }
 
    function fmtSecs(secs) {
