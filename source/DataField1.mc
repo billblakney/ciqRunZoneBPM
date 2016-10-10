@@ -24,8 +24,12 @@ class DataField1 extends Ui.DataField
 
    var xTopLine;
    var xBottomLine;
-   var halfHeight;
 
+   var yTopLine;
+   var yMiddleLine;  // centered vertically
+   var yBottomLine;
+
+   var yRow0Label;
    var yRow1Number;
    var yRow1Label;
    var yRow2Number;
@@ -133,7 +137,7 @@ class DataField1 extends Ui.DataField
       var font;
       
       // current time
-      textC(dc, dc.getWidth()/2, 10, Gfx.FONT_XTINY,  currentTime); //TODO
+      textC(dc, dc.getWidth()/2, yRow0Label, Gfx.FONT_XTINY,  currentTime);
 
       // heart rate
       textR(dc, xTopLine-14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
@@ -189,13 +193,13 @@ class DataField1 extends Ui.DataField
       dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
 
       // horizontal lines
-      dc.drawLine(0, halfHeight, 215, halfHeight);
-      dc.drawLine(0, halfHeight, 215, halfHeight);
+      dc.drawLine(0, yTopLine, 215, yTopLine);
+      dc.drawLine(0, yMiddleLine, 215, yMiddleLine);
+      dc.drawLine(0, yBottomLine, 215, yBottomLine);
 
       // vertical lines
-      dc.drawLine(xTopLine,   0, xTopLine,   90);
-
-      dc.drawLine(xBottomLine,   90, xBottomLine,   180);
+      dc.drawLine(xTopLine,yTopLine,xTopLine,yMiddleLine);
+      dc.drawLine(xBottomLine,yMiddleLine,xBottomLine,yBottomLine);
 
       return true;
    }
@@ -205,25 +209,28 @@ class DataField1 extends Ui.DataField
       var width = dc.getWidth();
       var height = dc.getHeight();
 
-      halfHeight = height/2.0;
+      yTopLine = Gfx.getFontHeight(Gfx.FONT_XTINY);
+      yMiddleLine = height/2.0;
+      yBottomLine = height - Gfx.getFontHeight(Gfx.FONT_XTINY);
 
       xTopLine = 85;
       xBottomLine = 105;
 
-      var yLine2 = halfHeight;
+      // compute yRow0Label
+      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
 
       // compute yRow1Number and yRow1Label
       var fontHeightNum = Gfx.getFontHeight(Gfx.FONT_NUMBER_HOT);
       var fontHeightTxt = Gfx.getFontHeight(Gfx.FONT_XTINY);
 
-      yRow1Number = yLine2;
+      yRow1Number = yMiddleLine;
       yRow1Number = yRow1Number - fontHeightNum/2 - 3;
 
       yRow1Label = yRow1Number - fontHeightNum/2;
       yRow1Label = yRow1Label - fontHeightTxt/2 + 7;
 
       // compute yRow2Number and yRow2Label
-      yRow2Label = yLine2 + fontHeightTxt/2 + 0;
+      yRow2Label = yMiddleLine + fontHeightTxt/2 + 0;
 
       yRow2Number = yRow2Label;
       yRow2Number = yRow2Number + fontHeightNum/2 + 0;
