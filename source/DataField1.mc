@@ -32,6 +32,8 @@ class DataField1 extends Ui.DataField
    var yTopLine;
    var yMiddleLine;  // centered vertically
    var yBottomLine;
+   
+   var vOffset1 = 1; // applied to items of large rows
 
    var yRow0Label;
    var yRow1Number;
@@ -41,12 +43,31 @@ class DataField1 extends Ui.DataField
    var yRow3Label;
    
    var firstUpdate = 1;
+   
+   var beginZone1;
+   var beginZone2;
+   var beginZone3;
+   var beginZone4;
+   var beginZone5;
+   
+   var hiliteZone = 0;
 
    // Constructor
    function initialize()
    {
 
       DataField.initialize();
+
+      beginZone1 = Application.getApp().getProperty("beginZone1");
+      beginZone2 = Application.getApp().getProperty("beginZone2");
+      beginZone3 = Application.getApp().getProperty("beginZone3");
+      beginZone4 = Application.getApp().getProperty("beginZone4");
+      beginZone5 = Application.getApp().getProperty("beginZone5");
+      Sys.println("beginZone1: " + beginZone1);
+      Sys.println("beginZone2: " + beginZone2);
+      Sys.println("beginZone3: " + beginZone3);
+      Sys.println("beginZone4: " + beginZone4);
+      Sys.println("beginZone5: " + beginZone5);
 
       counter = 0;
 
@@ -114,6 +135,8 @@ class DataField1 extends Ui.DataField
 
       heartRate = info.currentHeartRate;
 // TESTED
+      hiliteZone = 3;
+    heartRate = 130;
 //    heartRate = 100;
 //    heartRate = 88;
 
@@ -145,15 +168,64 @@ class DataField1 extends Ui.DataField
          setupGeometry(dc);
          firstUpdate = 0;
       }
-
-      // set black font color
-      dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
-      var font;
       
-      // current time
-      //textC(dc, dc.getWidth()/2, yRow0Label, Gfx.FONT_XTINY,  currentTime);
+      // Draw heartRate color indicator
+
+      var zone = 0;
+      var zoneLabel = "";
+      var zoneColorBkg = Graphics.COLOR_BLUE;
+      var zoneColorFrg = Graphics.COLOR_BLACK;
+      if (heartRate != null) {
+         if (heartRate >= beginZone5) {
+            zone = 5;
+            zoneLabel = "Zone 5";
+            zoneColorBkg = Graphics.COLOR_DK_RED;
+            zoneColorFrg = Graphics.COLOR_WHITE;
+         } else if (heartRate >= beginZone4) {
+            zone = 4;
+            zoneLabel = "Zone 4";
+            zoneColorBkg = Graphics.COLOR_RED;
+            zoneColorFrg = Graphics.COLOR_WHITE;
+         } else if (heartRate >= beginZone3) {
+            zone = 3;
+            zoneLabel = "Zone 3";
+            zoneColorBkg = Graphics.COLOR_ORANGE;
+            zoneColorFrg = Graphics.COLOR_WHITE;
+         } else if (heartRate >= beginZone2) {
+            zone = 2;
+            zoneLabel = "Zone 2";
+            zoneColorBkg = Graphics.COLOR_YELLOW;
+         } else if (heartRate >= beginZone1) {
+            zone = 1;
+            zoneLabel = "Zone 1";
+            zoneColorBkg = Graphics.COLOR_GREEN;
+         } else {
+            zoneColorBkg = Graphics.COLOR_BLUE;
+         }
+
+         dc.setColor(zoneColorBkg, Graphics.COLOR_TRANSPARENT);
+         dc.fillRectangle(0, 0, width, yTopLine-0);
+      }
+
+      // heart rate zone
+      dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
+      textC(dc, dc.getWidth()/2/*-49*/, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
+
+      var font;
 
       // heart rate
+      if (zone >= hiliteZone)
+      {
+         dc.setColor(zoneColorBkg, zoneColorBkg);
+         dc.fillRectangle(0, yTopLine, xTopLine-1, yMiddleLine-yTopLine-1);
+
+         dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
+      }
+      else
+      {
+         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
+      }
+
       textR(dc, xTopLine-14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
       if (heartRate != null && heartRate > 100)
       {
@@ -164,6 +236,9 @@ class DataField1 extends Ui.DataField
          font = Gfx.FONT_NUMBER_HOT;
       }
       textR(dc, xTopLine-5, yRow1Number, font,  toStr(heartRate));
+
+      // other texts drawn in black font color
+      dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
 
       // pace
       textR(dc, xBottomLine-30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
@@ -205,10 +280,10 @@ class DataField1 extends Ui.DataField
       textC(dc, dc.getWidth()/2 - 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
       textC(dc, dc.getWidth()/2 + 50, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
 
-      // DRAW LINES
+      // Draw lines
 
       dc.setPenWidth(2);
-      dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_TRANSPARENT);
+      dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
 
       // horizontal lines
       dc.drawLine(0, yTopLine, 215, yTopLine);
@@ -218,28 +293,6 @@ class DataField1 extends Ui.DataField
       // vertical lines
       dc.drawLine(xTopLine,yTopLine,xTopLine,yMiddleLine);
       dc.drawLine(xBottomLine,yMiddleLine,xBottomLine,yBottomLine);
-      
-      // Draw heartRate color indicator
-      var color;
-      if (heartRate != null) {
-         if (heartRate >= 160) {
-            color = Graphics.COLOR_PURPLE;
-         } else if (heartRate > 150) {
-            color = Graphics.COLOR_RED;
-         } else if (heartRate > 140) {
-            color = Graphics.COLOR_ORANGE;
-         } else if (heartRate > 130) {
-            color = Graphics.COLOR_YELLOW;
-         } else if (heartRate > 120) {
-            color = Graphics.COLOR_GREEN;
-         } else {
-            color = Graphics.COLOR_BLUE;
-         }
-
-         dc.setColor(color, Graphics.COLOR_TRANSPARENT);
-         dc.fillRectangle(0, 0, width, yTopLine+1);
-      }
-
 
       return true;
    }
@@ -257,7 +310,7 @@ class DataField1 extends Ui.DataField
       xBottomLine = 105;
 
       // compute yRow0Label
-      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
+      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
 
       // compute yRow3Label
       yRow3Label = height - Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
@@ -268,15 +321,19 @@ class DataField1 extends Ui.DataField
 
       yRow1Number = yMiddleLine;
       yRow1Number = yRow1Number - fontHeightNum/2 - 3;
+      yRow1Number += vOffset1;
 
       yRow1Label = yRow1Number - fontHeightNum/2;
       yRow1Label = yRow1Label - fontHeightTxt/2 + 7;
+      yRow1Label += vOffset1;
 
       // compute yRow2Number and yRow2Label
       yRow2Label = yMiddleLine + fontHeightTxt/2 + 0;
+      yRow2Label += vOffset1;
 
       yRow2Number = yRow2Label;
       yRow2Number = yRow2Number + fontHeightNum/2 + 0;
+      yRow2Number += vOffset1;
    }
 
    function toPace(speed) {

@@ -2,4 +2,11 @@
     <bitmaps>
         <bitmap id="id_monkey" filename="images/monkey.png" />
     </bitmaps>
+    <properties>
+        <property id="beginZone1" type="number">110</property>
+        <property id="beginZone2" type="number">120</property>
+        <property id="beginZone3" type="number">130</property>
+        <property id="beginZone4" type="number">140</property>
+        <property id="beginZone5" type="number">150</property>
+</properties>
 </resources>
