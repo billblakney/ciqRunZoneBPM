@@ -1,3 +1,16 @@
 <resources>
     <string id="AppName">SimpleDataField</string>
+    <string id="Zone1Title">Zone 1 Base Heart Rate</string>
+    <string id="Zone2Title">Zone 2 Base Heart Rate</string>
+    <string id="Zone3Title">Zone 3 Base Heart Rate</string>
+    <string id="Zone4Title">Zone 4 Base Heart Rate</string>
+    <string id="Zone5Title">Zone 5 Base Heart Rate</string>
+    <string id="HiliteZone">Lowest Hilite Zone</string>
+    <string id="PromptZone1">Enter base heart rate for zone 1</string>
+    <string id="PromptZone2">Enter base heart rate for zone 2</string>
+    <string id="PromptZone3">Enter base heart rate for zone 3</string>
+    <string id="PromptZone4">Enter base heart rate for zone 4</string>
+    <string id="PromptZone5">Enter base heart rate for zone 5</string>
+    <string id="ZoneNumberError">Must be a value from 1-5</string>
+    <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
 </resources>

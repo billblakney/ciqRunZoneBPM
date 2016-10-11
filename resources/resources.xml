@@ -3,10 +3,31 @@
         <bitmap id="id_monkey" filename="images/monkey.png" />
     </bitmaps>
     <properties>
-        <property id="beginZone1" type="number">110</property>
-        <property id="beginZone2" type="number">120</property>
-        <property id="beginZone3" type="number">130</property>
-        <property id="beginZone4" type="number">140</property>
-        <property id="beginZone5" type="number">150</property>
-</properties>
+        <property id="beginZone1" type="number">118</property>
+        <property id="beginZone2" type="number">127</property>
+        <property id="beginZone3" type="number">147</property>
+        <property id="beginZone4" type="number">158</property>
+        <property id="beginZone5" type="number">166</property>
+        <property id="hiliteZone" type="number">3</property>
+    </properties>
+    <settings>
+        <setting propertyKey="@Properties.beginZone1" title="@Strings.Zone1Title" prompt="@Strings.PromptZone1">
+           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
+        </setting>
+        <setting propertyKey="@Properties.beginZone2" title="@Strings.Zone2Title" prompt="@Strings.PromptZone2">
+           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
+        </setting>
+        <setting propertyKey="@Properties.beginZone3" title="@Strings.Zone3Title" prompt="@Strings.PromptZone3">
+           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
+        </setting>
+        <setting propertyKey="@Properties.beginZone4" title="@Strings.Zone4Title" prompt="@Strings.PromptZone4">
+           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
+        </setting>
+        <setting propertyKey="@Properties.beginZone5" title="@Strings.Zone5Title" prompt="@Strings.PromptZone5">
+           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
+        </setting>
+        <setting propertyKey="@Properties.hiliteZone" title="@Strings.HiliteZone" prompt="@Strings.PromptHiliteZone">
+           <settingConfig type="numeric" />
+        </setting>
+    </settings>
 </resources>

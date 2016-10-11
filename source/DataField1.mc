@@ -20,6 +20,8 @@ class DataField1 extends Ui.DataField
    var pace = null; // seconds/mile
    var duration = null; // seconds
    var distance = null;
+   
+   var maxPace = 3600-1;
 
    var split;
 
@@ -63,11 +65,13 @@ class DataField1 extends Ui.DataField
       beginZone3 = Application.getApp().getProperty("beginZone3");
       beginZone4 = Application.getApp().getProperty("beginZone4");
       beginZone5 = Application.getApp().getProperty("beginZone5");
+      hiliteZone = Application.getApp().getProperty("hiliteZone");
       Sys.println("beginZone1: " + beginZone1);
       Sys.println("beginZone2: " + beginZone2);
       Sys.println("beginZone3: " + beginZone3);
       Sys.println("beginZone4: " + beginZone4);
       Sys.println("beginZone5: " + beginZone5);
+      Sys.println("hiliteZone: " + hiliteZone);
 
       counter = 0;
 
@@ -135,14 +139,15 @@ class DataField1 extends Ui.DataField
 
       heartRate = info.currentHeartRate;
 // TESTED
-      hiliteZone = 3;
-    heartRate = 130;
+//      hiliteZone = 3;
+//    heartRate = 140;
 //    heartRate = 100;
 //    heartRate = 88;
 
       var speed = info.currentSpeed;
-//speed /= 4; // increase speed to get double digit pace
+//speed /= 44; // increase speed to get double digit pace
 //Sys.println("speed " + speed);
+//Sys.println("pace " + pace);
       pace = toPace(speed); // sec/mile
 // TESTED
 //    pace = 8*60;  //  8:00
@@ -338,10 +343,16 @@ class DataField1 extends Ui.DataField
 
    function toPace(speed) {
       if (speed == null || speed == 0) {
-      return null;
+         return null;
+      }
+      
+      var pace = split / speed; // cvt meter/sec to km or mi/sec
+      if (pace > maxPace)
+      {
+         pace = null;
       }
 
-      return split / speed; // cvt meter/sec to km or mi/sec
+      return pace;
    }
 
    function textL(dc, x, y, font, s) {
@@ -400,7 +411,7 @@ class DataField1 extends Ui.DataField
    function fmtSecs(secs) {
 
       if (secs == null) {
-         return "---";
+         return "----";
       }
 
       var s = secs.toLong();
@@ -417,8 +428,6 @@ class DataField1 extends Ui.DataField
       }
 
       return fmt;
-
-      return "x";
    }
 
    function toDist(dist) {
