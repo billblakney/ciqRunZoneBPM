@@ -28,6 +28,8 @@ class DataField1 extends Ui.DataField
    var width;
    var height;
 
+   var switchColumns = false;
+   
    var xTopLine;
    var xBottomLine;
 
@@ -145,7 +147,7 @@ class DataField1 extends Ui.DataField
 //    heartRate = 88;
 
       var speed = info.currentSpeed;
-//speed /= 44; // increase speed to get double digit pace
+//speed /= 4; // increase speed to get double digit pace
 //Sys.println("speed " + speed);
 //Sys.println("pace " + pace);
       pace = toPace(speed); // sec/mile
@@ -222,7 +224,14 @@ class DataField1 extends Ui.DataField
       if (zone >= hiliteZone)
       {
          dc.setColor(zoneColorBkg, zoneColorBkg);
-         dc.fillRectangle(0, yTopLine, xTopLine-1, yMiddleLine-yTopLine-1);
+         if (switchColumns)
+         {
+            dc.fillRectangle(0, yTopLine, xTopLine-1, yMiddleLine-yTopLine-1);
+         }
+         else
+         {
+            dc.fillRectangle(xTopLine+1, yTopLine, width, yMiddleLine-yTopLine-1);
+         }
 
          dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
       }
@@ -231,7 +240,15 @@ class DataField1 extends Ui.DataField
          dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
       }
 
-      textR(dc, xTopLine-14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
+      if (switchColumns)
+      {
+         textR(dc, xTopLine-14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
+      }
+      else
+      {
+         textL(dc, xTopLine+14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
+      }
+
       if (heartRate != null && heartRate > 100)
       {
          font = Gfx.FONT_NUMBER_HOT;
@@ -240,13 +257,28 @@ class DataField1 extends Ui.DataField
       {
          font = Gfx.FONT_NUMBER_HOT;
       }
-      textR(dc, xTopLine-5, yRow1Number, font,  toStr(heartRate));
+
+      if (switchColumns)
+      {
+         textR(dc, xTopLine-5, yRow1Number, font,  toStr(heartRate));
+      }
+      else
+      {
+         textL(dc, xTopLine+5, yRow1Number, font,  toStr(heartRate));
+      }
 
       // other texts drawn in black font color
       dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
 
       // pace
-      textR(dc, xBottomLine-30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
+      if (switchColumns)
+      {
+         textR(dc, xBottomLine-30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
+      }
+      else
+      {
+         textL(dc, xBottomLine+30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
+      }
 
       if (pace != null && pace < 10*60) {
          font = Gfx.FONT_NUMBER_HOT;
@@ -254,10 +286,24 @@ class DataField1 extends Ui.DataField
       else {
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
-      textR(dc, xBottomLine-5, yRow2Number, font, fmtSecs(pace));
+      if (switchColumns)
+      {
+         textR(dc, xBottomLine-5, yRow2Number, font, fmtSecs(pace));
+      }
+      else
+      {
+         textL(dc, xBottomLine+5, yRow2Number, font, fmtSecs(pace));
+      }
 
       // timer
-      textL(dc, xTopLine+35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
+      if (switchColumns)
+      {
+         textL(dc, xTopLine+35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
+      }
+      else
+      {
+         textR(dc, xTopLine-35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
+      }
 
       // TODO offset for 10:00 vs 1:00
       if (duration >= 3600)
@@ -268,10 +314,24 @@ class DataField1 extends Ui.DataField
       {
          font = Gfx.FONT_NUMBER_HOT;
       }
-      textL(dc, xTopLine+8, yRow1Number, font,  fmtSecs(duration));
+      if (switchColumns)
+      {
+         textL(dc, xTopLine+8, yRow1Number, font,  fmtSecs(duration));
+      }
+      else
+      {
+         textR(dc, xTopLine-8, yRow1Number, font,  fmtSecs(duration));
+      }
 
       // distance
-      textL(dc, xBottomLine+28, yRow2Label, Gfx.FONT_XTINY, "Distance");
+      if (switchColumns)
+      {
+         textL(dc, xBottomLine+28, yRow2Label, Gfx.FONT_XTINY, "Distance");
+      }
+      else
+      {
+         textR(dc, xBottomLine-28, yRow2Label, Gfx.FONT_XTINY, "Distance");
+      }
 
       if (distance.toFloat() < 10) {
          font = Gfx.FONT_NUMBER_HOT;
@@ -279,7 +339,14 @@ class DataField1 extends Ui.DataField
       else {
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
-      textL(dc, xBottomLine+7, yRow2Number, font, distance);
+      if (switchColumns)
+      {
+         textL(dc, xBottomLine+7, yRow2Number, font, distance);
+      }
+      else
+      {
+         textR(dc, xBottomLine-7, yRow2Number, font, distance);
+      }
       
       // current time
       textC(dc, dc.getWidth()/2 - 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
@@ -306,13 +373,22 @@ class DataField1 extends Ui.DataField
       
       width = dc.getWidth();
       height = dc.getHeight();
+      Sys.println("width,height: " + width + "," + height);
 
       yTopLine = Gfx.getFontHeight(Gfx.FONT_XTINY);
       yMiddleLine = height/2.0;
       yBottomLine = height - Gfx.getFontHeight(Gfx.FONT_XTINY);
 
-      xTopLine = 85;
-      xBottomLine = 105;
+      if (switchColumns)
+      {
+         xTopLine = width/2 -22;
+         xBottomLine = width/2 - 2;
+      }
+      else
+      {
+         xTopLine = width/2 + 22;
+         xBottomLine = width/2 + 2;
+      }
 
       // compute yRow0Label
       yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
