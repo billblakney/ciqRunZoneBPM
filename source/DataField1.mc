@@ -4,7 +4,11 @@
 // Application Developer Agreement.
 //
 
-using Toybox.WatchUi as Ui;using Toybox.System as Sys;using Toybox.Graphics as Gfx;using Toybox.Time as Time;
+using Toybox.WatchUi as Ui;
+using Toybox.System as Sys;
+using Toybox.Graphics as Gfx;
+using Toybox.Time as Time;
+using Toybox.Attention as Attn;
 
 class DataField1 extends Ui.DataField
 {
@@ -175,6 +179,37 @@ class DataField1 extends Ui.DataField
          setupGeometry(dc);
          firstUpdate = 0;
       }
+
+      if (counter == 0)
+      {
+         Attn.playTone(Attn.TONE_KEY);
+      }
+      else if (counter == 3)
+      {
+         Attn.playTone(Attn.TONE_ALARM);
+      }
+      else if (counter == 6)
+      {
+         Attn.playTone(Attn.TONE_ALERT_LO);//3
+      }
+      else if (counter == 9)
+      {
+         Attn.playTone(Attn.TONE_ALERT_HI);//4
+      }
+      else if (counter == 12)
+      {
+         Attn.playTone(Attn.TONE_LOUD_BEEP); //1
+      }
+      else if (counter == 15)
+      {
+         Attn.playTone(Attn.TONE_CANARY); //2
+      }
+      else if (counter == 18)
+      {
+         Attn.playTone(Attn.TONE_SUCCESS);//5
+         counter -= counter + 5;
+      }
+      counter++;
       
       // Draw heartRate color indicator
 
