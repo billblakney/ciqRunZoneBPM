@@ -14,6 +14,8 @@ class DataField1 extends Ui.DataField
 {
    const METERS_TO_MILES=0.000621371; // TODO rm, not used
    const MILLISECONDS_TO_SECONDS=0.001;
+   
+   var testHeartRates = new [50];
 
    var counter;
    // var value_picked = null;
@@ -94,6 +96,11 @@ class DataField1 extends Ui.DataField
       {
          split = 1609.0;
       }
+
+      for (var i = 0; i < 50; i++)
+      {
+         testHeartRates[i] = 146;
+      }
    }
 
    // Handle the update event
@@ -149,6 +156,11 @@ class DataField1 extends Ui.DataField
 //    heartRate = 140;
 //    heartRate = 100;
 //    heartRate = 88;
+      if (counter < 50)
+      {
+Sys.println("counter: " + counter);
+         heartRate = testHeartRates[counter];
+      }
 
       var speed = info.currentSpeed;
 //speed /= 4; // increase speed to get double digit pace
