@@ -3,11 +3,11 @@
         <bitmap id="id_monkey" filename="images/monkey.png" />
     </bitmaps>
     <properties>
-        <property id="beginZone1" type="number">118</property>
-        <property id="beginZone2" type="number">127</property>
-        <property id="beginZone3" type="number">147</property>
-        <property id="beginZone4" type="number">158</property>
-        <property id="beginZone5" type="number">166</property>
+        <property id="beginZone1" type="number">125</property>
+        <property id="beginZone2" type="number">134</property>
+        <property id="beginZone3" type="number">155</property>
+        <property id="beginZone4" type="number">167</property>
+        <property id="beginZone5" type="number">175</property>
         <property id="hiliteZone" type="number">3</property>
     </properties>
     <settings>
