@@ -14,10 +14,24 @@ class DataField1 extends Ui.DataField
 {
    const METERS_TO_MILES=0.000621371; // TODO rm, not used
    const MILLISECONDS_TO_SECONDS=0.001;
-   
+
    var testHeartRates = new [50];
 
-   var counter;
+   /* Counts number of times that onUpdate has been called. Will have a
+    * value of 0 during first pass through compute and entering onUpdate,
+    * and is incremented at the end of each onUpdate call.
+    */
+   var cycleCounter;
+   
+   /* TODO rm
+    * Counter used to develop some tone code.
+    */
+   var testToneCounter;
+
+   /* TODO rm
+    * 
+    */
+   var old_counter;
    // var value_picked = null;
 
    var currentTime = null;
@@ -26,7 +40,7 @@ class DataField1 extends Ui.DataField
    var pace = null; // seconds/mile
    var duration = null; // seconds
    var distance = null;
-   
+
    var maxPace = 3600-1;
 
    var split;
@@ -35,14 +49,14 @@ class DataField1 extends Ui.DataField
    var height;
 
    var switchColumns = false;
-   
+
    var xTopLine;
    var xBottomLine;
 
    var yTopLine;
    var yMiddleLine;  // centered vertically
    var yBottomLine;
-   
+
    var vOffset1 = 1; // applied to items of large rows
 
    var yRow0Label;
@@ -51,15 +65,15 @@ class DataField1 extends Ui.DataField
    var yRow2Number;
    var yRow2Label;
    var yRow3Label;
-   
+
    var firstUpdate = 1;
-   
+
    var beginZone1;
    var beginZone2;
    var beginZone3;
    var beginZone4;
    var beginZone5;
-   
+
    var hiliteZone = 0;
 
    // Constructor
@@ -81,7 +95,9 @@ class DataField1 extends Ui.DataField
       Sys.println("beginZone5: " + beginZone5);
       Sys.println("hiliteZone: " + hiliteZone);
 
-      counter = 0;
+      cycleCounter = 0;
+      testToneCounter = 0;
+      old_counter = 0;
 
       heartRate = null;
       pace = null;
@@ -108,17 +124,17 @@ class DataField1 extends Ui.DataField
 
 /*
         //Cycle between Heart Rate (int), Distance (float), and elapsedTime (Duration)
-        if(counter == 0) {
+        if(old_counter == 0) {
             if(info.currentHeartRate != null) {
                 value_picked = info.currentHeartRate;
             }
         }
-        if(counter == 1) {
+        if(old_counter == 1) {
             if(info.elapsedDistance != null) {
                 value_picked = info.elapsedDistance * METERS_TO_MILES;
             }
         }
-        if(counter == 2) {
+        if(old_counter == 2) {
             if(info.elapsedTime != null) {
                 //elapsedTime is in ms.
                 var options = { :seconds => info.elapsedTime *  MILLISECONDS_TO_SECONDS};
@@ -126,14 +142,14 @@ class DataField1 extends Ui.DataField
             }
         }
 
-        counter += 1;
-        if(counter > 2) {
-            counter = 0;
+        old_counter += 1;
+        if(old_counter > 2) {
+            old_counter = 0;
         }
 */
-      
+
       currentTime = fmtTime(Sys.getClockTime());
-      
+
       battery = Sys.getSystemStats().battery;
 // TESTED
 //      battery = 100;
@@ -156,10 +172,10 @@ class DataField1 extends Ui.DataField
 //    heartRate = 140;
 //    heartRate = 100;
 //    heartRate = 88;
-      if (counter < 50)
+      if (cycleCounter < 50)
       {
-Sys.println("counter: " + counter);
-         heartRate = testHeartRates[counter];
+Sys.println("cycleCounter: " + cycleCounter);
+         heartRate = testHeartRates[cycleCounter];
       }
 
       var speed = info.currentSpeed;
@@ -192,37 +208,37 @@ Sys.println("counter: " + counter);
          firstUpdate = 0;
       }
 
-      if (counter == 0)
+      if (testToneCounter == 0)
       {
          Attn.playTone(Attn.TONE_KEY);
       }
-      else if (counter == 3)
+      else if (testToneCounter == 3)
       {
          Attn.playTone(Attn.TONE_ALARM);
       }
-      else if (counter == 6)
+      else if (testToneCounter == 6)
       {
          Attn.playTone(Attn.TONE_ALERT_LO);//3
       }
-      else if (counter == 9)
+      else if (testToneCounter == 9)
       {
          Attn.playTone(Attn.TONE_ALERT_HI);//4
       }
-      else if (counter == 12)
+      else if (testToneCounter == 12)
       {
          Attn.playTone(Attn.TONE_LOUD_BEEP); //1
       }
-      else if (counter == 15)
+      else if (testToneCounter == 15)
       {
          Attn.playTone(Attn.TONE_CANARY); //2
       }
-      else if (counter == 18)
+      else if (testToneCounter == 18)
       {
          Attn.playTone(Attn.TONE_SUCCESS);//5
-         counter -= counter + 5;
+         testToneCounter -= testToneCounter + 5;
       }
-      counter++;
-      
+      testToneCounter++;
+
       // Draw heartRate color indicator
 
       var zone = 0;
@@ -394,7 +410,7 @@ Sys.println("counter: " + counter);
       {
          textR(dc, xBottomLine-7, yRow2Number, font, distance);
       }
-      
+
       // current time
       textC(dc, dc.getWidth()/2 - 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
       textC(dc, dc.getWidth()/2 + 50, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
@@ -412,12 +428,14 @@ Sys.println("counter: " + counter);
       // vertical lines
       dc.drawLine(xTopLine,yTopLine,xTopLine,yMiddleLine);
       dc.drawLine(xBottomLine,yMiddleLine,xBottomLine,yBottomLine);
+      
+      cycleCounter++;
 
       return true;
    }
-   
+
    function setupGeometry(dc) {
-      
+
       width = dc.getWidth();
       height = dc.getHeight();
       Sys.println("width,height: " + width + "," + height);
@@ -468,7 +486,7 @@ Sys.println("counter: " + counter);
       if (speed == null || speed == 0) {
          return null;
       }
-      
+
       var pace = split / speed; // cvt meter/sec to km or mi/sec
       if (pace > maxPace)
       {
@@ -561,7 +579,7 @@ Sys.println("counter: " + counter);
       dist = dist / split;
       return dist.format("%.2f", dist);
    }
-   
+
    function fmtBattery(battery) {
       var fmt = "" + battery.format("%2d") + "%";
       return fmt;
