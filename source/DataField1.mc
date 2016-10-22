@@ -14,6 +14,20 @@ class DataField1 extends Ui.DataField
 {
    const METERS_TO_MILES=0.000621371; // TODO rm, not used
    const MILLISECONDS_TO_SECONDS=0.001;
+   const COLOR_IDX_WHITE    = 0;
+   const COLOR_IDX_LT_GRAY  = 1;
+   const COLOR_IDX_DK_GRAY  = 2;
+   const COLOR_IDX_BLACK    = 3;
+   const COLOR_IDX_RED      = 4;
+   const COLOR_IDX_DK_RED   = 5;
+   const COLOR_IDX_ORANGE   = 6;
+   const COLOR_IDX_YELLOW   = 7;
+   const COLOR_IDX_GREEN    = 8;
+   const COLOR_IDX_DK_GREEN = 9;
+   const COLOR_IDX_BLUE     = 10;
+   const COLOR_IDX_DK_BLUE  = 11;
+   const COLOR_IDX_PURPLE   = 12;
+   const COLOR_IDX_PINK     = 13;
 
    var testHeartRates = new [50];
 
@@ -76,16 +90,16 @@ class DataField1 extends Ui.DataField
 
    var hiliteZone = 0;
    
-   var zone1BackColor;
-   var zone1ForeColor;
-   var zone2BackColor;
-   var zone2ForeColor;
-   var zone3BackColor;
-   var zone3ForeColor;
-   var zone4BackColor;
-   var zone4ForeColor;
-   var zone5BackColor;
-   var zone5ForeColor;
+   var zone1BackColor = Graphics.COLOR_WHITE;
+   var zone1ForeColor = Graphics.COLOR_BLACK;
+   var zone2BackColor = Graphics.COLOR_WHITE;
+   var zone2ForeColor = Graphics.COLOR_BLACK;
+   var zone3BackColor = Graphics.COLOR_WHITE;
+   var zone3ForeColor = Graphics.COLOR_BLACK;
+   var zone4BackColor = Graphics.COLOR_WHITE;
+   var zone4ForeColor = Graphics.COLOR_BLACK;
+   var zone5BackColor = Graphics.COLOR_WHITE;
+   var zone5ForeColor = Graphics.COLOR_BLACK;
 
    // Constructor
    function initialize()
@@ -106,9 +120,21 @@ class DataField1 extends Ui.DataField
       Sys.println("beginZone5: " + beginZone5);
       Sys.println("hiliteZone: " + hiliteZone);
 
-      zone1BackColor = Application.getApp().getProperty("zone1BackColor");
-      Sys.println("XXXXXXXXXXXXXXXXXXXXXXX: " + zone1BackColor);
-      getColorCode(zone1BackColor);
+      var zone1BackColorNum = Application.getApp().getProperty("zone1BackColor");
+      var zone1ForeColorNum = Application.getApp().getProperty("zone1ForeColor");
+      Sys.println("zone1BackColorNum: " + zone1BackColorNum);
+      Sys.println("zone1ForeColorNum: " + zone1ForeColorNum);
+
+      zone1BackColor = getColorCode(zone1BackColorNum);
+      zone1ForeColor = getColorCode(zone1ForeColorNum);
+      zone2BackColor = zone1BackColor;
+      zone2ForeColor = zone1ForeColor;
+      zone3BackColor = zone1BackColor;
+      zone3ForeColor = zone1ForeColor;
+      zone4BackColor = zone1BackColor;
+      zone4ForeColor = zone1ForeColor;
+      zone5BackColor = zone1BackColor;
+      zone5ForeColor = zone1ForeColor;
 
       cycleCounter = 0;
       testToneCounter = 0;
@@ -134,16 +160,57 @@ class DataField1 extends Ui.DataField
       }
    }
    
-   function getColorCode(name) {
-      
+   function getColorCode(color_index) {
+
       var color = Graphics.COLOR_WHITE;
       
-      if (name.equals("Green")) {
+
+      if (color_index == COLOR_IDX_WHITE) {
+         color = Graphics.COLOR_WHITE;
+      }
+      else if (color_index == COLOR_IDX_LT_GRAY) {
+         color = Graphics.COLOR_LT_GRAY;
+      }
+      else if (color_index == COLOR_IDX_DK_GRAY) {
+         color = Graphics.COLOR_DK_GRAY;
+      }
+      else if (color_index == COLOR_IDX_BLACK) {
+         color = Graphics.COLOR_BLACK;
+      }
+      else if (color_index == COLOR_IDX_RED) {
+         color = Graphics.COLOR_RED;
+      }
+      else if (color_index == COLOR_IDX_DK_RED) {
+         color = Graphics.COLOR_DK_RED;
+      }
+      else if (color_index == COLOR_IDX_ORANGE) {
+         color = Graphics.COLOR_ORANGE;
+      }
+      else if (color_index == COLOR_IDX_YELLOW) {
+         color = Graphics.COLOR_YELLOW;
+      }
+      else if (color_index == COLOR_IDX_GREEN) {
          color = Graphics.COLOR_GREEN;
       }
-      else {
-         Sys.println("ERROR: unknown color: " + name);
+      else if (color_index == COLOR_IDX_DK_GREEN) {
+         color = Graphics.COLOR_DK_GREEN;
       }
+      else if (color_index == COLOR_IDX_BLUE) {
+         color = Graphics.COLOR_BLUE;
+      }
+      else if (color_index == COLOR_IDX_DK_BLUE) {
+         color = Graphics.COLOR_DK_BLUE;
+      }
+      else if (color_index == COLOR_IDX_PURPLE) {
+         color = Graphics.COLOR_PURPLE;
+      }
+      else if (color_index == COLOR_IDX_PINK) {
+         color = Graphics.COLOR_PINK;
+      }
+      else {
+         Sys.println("ERROR: unknown color: " + color_index);
+      }
+
       return color;
    }
 
@@ -278,33 +345,63 @@ class DataField1 extends Ui.DataField
       var zoneLabel = "";
       var zoneColorBkg = Graphics.COLOR_BLUE;
       var zoneColorFrg = Graphics.COLOR_BLACK;
+
       if (heartRate != null) {
          if (heartRate >= beginZone5) {
             zone = 5;
             zoneLabel = "Zone 5";
-            zoneColorBkg = Graphics.COLOR_DK_RED;
-            zoneColorFrg = Graphics.COLOR_WHITE;
+            zoneColorBkg = zone5BackColor;
+            zoneColorFrg = zone5ForeColor;
          } else if (heartRate >= beginZone4) {
             zone = 4;
             zoneLabel = "Zone 4";
-            zoneColorBkg = Graphics.COLOR_RED;
-            zoneColorFrg = Graphics.COLOR_WHITE;
+            zoneColorBkg = zone4BackColor;
+            zoneColorFrg = zone4ForeColor;
          } else if (heartRate >= beginZone3) {
             zone = 3;
             zoneLabel = "Zone 3";
-            zoneColorBkg = Graphics.COLOR_ORANGE;
-            zoneColorFrg = Graphics.COLOR_WHITE;
+            zoneColorBkg = zone3BackColor;
+            zoneColorFrg = zone3ForeColor;
          } else if (heartRate >= beginZone2) {
             zone = 2;
             zoneLabel = "Zone 2";
-            zoneColorBkg = Graphics.COLOR_YELLOW;
+            zoneColorBkg = zone3BackColor;
+            zoneColorFrg = zone3ForeColor;
          } else if (heartRate >= beginZone1) {
             zone = 1;
             zoneLabel = "Zone 1";
-            zoneColorBkg = Graphics.COLOR_GREEN;
+            zoneColorBkg = zone1BackColor;
+            zoneColorFrg = zone1ForeColor;
          } else {
-            zoneColorBkg = Graphics.COLOR_BLUE;
+            zoneColorBkg = Graphics.COLOR_BLUE;//TODO
          }
+//TODO rm      
+//         if (heartRate >= beginZone5) {
+//            zone = 5;
+//            zoneLabel = "Zone 5";
+//            zoneColorBkg = Graphics.COLOR_DK_RED;
+//            zoneColorFrg = Graphics.COLOR_WHITE;
+//         } else if (heartRate >= beginZone4) {
+//            zone = 4;
+//            zoneLabel = "Zone 4";
+//            zoneColorBkg = Graphics.COLOR_RED;
+//            zoneColorFrg = Graphics.COLOR_WHITE;
+//         } else if (heartRate >= beginZone3) {
+//            zone = 3;
+//            zoneLabel = "Zone 3";
+//            zoneColorBkg = Graphics.COLOR_ORANGE;
+//            zoneColorFrg = Graphics.COLOR_WHITE;
+//         } else if (heartRate >= beginZone2) {
+//            zone = 2;
+//            zoneLabel = "Zone 2";
+//            zoneColorBkg = Graphics.COLOR_YELLOW;
+//         } else if (heartRate >= beginZone1) {
+//            zone = 1;
+//            zoneLabel = "Zone 1";
+//            zoneColorBkg = Graphics.COLOR_GREEN;
+//         } else {
+//            zoneColorBkg = Graphics.COLOR_BLUE;
+//         }
 
          dc.setColor(zoneColorBkg, Graphics.COLOR_TRANSPARENT);
          dc.fillRectangle(0, 0, width, yTopLine-0);

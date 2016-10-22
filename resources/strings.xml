@@ -15,4 +15,18 @@
     <string id="ZoneNumberError">Must be a value from 1-5</string>
     <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
     <string id="PromptZone1BackColor">Zone 1 background color</string>
+    <string id="WhiteColor">White</string>
+    <string id="LightGrayColor">Light Gray</string>
+    <string id="DarkGrayColor">Dark Gray</string>
+    <string id="BlackColor">Black</string>
+    <string id="RedColor">Red</string>
+    <string id="DarkRedColor">Dark Red</string>
+    <string id="OrangeColor">Orange</string>
+    <string id="YellowColor">Yellow</string>
+    <string id="GreenColor">Green</string>
+    <string id="DarkGreenColor">Dark Green</string>
+    <string id="BlueColor">Blue</string>
+    <string id="DarkBlueColor">Dark Blue</string>
+    <string id="PurpleColor">Purple</string>
+    <string id="PinkColor">Pink</string>
 </resources>
