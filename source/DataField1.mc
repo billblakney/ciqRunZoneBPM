@@ -28,6 +28,11 @@ class DataField1 extends Ui.DataField
    const COLOR_IDX_DK_BLUE  = 11;
    const COLOR_IDX_PURPLE   = 12;
    const COLOR_IDX_PINK     = 13;
+   
+//   var defaultBackColor = Graphics.COLOR_WHITE;
+//   var defaultForeColor = Graphics.COLOR_BLACK;
+   var defaultBackColor = Graphics.COLOR_BLACK;
+   var defaultForeColor = Graphics.COLOR_WHITE;
 
    var testHeartRates = new [50];
 
@@ -333,9 +338,12 @@ class DataField1 extends Ui.DataField
    function onUpdate(dc) {
 
       if (firstUpdate ==1) {
-         setupGeometry(dc);
          firstUpdate = 0;
+         setupGeometry(dc);
       }
+
+         dc.setColor(defaultForeColor,defaultBackColor);
+         dc.clear();
 
 //      testTone();
 
@@ -375,33 +383,6 @@ class DataField1 extends Ui.DataField
          } else {
             zoneColorBkg = Graphics.COLOR_BLUE;//TODO
          }
-//TODO rm      
-//         if (heartRate >= beginZone5) {
-//            zone = 5;
-//            zoneLabel = "Zone 5";
-//            zoneColorBkg = Graphics.COLOR_DK_RED;
-//            zoneColorFrg = Graphics.COLOR_WHITE;
-//         } else if (heartRate >= beginZone4) {
-//            zone = 4;
-//            zoneLabel = "Zone 4";
-//            zoneColorBkg = Graphics.COLOR_RED;
-//            zoneColorFrg = Graphics.COLOR_WHITE;
-//         } else if (heartRate >= beginZone3) {
-//            zone = 3;
-//            zoneLabel = "Zone 3";
-//            zoneColorBkg = Graphics.COLOR_ORANGE;
-//            zoneColorFrg = Graphics.COLOR_WHITE;
-//         } else if (heartRate >= beginZone2) {
-//            zone = 2;
-//            zoneLabel = "Zone 2";
-//            zoneColorBkg = Graphics.COLOR_YELLOW;
-//         } else if (heartRate >= beginZone1) {
-//            zone = 1;
-//            zoneLabel = "Zone 1";
-//            zoneColorBkg = Graphics.COLOR_GREEN;
-//         } else {
-//            zoneColorBkg = Graphics.COLOR_BLUE;
-//         }
 
          dc.setColor(zoneColorBkg, Graphics.COLOR_TRANSPARENT);
          dc.fillRectangle(0, 0, width, yTopLine-0);
@@ -461,7 +442,7 @@ class DataField1 extends Ui.DataField
       }
 
       // other texts drawn in black font color
-      dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
+      dc.setColor(defaultForeColor, Gfx.COLOR_TRANSPARENT);
 
       // pace
       if (switchColumns)
