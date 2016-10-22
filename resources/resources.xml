@@ -9,6 +9,16 @@
         <property id="beginZone4" type="number">167</property>
         <property id="beginZone5" type="number">175</property>
         <property id="hiliteZone" type="number">3</property>
+        <property id="zone1BackColor" type="string">Coconut</property>
+        <property id="zone1ForeColor" type="string">Black</property>
+        <property id="zone2BackColor" type="string">Yellow</property>
+        <property id="zone2ForeColor" type="string">Black</property>
+        <property id="zone3BackColor" type="string">Orange</property>
+        <property id="zone3ForeColor" type="string">White</property>
+        <property id="zone4BackColor" type="string">Red</property>
+        <property id="zone4ForeColor" type="string">White</property>
+        <property id="zone5BackColor" type="string">Dark Red</property>
+        <property id="zone5ForeColor" type="string">White</property>
     </properties>
     <settings>
         <setting propertyKey="@Properties.beginZone1" title="@Strings.Zone1Title" prompt="@Strings.PromptZone1">
@@ -28,6 +38,9 @@
         </setting>
         <setting propertyKey="@Properties.hiliteZone" title="@Strings.HiliteZone" prompt="@Strings.PromptHiliteZone">
            <settingConfig type="numeric" />
+        </setting>
+        <setting propertyKey="@Properties.zone1BackColor" title="@Strings.Zone1BackColor" prompt="@Strings.PromptZone1BackColor">
+           <settingConfig type="alphaNumeric" />
         </setting>
     </settings>
 </resources>

@@ -75,6 +75,17 @@ class DataField1 extends Ui.DataField
    var beginZone5;
 
    var hiliteZone = 0;
+   
+   var zone1BackColor;
+   var zone1ForeColor;
+   var zone2BackColor;
+   var zone2ForeColor;
+   var zone3BackColor;
+   var zone3ForeColor;
+   var zone4BackColor;
+   var zone4ForeColor;
+   var zone5BackColor;
+   var zone5ForeColor;
 
    // Constructor
    function initialize()
@@ -94,6 +105,10 @@ class DataField1 extends Ui.DataField
       Sys.println("beginZone4: " + beginZone4);
       Sys.println("beginZone5: " + beginZone5);
       Sys.println("hiliteZone: " + hiliteZone);
+
+      zone1BackColor = Application.getApp().getProperty("zone1BackColor");
+      Sys.println("XXXXXXXXXXXXXXXXXXXXXXX: " + zone1BackColor);
+      getColorCode(zone1BackColor);
 
       cycleCounter = 0;
       testToneCounter = 0;
@@ -117,6 +132,19 @@ class DataField1 extends Ui.DataField
       {
          testHeartRates[i] = 146;
       }
+   }
+   
+   function getColorCode(name) {
+      
+      var color = Graphics.COLOR_WHITE;
+      
+      if (name.equals("Green")) {
+         color = Graphics.COLOR_GREEN;
+      }
+      else {
+         Sys.println("ERROR: unknown color: " + name);
+      }
+      return color;
    }
 
    // Handle the update event
@@ -174,7 +202,7 @@ class DataField1 extends Ui.DataField
 //    heartRate = 88;
       if (cycleCounter < 50)
       {
-Sys.println("cycleCounter: " + cycleCounter);
+//Sys.println("cycleCounter: " + cycleCounter);
          heartRate = testHeartRates[cycleCounter];
       }
 
