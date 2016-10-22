@@ -200,13 +200,8 @@ Sys.println("cycleCounter: " + cycleCounter);
 
    function onHide() {
    }
-
-   function onUpdate(dc) {
-
-      if (firstUpdate ==1) {
-         setupGeometry(dc);
-         firstUpdate = 0;
-      }
+   
+   function testTone() {
 
       if (testToneCounter == 0)
       {
@@ -238,6 +233,16 @@ Sys.println("cycleCounter: " + cycleCounter);
          testToneCounter -= testToneCounter + 5;
       }
       testToneCounter++;
+   }
+
+   function onUpdate(dc) {
+
+      if (firstUpdate ==1) {
+         setupGeometry(dc);
+         firstUpdate = 0;
+      }
+
+//      testTone();
 
       // Draw heartRate color indicator
 
