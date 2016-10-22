@@ -1,20 +1,45 @@
 <resources>
     <string id="AppName">SimpleDataField</string>
+    <!-- zone titles -->
     <string id="Zone1Title">Zone 1 Base Heart Rate</string>
     <string id="Zone2Title">Zone 2 Base Heart Rate</string>
     <string id="Zone3Title">Zone 3 Base Heart Rate</string>
     <string id="Zone4Title">Zone 4 Base Heart Rate</string>
     <string id="Zone5Title">Zone 5 Base Heart Rate</string>
+    <!-- lowest hilite zone title -->
     <string id="HiliteZone">Lowest Hilite Zone</string>
+    <!-- zone color titles -->
     <string id="Zone1BackColor">Zone 1 Background Color</string>
-    <string id="PromptZone1">Enter base heart rate for zone 1</string>
-    <string id="PromptZone2">Enter base heart rate for zone 2</string>
-    <string id="PromptZone3">Enter base heart rate for zone 3</string>
-    <string id="PromptZone4">Enter base heart rate for zone 4</string>
-    <string id="PromptZone5">Enter base heart rate for zone 5</string>
+    <string id="Zone1ForeColor">Zone 1 Foreground Color</string>
+    <string id="Zone2BackColor">Zone 2 Background Color</string>
+    <string id="Zone2ForeColor">Zone 2 Foreground Color</string>
+    <string id="Zone3BackColor">Zone 3 Background Color</string>
+    <string id="Zone3ForeColor">Zone 3 Foreground Color</string>
+    <string id="Zone4BackColor">Zone 4 Background Color</string>
+    <string id="Zone4ForeColor">Zone 4 Foreground Color</string>
+    <string id="Zone5BackColor">Zone 5 Background Color</string>
+    <string id="Zone5ForeColor">Zone 5 Foreground Color</string>
+    <!-- heart zone prompts -->
+    <string id="PromptZone1">Base heart rate for zone 1</string>
+    <string id="PromptZone2">Base heart rate for zone 2</string>
+    <string id="PromptZone3">Base heart rate for zone 3</string>
+    <string id="PromptZone4">Base heart rate for zone 4</string>
+    <string id="PromptZone5">Base heart rate for zone 5</string>
+    <!-- heart rate errors -->
     <string id="ZoneNumberError">Must be a value from 1-5</string>
+    <!-- colors prompts -->
     <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
     <string id="PromptZone1BackColor">Zone 1 background color</string>
+    <string id="PromptZone1ForeColor">Zone 1 foreground color</string>
+    <string id="PromptZone2BackColor">Zone 2 background color</string>
+    <string id="PromptZone2ForeColor">Zone 2 foreground color</string>
+    <string id="PromptZone3BackColor">Zone 3 background color</string>
+    <string id="PromptZone3ForeColor">Zone 3 foreground color</string>
+    <string id="PromptZone4BackColor">Zone 4 background color</string>
+    <string id="PromptZone4ForeColor">Zone 4 foreground color</string>
+    <string id="PromptZone5BackColor">Zone 5 background color</string>
+    <string id="PromptZone5ForeColor">Zone 5 foreground color</string>
+    <!-- colors -->
     <string id="WhiteColor">White</string>
     <string id="LightGrayColor">Light Gray</string>
     <string id="DarkGrayColor">Dark Gray</string>
