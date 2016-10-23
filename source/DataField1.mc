@@ -30,10 +30,10 @@ class DataField1 extends Ui.DataField
    const COLOR_IDX_PURPLE   = 12;
    const COLOR_IDX_PINK     = 13;
    
+   var useBlackBack = false;
+   
    var defaultBackColor = Graphics.COLOR_WHITE;
    var defaultForeColor = Graphics.COLOR_BLACK;
-//   var defaultBackColor = Graphics.COLOR_BLACK;
-//   var defaultForeColor = Graphics.COLOR_WHITE;
 
    var testHeartRates = new [50];
 
@@ -108,10 +108,42 @@ class DataField1 extends Ui.DataField
    var zone5ForeColor = Graphics.COLOR_BLACK;
 
    // Constructor
-   function initialize()
-   {
+   function initialize() {
 
       DataField.initialize();
+      
+      getUserSettings();
+
+      if (useBlackBack) {
+         defaultBackColor = Graphics.COLOR_BLACK;
+         defaultForeColor = Graphics.COLOR_WHITE;
+      }
+
+      cycleCounter = 0;
+      testToneCounter = 0;
+      old_counter = 0;
+
+      heartRate = null;
+      pace = null;
+      duration = 0;
+      distance = 0.0;
+
+      if (Sys.getDeviceSettings().distanceUnits == Sys.UNIT_METRIC)
+      {
+         split = 1000.0;
+      }
+      else
+      {
+         split = 1609.0;
+      }
+
+      for (var i = 0; i < 50; i++) //TODO
+      {
+         testHeartRates[i] = 120+i;
+      }
+   }
+   
+   function getUserSettings() {
 
       beginZone1 = App.getApp().getProperty("beginZone1");
       beginZone2 = App.getApp().getProperty("beginZone2");
@@ -147,113 +179,10 @@ class DataField1 extends Ui.DataField
       zone4ForeColor = getColorCode(zone4ForeColorNum);
       zone5BackColor = getColorCode(zone5BackColorNum);
       zone5ForeColor = getColorCode(zone5ForeColorNum);
-
-      cycleCounter = 0;
-      testToneCounter = 0;
-      old_counter = 0;
-
-      heartRate = null;
-      pace = null;
-      duration = 0;
-      distance = 0.0;
-
-      if (Sys.getDeviceSettings().distanceUnits == Sys.UNIT_METRIC)
-      {
-         split = 1000.0;
-      }
-      else
-      {
-         split = 1609.0;
-      }
-
-      for (var i = 0; i < 50; i++)
-      {
-         testHeartRates[i] = 120+i;
-      }
-   }
-   
-   function getColorCode(color_index) {
-
-      var color = Graphics.COLOR_WHITE;
-      
-
-      if (color_index == COLOR_IDX_WHITE) {
-         color = Graphics.COLOR_WHITE;
-      }
-      else if (color_index == COLOR_IDX_LT_GRAY) {
-         color = Graphics.COLOR_LT_GRAY;
-      }
-      else if (color_index == COLOR_IDX_DK_GRAY) {
-         color = Graphics.COLOR_DK_GRAY;
-      }
-      else if (color_index == COLOR_IDX_BLACK) {
-         color = Graphics.COLOR_BLACK;
-      }
-      else if (color_index == COLOR_IDX_RED) {
-         color = Graphics.COLOR_RED;
-      }
-      else if (color_index == COLOR_IDX_DK_RED) {
-         color = Graphics.COLOR_DK_RED;
-      }
-      else if (color_index == COLOR_IDX_ORANGE) {
-         color = Graphics.COLOR_ORANGE;
-      }
-      else if (color_index == COLOR_IDX_YELLOW) {
-         color = Graphics.COLOR_YELLOW;
-      }
-      else if (color_index == COLOR_IDX_GREEN) {
-         color = Graphics.COLOR_GREEN;
-      }
-      else if (color_index == COLOR_IDX_DK_GREEN) {
-         color = Graphics.COLOR_DK_GREEN;
-      }
-      else if (color_index == COLOR_IDX_BLUE) {
-         color = Graphics.COLOR_BLUE;
-      }
-      else if (color_index == COLOR_IDX_DK_BLUE) {
-         color = Graphics.COLOR_DK_BLUE;
-      }
-      else if (color_index == COLOR_IDX_PURPLE) {
-         color = Graphics.COLOR_PURPLE;
-      }
-      else if (color_index == COLOR_IDX_PINK) {
-         color = Graphics.COLOR_PINK;
-      }
-      else {
-         Sys.println("ERROR: unknown color: " + color_index);
-      }
-
-      return color;
    }
 
    // Handle the update event
    function compute(info) {
-
-/*
-        //Cycle between Heart Rate (int), Distance (float), and elapsedTime (Duration)
-        if(old_counter == 0) {
-            if(info.currentHeartRate != null) {
-                value_picked = info.currentHeartRate;
-            }
-        }
-        if(old_counter == 1) {
-            if(info.elapsedDistance != null) {
-                value_picked = info.elapsedDistance * METERS_TO_MILES;
-            }
-        }
-        if(old_counter == 2) {
-            if(info.elapsedTime != null) {
-                //elapsedTime is in ms.
-                var options = { :seconds => info.elapsedTime *  MILLISECONDS_TO_SECONDS};
-                value_picked = Time.Gregorian.duration(options);
-            }
-        }
-
-        old_counter += 1;
-        if(old_counter > 2) {
-            old_counter = 0;
-        }
-*/
 
       currentTime = fmtTime(Sys.getClockTime());
 
@@ -281,7 +210,6 @@ class DataField1 extends Ui.DataField
 //    heartRate = 88;
 //      if (cycleCounter < 50)
 //      {
-////Sys.println("cycleCounter: " + cycleCounter);
 //         heartRate = testHeartRates[cycleCounter];
 //      }
 
@@ -293,10 +221,7 @@ class DataField1 extends Ui.DataField
 // TESTED
 //    pace = 8*60;  //  8:00
 //    pace = 10*60; // 10:00
-
-
-//        return value_picked;
-    }
+   }
 
    function onLayout(dc) {
    }
@@ -307,40 +232,6 @@ class DataField1 extends Ui.DataField
 
    function onHide() {
    }
-   
-   function testTone() {
-
-      if (testToneCounter == 0)
-      {
-         Attn.playTone(Attn.TONE_KEY);
-      }
-      else if (testToneCounter == 3)
-      {
-         Attn.playTone(Attn.TONE_ALARM);
-      }
-      else if (testToneCounter == 6)
-      {
-         Attn.playTone(Attn.TONE_ALERT_LO);//3
-      }
-      else if (testToneCounter == 9)
-      {
-         Attn.playTone(Attn.TONE_ALERT_HI);//4
-      }
-      else if (testToneCounter == 12)
-      {
-         Attn.playTone(Attn.TONE_LOUD_BEEP); //1
-      }
-      else if (testToneCounter == 15)
-      {
-         Attn.playTone(Attn.TONE_CANARY); //2
-      }
-      else if (testToneCounter == 18)
-      {
-         Attn.playTone(Attn.TONE_SUCCESS);//5
-         testToneCounter -= testToneCounter + 5;
-      }
-      testToneCounter++;
-   }
 
    function onUpdate(dc) {
 
@@ -349,8 +240,8 @@ class DataField1 extends Ui.DataField
          setupGeometry(dc);
       }
 
-         dc.setColor(defaultForeColor,defaultBackColor);
-         dc.clear();
+      dc.setColor(defaultForeColor,defaultBackColor);
+      dc.clear();
 
 //      testTone();
 
@@ -700,5 +591,92 @@ class DataField1 extends Ui.DataField
       var fmt = "" + battery.format("%2d") + "%";
       return fmt;
    }
+   
+   function getColorCode(color_index) {
 
+      var color = Graphics.COLOR_WHITE;
+      
+
+      if (color_index == COLOR_IDX_WHITE) {
+         color = Graphics.COLOR_WHITE;
+      }
+      else if (color_index == COLOR_IDX_LT_GRAY) {
+         color = Graphics.COLOR_LT_GRAY;
+      }
+      else if (color_index == COLOR_IDX_DK_GRAY) {
+         color = Graphics.COLOR_DK_GRAY;
+      }
+      else if (color_index == COLOR_IDX_BLACK) {
+         color = Graphics.COLOR_BLACK;
+      }
+      else if (color_index == COLOR_IDX_RED) {
+         color = Graphics.COLOR_RED;
+      }
+      else if (color_index == COLOR_IDX_DK_RED) {
+         color = Graphics.COLOR_DK_RED;
+      }
+      else if (color_index == COLOR_IDX_ORANGE) {
+         color = Graphics.COLOR_ORANGE;
+      }
+      else if (color_index == COLOR_IDX_YELLOW) {
+         color = Graphics.COLOR_YELLOW;
+      }
+      else if (color_index == COLOR_IDX_GREEN) {
+         color = Graphics.COLOR_GREEN;
+      }
+      else if (color_index == COLOR_IDX_DK_GREEN) {
+         color = Graphics.COLOR_DK_GREEN;
+      }
+      else if (color_index == COLOR_IDX_BLUE) {
+         color = Graphics.COLOR_BLUE;
+      }
+      else if (color_index == COLOR_IDX_DK_BLUE) {
+         color = Graphics.COLOR_DK_BLUE;
+      }
+      else if (color_index == COLOR_IDX_PURPLE) {
+         color = Graphics.COLOR_PURPLE;
+      }
+      else if (color_index == COLOR_IDX_PINK) {
+         color = Graphics.COLOR_PINK;
+      }
+      else {
+         Sys.println("ERROR: unknown color: " + color_index);
+      }
+
+      return color;
+   }
+   
+   function testTone() {
+
+      if (testToneCounter == 0)
+      {
+         Attn.playTone(Attn.TONE_KEY);
+      }
+      else if (testToneCounter == 3)
+      {
+         Attn.playTone(Attn.TONE_ALARM);
+      }
+      else if (testToneCounter == 6)
+      {
+         Attn.playTone(Attn.TONE_ALERT_LO);//3
+      }
+      else if (testToneCounter == 9)
+      {
+         Attn.playTone(Attn.TONE_ALERT_HI);//4
+      }
+      else if (testToneCounter == 12)
+      {
+         Attn.playTone(Attn.TONE_LOUD_BEEP); //1
+      }
+      else if (testToneCounter == 15)
+      {
+         Attn.playTone(Attn.TONE_CANARY); //2
+      }
+      else if (testToneCounter == 18)
+      {
+         Attn.playTone(Attn.TONE_SUCCESS);//5
+         testToneCounter -= testToneCounter + 5;
+      }
+      testToneCounter++;
+   }
 }
