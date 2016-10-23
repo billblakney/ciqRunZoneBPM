@@ -4,6 +4,7 @@
 // Application Developer Agreement.
 //
 
+using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
@@ -29,10 +30,10 @@ class DataField1 extends Ui.DataField
    const COLOR_IDX_PURPLE   = 12;
    const COLOR_IDX_PINK     = 13;
    
-//   var defaultBackColor = Graphics.COLOR_WHITE;
-//   var defaultForeColor = Graphics.COLOR_BLACK;
-   var defaultBackColor = Graphics.COLOR_BLACK;
-   var defaultForeColor = Graphics.COLOR_WHITE;
+   var defaultBackColor = Graphics.COLOR_WHITE;
+   var defaultForeColor = Graphics.COLOR_BLACK;
+//   var defaultBackColor = Graphics.COLOR_BLACK;
+//   var defaultForeColor = Graphics.COLOR_WHITE;
 
    var testHeartRates = new [50];
 
@@ -112,12 +113,12 @@ class DataField1 extends Ui.DataField
 
       DataField.initialize();
 
-      beginZone1 = Application.getApp().getProperty("beginZone1");
-      beginZone2 = Application.getApp().getProperty("beginZone2");
-      beginZone3 = Application.getApp().getProperty("beginZone3");
-      beginZone4 = Application.getApp().getProperty("beginZone4");
-      beginZone5 = Application.getApp().getProperty("beginZone5");
-      hiliteZone = Application.getApp().getProperty("hiliteZone");
+      beginZone1 = App.getApp().getProperty("beginZone1");
+      beginZone2 = App.getApp().getProperty("beginZone2");
+      beginZone3 = App.getApp().getProperty("beginZone3");
+      beginZone4 = App.getApp().getProperty("beginZone4");
+      beginZone5 = App.getApp().getProperty("beginZone5");
+      hiliteZone = App.getApp().getProperty("hiliteZone");
       Sys.println("beginZone1: " + beginZone1);
       Sys.println("beginZone2: " + beginZone2);
       Sys.println("beginZone3: " + beginZone3);
@@ -125,21 +126,27 @@ class DataField1 extends Ui.DataField
       Sys.println("beginZone5: " + beginZone5);
       Sys.println("hiliteZone: " + hiliteZone);
 
-      var zone1BackColorNum = Application.getApp().getProperty("zone1BackColor");
-      var zone1ForeColorNum = Application.getApp().getProperty("zone1ForeColor");
-      Sys.println("zone1BackColorNum: " + zone1BackColorNum);
-      Sys.println("zone1ForeColorNum: " + zone1ForeColorNum);
+      var zone1BackColorNum = App.getApp().getProperty("zone1BackColor");
+      var zone1ForeColorNum = App.getApp().getProperty("zone1ForeColor");
+      var zone2BackColorNum = App.getApp().getProperty("zone2BackColor");
+      var zone2ForeColorNum = App.getApp().getProperty("zone2ForeColor");
+      var zone3BackColorNum = App.getApp().getProperty("zone3BackColor");
+      var zone3ForeColorNum = App.getApp().getProperty("zone3ForeColor");
+      var zone4BackColorNum = App.getApp().getProperty("zone4BackColor");
+      var zone4ForeColorNum = App.getApp().getProperty("zone4ForeColor");
+      var zone5BackColorNum = App.getApp().getProperty("zone5BackColor");
+      var zone5ForeColorNum = App.getApp().getProperty("zone5ForeColor");
 
       zone1BackColor = getColorCode(zone1BackColorNum);
       zone1ForeColor = getColorCode(zone1ForeColorNum);
-      zone2BackColor = zone1BackColor;
-      zone2ForeColor = zone1ForeColor;
-      zone3BackColor = zone1BackColor;
-      zone3ForeColor = zone1ForeColor;
-      zone4BackColor = zone1BackColor;
-      zone4ForeColor = zone1ForeColor;
-      zone5BackColor = zone1BackColor;
-      zone5ForeColor = zone1ForeColor;
+      zone2BackColor = getColorCode(zone2BackColorNum);
+      zone2ForeColor = getColorCode(zone2ForeColorNum);
+      zone3BackColor = getColorCode(zone3BackColorNum);
+      zone3ForeColor = getColorCode(zone3ForeColorNum);
+      zone4BackColor = getColorCode(zone4BackColorNum);
+      zone4ForeColor = getColorCode(zone4ForeColorNum);
+      zone5BackColor = getColorCode(zone5BackColorNum);
+      zone5ForeColor = getColorCode(zone5ForeColorNum);
 
       cycleCounter = 0;
       testToneCounter = 0;
@@ -161,7 +168,7 @@ class DataField1 extends Ui.DataField
 
       for (var i = 0; i < 50; i++)
       {
-         testHeartRates[i] = 146;
+         testHeartRates[i] = 120+i;
       }
    }
    
@@ -272,11 +279,11 @@ class DataField1 extends Ui.DataField
 //    heartRate = 140;
 //    heartRate = 100;
 //    heartRate = 88;
-      if (cycleCounter < 50)
-      {
-//Sys.println("cycleCounter: " + cycleCounter);
-         heartRate = testHeartRates[cycleCounter];
-      }
+//      if (cycleCounter < 50)
+//      {
+////Sys.println("cycleCounter: " + cycleCounter);
+//         heartRate = testHeartRates[cycleCounter];
+//      }
 
       var speed = info.currentSpeed;
 //speed /= 4; // increase speed to get double digit pace
@@ -351,8 +358,8 @@ class DataField1 extends Ui.DataField
 
       var zone = 0;
       var zoneLabel = "";
-      var zoneColorBkg = Graphics.COLOR_BLUE;
-      var zoneColorFrg = Graphics.COLOR_BLACK;
+      var zoneColorBkg = defaultBackColor;
+      var zoneColorFrg = defaultForeColor;
 
       if (heartRate != null) {
          if (heartRate >= beginZone5) {
@@ -380,11 +387,9 @@ class DataField1 extends Ui.DataField
             zoneLabel = "Zone 1";
             zoneColorBkg = zone1BackColor;
             zoneColorFrg = zone1ForeColor;
-         } else {
-            zoneColorBkg = Graphics.COLOR_BLUE;//TODO
          }
 
-         dc.setColor(zoneColorBkg, Graphics.COLOR_TRANSPARENT);
+         dc.setColor(zoneColorBkg,zoneColorBkg);
          dc.fillRectangle(0, 0, width, yTopLine-0);
       }
 
@@ -411,7 +416,7 @@ class DataField1 extends Ui.DataField
       }
       else
       {
-         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
+         dc.setColor(defaultForeColor, Gfx.COLOR_TRANSPARENT);
       }
 
       if (switchColumns)
