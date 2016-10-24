@@ -1,9 +1,3 @@
-//
-// Copyright 2016 by Garmin Ltd. or its subsidiaries.
-// Subject to Garmin SDK License Agreement and Wearables
-// Application Developer Agreement.
-//
-
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
 using Toybox.System as Sys;
@@ -32,10 +26,10 @@ class DataField1 extends Ui.DataField
    
    var useBlackBack = false;
    
-   var defaultBackColor = Graphics.COLOR_WHITE;
-   var defaultForeColor = Graphics.COLOR_BLACK;
+   var defaultBgColor = Graphics.COLOR_WHITE;
+   var defaultFgColor = Graphics.COLOR_BLACK;
 
-   var testHeartRates = new [50];
+//   var testHeartRates = new [50];
 
    /* Counts number of times that onUpdate has been called. Will have a
     * value of 0 during first pass through compute and entering onUpdate,
@@ -96,16 +90,16 @@ class DataField1 extends Ui.DataField
 
    var hiliteZone = 0;
    
-   var zone1BackColor = Graphics.COLOR_WHITE;
-   var zone1ForeColor = Graphics.COLOR_BLACK;
-   var zone2BackColor = Graphics.COLOR_WHITE;
-   var zone2ForeColor = Graphics.COLOR_BLACK;
-   var zone3BackColor = Graphics.COLOR_WHITE;
-   var zone3ForeColor = Graphics.COLOR_BLACK;
-   var zone4BackColor = Graphics.COLOR_WHITE;
-   var zone4ForeColor = Graphics.COLOR_BLACK;
-   var zone5BackColor = Graphics.COLOR_WHITE;
-   var zone5ForeColor = Graphics.COLOR_BLACK;
+   var zone1BgColor = Graphics.COLOR_WHITE;
+   var zone1FgColor = Graphics.COLOR_BLACK;
+   var zone2BgColor = Graphics.COLOR_WHITE;
+   var zone2FgColor = Graphics.COLOR_BLACK;
+   var zone3BgColor = Graphics.COLOR_WHITE;
+   var zone3FgColor = Graphics.COLOR_BLACK;
+   var zone4BgColor = Graphics.COLOR_WHITE;
+   var zone4FgColor = Graphics.COLOR_BLACK;
+   var zone5BgColor = Graphics.COLOR_WHITE;
+   var zone5FgColor = Graphics.COLOR_BLACK;
 
    // Constructor
    function initialize() {
@@ -115,8 +109,8 @@ class DataField1 extends Ui.DataField
       getUserSettings();
 
       if (useBlackBack) {
-         defaultBackColor = Graphics.COLOR_BLACK;
-         defaultForeColor = Graphics.COLOR_WHITE;
+         defaultBgColor = Graphics.COLOR_BLACK;
+         defaultFgColor = Graphics.COLOR_WHITE;
       }
 
       cycleCounter = 0;
@@ -137,54 +131,63 @@ class DataField1 extends Ui.DataField
          split = 1609.0;
       }
 
-      for (var i = 0; i < 50; i++) //TODO
-      {
-         testHeartRates[i] = 120+i;
-      }
+//      for (var i = 0; i < 50; i++) //TODO
+//      {
+//         testHeartRates[i] = 120+i;
+//      }
+//      testHeartRates[45] = 105;
+//      testHeartRates[46] = 104;
+//      testHeartRates[47] = 103;
+//      testHeartRates[48] = 102;
+//      testHeartRates[49] = 101;
    }
    
    function getUserSettings() {
+      
+      useBlackBack = App.getApp().getProperty("useBlackBack");
 
-      beginZone1 = App.getApp().getProperty("beginZone1");
-      beginZone2 = App.getApp().getProperty("beginZone2");
-      beginZone3 = App.getApp().getProperty("beginZone3");
-      beginZone4 = App.getApp().getProperty("beginZone4");
-      beginZone5 = App.getApp().getProperty("beginZone5");
+      beginZone1 = App.getApp().getProperty("beginZ1");
+      beginZone2 = App.getApp().getProperty("beginZ2");
+      beginZone3 = App.getApp().getProperty("beginZ3");
+      beginZone4 = App.getApp().getProperty("beginZ4");
+      beginZone5 = App.getApp().getProperty("beginZ5");
+//      Sys.println("beginZone1: " + beginZone1);
+//      Sys.println("beginZone2: " + beginZone2);
+//      Sys.println("beginZone3: " + beginZone3);
+//      Sys.println("beginZone4: " + beginZone4);
+//      Sys.println("beginZone5: " + beginZone5);
+
       hiliteZone = App.getApp().getProperty("hiliteZone");
-      Sys.println("beginZone1: " + beginZone1);
-      Sys.println("beginZone2: " + beginZone2);
-      Sys.println("beginZone3: " + beginZone3);
-      Sys.println("beginZone4: " + beginZone4);
-      Sys.println("beginZone5: " + beginZone5);
-      Sys.println("hiliteZone: " + hiliteZone);
+//      Sys.println("hiliteZone: " + hiliteZone);
 
-      var zone1BackColorNum = App.getApp().getProperty("zone1BackColor");
-      var zone1ForeColorNum = App.getApp().getProperty("zone1ForeColor");
-      var zone2BackColorNum = App.getApp().getProperty("zone2BackColor");
-      var zone2ForeColorNum = App.getApp().getProperty("zone2ForeColor");
-      var zone3BackColorNum = App.getApp().getProperty("zone3BackColor");
-      var zone3ForeColorNum = App.getApp().getProperty("zone3ForeColor");
-      var zone4BackColorNum = App.getApp().getProperty("zone4BackColor");
-      var zone4ForeColorNum = App.getApp().getProperty("zone4ForeColor");
-      var zone5BackColorNum = App.getApp().getProperty("zone5BackColor");
-      var zone5ForeColorNum = App.getApp().getProperty("zone5ForeColor");
+      var zone1BgColorNum = App.getApp().getProperty("z1BgColor");
+      var zone1FgColorNum = App.getApp().getProperty("z1FgColor");
+      var zone2BgColorNum = App.getApp().getProperty("z2BgColor");
+      var zone2FgColorNum = App.getApp().getProperty("z2FgColor");
+      var zone3BgColorNum = App.getApp().getProperty("z3BgColor");
+      var zone3FgColorNum = App.getApp().getProperty("z3FgColor");
+      var zone4BgColorNum = App.getApp().getProperty("z4BgColor");
+      var zone4FgColorNum = App.getApp().getProperty("z4FgColor");
+      var zone5BgColorNum = App.getApp().getProperty("z5BgColor");
+      var zone5FgColorNum = App.getApp().getProperty("z5FgColor");
 
-      zone1BackColor = getColorCode(zone1BackColorNum);
-      zone1ForeColor = getColorCode(zone1ForeColorNum);
-      zone2BackColor = getColorCode(zone2BackColorNum);
-      zone2ForeColor = getColorCode(zone2ForeColorNum);
-      zone3BackColor = getColorCode(zone3BackColorNum);
-      zone3ForeColor = getColorCode(zone3ForeColorNum);
-      zone4BackColor = getColorCode(zone4BackColorNum);
-      zone4ForeColor = getColorCode(zone4ForeColorNum);
-      zone5BackColor = getColorCode(zone5BackColorNum);
-      zone5ForeColor = getColorCode(zone5ForeColorNum);
+      zone1BgColor = getColorCode(zone1BgColorNum);
+      zone1FgColor = getColorCode(zone1FgColorNum);
+      zone2BgColor = getColorCode(zone2BgColorNum);
+      zone2FgColor = getColorCode(zone2FgColorNum);
+      zone3BgColor = getColorCode(zone3BgColorNum);
+      zone3FgColor = getColorCode(zone3FgColorNum);
+      zone4BgColor = getColorCode(zone4BgColorNum);
+      zone4FgColor = getColorCode(zone4FgColorNum);
+      zone5BgColor = getColorCode(zone5BgColorNum);
+      zone5FgColor = getColorCode(zone5FgColorNum);
    }
 
    // Handle the update event
    function compute(info) {
 
       currentTime = fmtTime(Sys.getClockTime());
+//      currentTime = "00:00";
 
       battery = Sys.getSystemStats().battery;
 // TESTED
@@ -240,7 +243,7 @@ class DataField1 extends Ui.DataField
          setupGeometry(dc);
       }
 
-      dc.setColor(defaultForeColor,defaultBackColor);
+      dc.setColor(defaultFgColor,defaultBgColor);
       dc.clear();
 
 //      testTone();
@@ -249,35 +252,35 @@ class DataField1 extends Ui.DataField
 
       var zone = 0;
       var zoneLabel = "";
-      var zoneColorBkg = defaultBackColor;
-      var zoneColorFrg = defaultForeColor;
+      var zoneColorBkg = defaultBgColor;
+      var zoneColorFrg = defaultFgColor;
 
       if (heartRate != null) {
          if (heartRate >= beginZone5) {
             zone = 5;
             zoneLabel = "Zone 5";
-            zoneColorBkg = zone5BackColor;
-            zoneColorFrg = zone5ForeColor;
+            zoneColorBkg = zone5BgColor;
+            zoneColorFrg = zone5FgColor;
          } else if (heartRate >= beginZone4) {
             zone = 4;
             zoneLabel = "Zone 4";
-            zoneColorBkg = zone4BackColor;
-            zoneColorFrg = zone4ForeColor;
+            zoneColorBkg = zone4BgColor;
+            zoneColorFrg = zone4FgColor;
          } else if (heartRate >= beginZone3) {
             zone = 3;
             zoneLabel = "Zone 3";
-            zoneColorBkg = zone3BackColor;
-            zoneColorFrg = zone3ForeColor;
+            zoneColorBkg = zone3BgColor;
+            zoneColorFrg = zone3FgColor;
          } else if (heartRate >= beginZone2) {
             zone = 2;
             zoneLabel = "Zone 2";
-            zoneColorBkg = zone3BackColor;
-            zoneColorFrg = zone3ForeColor;
+            zoneColorBkg = zone3BgColor;
+            zoneColorFrg = zone3FgColor;
          } else if (heartRate >= beginZone1) {
             zone = 1;
             zoneLabel = "Zone 1";
-            zoneColorBkg = zone1BackColor;
-            zoneColorFrg = zone1ForeColor;
+            zoneColorBkg = zone1BgColor;
+            zoneColorFrg = zone1FgColor;
          }
 
          dc.setColor(zoneColorBkg,zoneColorBkg);
@@ -307,7 +310,7 @@ class DataField1 extends Ui.DataField
       }
       else
       {
-         dc.setColor(defaultForeColor, Gfx.COLOR_TRANSPARENT);
+         dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
       }
 
       if (switchColumns)
@@ -338,7 +341,7 @@ class DataField1 extends Ui.DataField
       }
 
       // other texts drawn in black font color
-      dc.setColor(defaultForeColor, Gfx.COLOR_TRANSPARENT);
+      dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
 
       // pace
       if (switchColumns)
@@ -536,15 +539,18 @@ class DataField1 extends Ui.DataField
       var timeFieldOffset = 0;
 
       if (!Sys.getDeviceSettings().is24Hour) {
-         if (h > 12) {
-            h -= 12;
-         } else if (h == 0) {
+         if (h == 0) {
             h += 12;
-         }
-         if (h < 12) {
             amPm = "am";
          }
-         else {
+         else if (h < 12) {
+            amPm = "am";
+         }
+         else if (h == 12) {
+            amPm = "pm";
+         }
+         else { // h > 12
+            h -= 12;
             amPm = "pm";
          }
       }
@@ -646,37 +652,37 @@ class DataField1 extends Ui.DataField
       return color;
    }
    
-   function testTone() {
-
-      if (testToneCounter == 0)
-      {
-         Attn.playTone(Attn.TONE_KEY);
-      }
-      else if (testToneCounter == 3)
-      {
-         Attn.playTone(Attn.TONE_ALARM);
-      }
-      else if (testToneCounter == 6)
-      {
-         Attn.playTone(Attn.TONE_ALERT_LO);//3
-      }
-      else if (testToneCounter == 9)
-      {
-         Attn.playTone(Attn.TONE_ALERT_HI);//4
-      }
-      else if (testToneCounter == 12)
-      {
-         Attn.playTone(Attn.TONE_LOUD_BEEP); //1
-      }
-      else if (testToneCounter == 15)
-      {
-         Attn.playTone(Attn.TONE_CANARY); //2
-      }
-      else if (testToneCounter == 18)
-      {
-         Attn.playTone(Attn.TONE_SUCCESS);//5
-         testToneCounter -= testToneCounter + 5;
-      }
-      testToneCounter++;
-   }
+//   function testTone() {
+//
+//      if (testToneCounter == 0)
+//      {
+//         Attn.playTone(Attn.TONE_KEY);
+//      }
+//      else if (testToneCounter == 3)
+//      {
+//         Attn.playTone(Attn.TONE_ALARM);
+//      }
+//      else if (testToneCounter == 6)
+//      {
+//         Attn.playTone(Attn.TONE_ALERT_LO);//3
+//      }
+//      else if (testToneCounter == 9)
+//      {
+//         Attn.playTone(Attn.TONE_ALERT_HI);//4
+//      }
+//      else if (testToneCounter == 12)
+//      {
+//         Attn.playTone(Attn.TONE_LOUD_BEEP); //1
+//      }
+//      else if (testToneCounter == 15)
+//      {
+//         Attn.playTone(Attn.TONE_CANARY); //2
+//      }
+//      else if (testToneCounter == 18)
+//      {
+//         Attn.playTone(Attn.TONE_SUCCESS);//5
+//         testToneCounter -= testToneCounter + 5;
+//      }
+//      testToneCounter++;
+//   }
 }

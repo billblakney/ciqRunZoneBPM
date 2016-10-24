@@ -3,46 +3,51 @@
         <bitmap id="id_monkey" filename="images/monkey.png" />
     </bitmaps>
     <properties>
-        <!-- heart rate zones -->
-        <property id="beginZone1" type="number">125</property>
-        <property id="beginZone2" type="number">134</property>
-        <property id="beginZone3" type="number">155</property>
-        <property id="beginZone4" type="number">167</property>
-        <property id="beginZone5" type="number">175</property>
-        <!-- lowest hilite zone -->
+        <!-- heart rate zs -->
+        <property id="beginZ1" type="number">125</property>
+        <property id="beginZ2" type="number">134</property>
+        <property id="beginZ3" type="number">155</property>
+        <property id="beginZ4" type="number">167</property>
+        <property id="beginZ5" type="number">175</property>
+        <!-- lowest hilite z -->
         <property id="hiliteZone" type="number">3</property>
+        <!-- display settings -->
+        <property id="useBlackBack" type="boolean">false</property>
         <!-- heart rate zone colors -->
-        <property id="zone1BackColor" type="number">8</property>
-        <property id="zone1ForeColor" type="number">3</property>
-        <property id="zone2BackColor" type="number">7</property>
-        <property id="zone2ForeColor" type="number">3</property>
-        <property id="zone3BackColor" type="number">6</property>
-        <property id="zone3ForeColor" type="number">0</property>
-        <property id="zone4BackColor" type="number">4</property>
-        <property id="zone4ForeColor" type="number">0</property>
-        <property id="zone5BackColor" type="number">5</property>
-        <property id="zone5ForeColor" type="number">0</property>
+        <property id="z1BgColor" type="number">8</property>
+        <property id="z1FgColor" type="number">3</property>
+        <property id="z2BgColor" type="number">7</property>
+        <property id="z2FgColor" type="number">3</property>
+        <property id="z3BgColor" type="number">6</property>
+        <property id="z3FgColor" type="number">0</property>
+        <property id="z4BgColor" type="number">4</property>
+        <property id="z4FgColor" type="number">0</property>
+        <property id="z5BgColor" type="number">5</property>
+        <property id="z5FgColor" type="number">0</property>
     </properties>
     <settings>
-        <setting propertyKey="@Properties.beginZone1" title="@Strings.Zone1Title" prompt="@Strings.PromptZone1">
+        <setting propertyKey="@Properties.beginZ1" title="@Strings.Z1Title" prompt="@Strings.PromptZ1">
            <settingConfig type="numeric" min="30" max="220" errorMessage="@Strings.ZoneNumberError" />
         </setting>
-        <setting propertyKey="@Properties.beginZone2" title="@Strings.Zone2Title" prompt="@Strings.PromptZone2">
+        <setting propertyKey="@Properties.beginZ2" title="@Strings.Z2Title" prompt="@Strings.PromptZ2">
            <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
         </setting>
-        <setting propertyKey="@Properties.beginZone3" title="@Strings.Zone3Title" prompt="@Strings.PromptZone3">
+        <setting propertyKey="@Properties.beginZ3" title="@Strings.Z3Title" prompt="@Strings.PromptZ3">
            <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
         </setting>
-        <setting propertyKey="@Properties.beginZone4" title="@Strings.Zone4Title" prompt="@Strings.PromptZone4">
+        <setting propertyKey="@Properties.beginZ4" title="@Strings.Z4Title" prompt="@Strings.PromptZ4">
            <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
         </setting>
-        <setting propertyKey="@Properties.beginZone5" title="@Strings.Zone5Title" prompt="@Strings.PromptZone5">
+        <setting propertyKey="@Properties.beginZ5" title="@Strings.Z5Title" prompt="@Strings.PromptZ5">
            <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
         </setting>
         <setting propertyKey="@Properties.hiliteZone" title="@Strings.HiliteZone" prompt="@Strings.PromptHiliteZone">
            <settingConfig type="numeric" min="0" max="5"/>
         </setting>
-        <setting propertyKey="@Properties.zone1BackColor" title="@Strings.Zone1BackColor" prompt="@Strings.PromptZone1BackColor">
+        <setting propertyKey="@Properties.useBlackBack" title="@Strings.UseBlackBack" prompt="@Strings.PromptUseBlackBack">
+           <settingConfig type="boolean"/>
+        </setting>
+        <setting propertyKey="@Properties.z1BgColor" title="@Strings.Z1BgColor" prompt="@Strings.PromptZ1BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -60,7 +65,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone1ForeColor" title="@Strings.Zone1ForeColor" prompt="@Strings.PromptZone1ForeColor">
+        <setting propertyKey="@Properties.z1FgColor" title="@Strings.Z1FgColor" prompt="@Strings.PromptZ1FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -78,7 +83,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone2BackColor" title="@Strings.Zone2BackColor" prompt="@Strings.PromptZone2BackColor">
+        <setting propertyKey="@Properties.z2BgColor" title="@Strings.Z2BgColor" prompt="@Strings.PromptZ2BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -96,7 +101,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone2ForeColor" title="@Strings.Zone2ForeColor" prompt="@Strings.PromptZone2ForeColor">
+        <setting propertyKey="@Properties.z2FgColor" title="@Strings.Z2FgColor" prompt="@Strings.PromptZ2FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -114,7 +119,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone3BackColor" title="@Strings.Zone3BackColor" prompt="@Strings.PromptZone3BackColor">
+        <setting propertyKey="@Properties.z3BgColor" title="@Strings.Z3BgColor" prompt="@Strings.PromptZ3BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -132,7 +137,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone3ForeColor" title="@Strings.Zone3ForeColor" prompt="@Strings.PromptZone3ForeColor">
+        <setting propertyKey="@Properties.z3FgColor" title="@Strings.Z3FgColor" prompt="@Strings.PromptZ3FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -150,7 +155,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone4BackColor" title="@Strings.Zone4BackColor" prompt="@Strings.PromptZone4BackColor">
+        <setting propertyKey="@Properties.z4BgColor" title="@Strings.Z4BgColor" prompt="@Strings.PromptZ4BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -168,7 +173,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone4ForeColor" title="@Strings.Zone4ForeColor" prompt="@Strings.PromptZone4ForeColor">
+        <setting propertyKey="@Properties.z4FgColor" title="@Strings.Z4FgColor" prompt="@Strings.PromptZ4FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -186,7 +191,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone5BackColor" title="@Strings.Zone5BackColor" prompt="@Strings.PromptZone5BackColor">
+        <setting propertyKey="@Properties.z5BgColor" title="@Strings.Z5BgColor" prompt="@Strings.PromptZ5BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -204,7 +209,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.zone5ForeColor" title="@Strings.Zone5ForeColor" prompt="@Strings.PromptZone5ForeColor">
+        <setting propertyKey="@Properties.z5FgColor" title="@Strings.Z5FgColor" prompt="@Strings.PromptZ5FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>

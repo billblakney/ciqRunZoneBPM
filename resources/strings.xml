@@ -1,45 +1,61 @@
 <resources>
     <string id="AppName">SimpleDataField</string>
-    <!-- zone titles -->
-    <string id="Zone1Title">Zone 1 Base Heart Rate</string>
-    <string id="Zone2Title">Zone 2 Base Heart Rate</string>
-    <string id="Zone3Title">Zone 3 Base Heart Rate</string>
-    <string id="Zone4Title">Zone 4 Base Heart Rate</string>
-    <string id="Zone5Title">Zone 5 Base Heart Rate</string>
+    <string id="AppName">SimpleDataField</string>
+    <!-- -->
+    <!--   > zones settings -->
+    <!-- -->
+    <string id="Z1Title">Zone 1 Base Heart Rate</string>
+    <string id="Z2Title">Zone 2 Base Heart Rate</string>
+    <string id="Z3Title">Zone 3 Base Heart Rate</string>
+    <string id="Z4Title">Zone 4 Base Heart Rate</string>
+    <string id="Z5Title">Zone 5 Base Heart Rate</string>
+    <string id="PromptZ1">Base heart rate for zone 1</string>
+    <string id="PromptZ2">Base heart rate for zone 2</string>
+    <string id="PromptZ3">Base heart rate for zone 3</string>
+    <string id="PromptZ4">Base heart rate for zone 4</string>
+    <string id="PromptZ5">Base heart rate for zone 5</string>
+    <!-- -->
+    <!--   > zones display settings -->
+    <!-- -->
     <!-- lowest hilite zone title -->
     <string id="HiliteZone">Lowest Hilite Zone</string>
-    <!-- zone color titles -->
-    <string id="Zone1BackColor">Zone 1 Background Color</string>
-    <string id="Zone1ForeColor">Zone 1 Foreground Color</string>
-    <string id="Zone2BackColor">Zone 2 Background Color</string>
-    <string id="Zone2ForeColor">Zone 2 Foreground Color</string>
-    <string id="Zone3BackColor">Zone 3 Background Color</string>
-    <string id="Zone3ForeColor">Zone 3 Foreground Color</string>
-    <string id="Zone4BackColor">Zone 4 Background Color</string>
-    <string id="Zone4ForeColor">Zone 4 Foreground Color</string>
-    <string id="Zone5BackColor">Zone 5 Background Color</string>
-    <string id="Zone5ForeColor">Zone 5 Foreground Color</string>
-    <!-- heart zone prompts -->
-    <string id="PromptZone1">Base heart rate for zone 1</string>
-    <string id="PromptZone2">Base heart rate for zone 2</string>
-    <string id="PromptZone3">Base heart rate for zone 3</string>
-    <string id="PromptZone4">Base heart rate for zone 4</string>
-    <string id="PromptZone5">Base heart rate for zone 5</string>
-    <!-- heart rate errors -->
-    <string id="ZoneNumberError">Must be a value from 1-5</string>
-    <!-- colors prompts -->
     <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
-    <string id="PromptZone1BackColor">Zone 1 background color</string>
-    <string id="PromptZone1ForeColor">Zone 1 foreground color</string>
-    <string id="PromptZone2BackColor">Zone 2 background color</string>
-    <string id="PromptZone2ForeColor">Zone 2 foreground color</string>
-    <string id="PromptZone3BackColor">Zone 3 background color</string>
-    <string id="PromptZone3ForeColor">Zone 3 foreground color</string>
-    <string id="PromptZone4BackColor">Zone 4 background color</string>
-    <string id="PromptZone4ForeColor">Zone 4 foreground color</string>
-    <string id="PromptZone5BackColor">Zone 5 background color</string>
-    <string id="PromptZone5ForeColor">Zone 5 foreground color</string>
-    <!-- colors -->
+    <!-- -->
+    <!--   > general display settings -->
+    <!-- -->
+    <string id="UseBlackBack">Use Black Background</string>
+    <string id="PromptUseBlackBack">Use Black Background</string>
+    <!-- -->
+    <!--   > zone colors -->
+    <!-- -->
+    <string id="Z1BgColor">Zone 1 Background Color</string>
+    <string id="Z1FgColor">Zone 1 Foreground Color</string>
+    <string id="Z2BgColor">Zone 2 Background Color</string>
+    <string id="Z2FgColor">Zone 2 Foreground Color</string>
+    <string id="Z3BgColor">Zone 3 Background Color</string>
+    <string id="Z3FgColor">Zone 3 Foreground Color</string>
+    <string id="Z4BgColor">Zone 4 Background Color</string>
+    <string id="Z4FgColor">Zone 4 Foreground Color</string>
+    <string id="Z5BgColor">Zone 5 Background Color</string>
+    <string id="Z5FgColor">Zone 5 Foreground Color</string>
+    <string id="PromptZ1BgColor">Zone 1 background color</string>
+    <string id="PromptZ1FgColor">Zone 1 foreground color</string>
+    <string id="PromptZ2BgColor">Zone 2 background color</string>
+    <string id="PromptZ2FgColor">Zone 2 foreground color</string>
+    <string id="PromptZ3BgColor">Zone 3 background color</string>
+    <string id="PromptZ3FgColor">Zone 3 foreground color</string>
+    <string id="PromptZ4BgColor">Zone 4 background color</string>
+    <string id="PromptZ4FgColor">Zone 4 foreground color</string>
+    <string id="PromptZ5BgColor">Zone 5 background color</string>
+    <string id="PromptZ5FgColor">Zone 5 foreground color</string>
+    <!-- -->
+    <!--   > error messages -->
+    <!-- -->
+    <!-- heart zone errors (TODO not needed because of min max?)-->
+    <string id="ZoneNumberError">Must be a value from 1-5</string>
+    <!-- -->
+    <!--   > colors -->
+    <!-- -->
     <string id="WhiteColor">White</string>
     <string id="LightGrayColor">Light Gray</string>
     <string id="DarkGrayColor">Dark Gray</string>
