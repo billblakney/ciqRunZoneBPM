@@ -5,7 +5,7 @@ using Toybox.Graphics as Gfx;
 using Toybox.Time as Time;
 using Toybox.Attention as Attn;
 
-class DataField1 extends Ui.DataField
+class RunZoneField extends Ui.DataField
 {
    const METERS_TO_MILES=0.000621371; // TODO rm, not used
    const MILLISECONDS_TO_SECONDS=0.001;
