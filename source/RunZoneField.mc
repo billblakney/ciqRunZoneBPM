@@ -5,6 +5,15 @@ using Toybox.Graphics as Gfx;
 using Toybox.Time as Time;
 using Toybox.Attention as Attn;
 
+/*
+ * forerunner: width,height: 215,180
+ * fenix:      width,height: 218,218
+ * bravo2d:    width,height: 218,218
+ * 
+ * for fenix and bravo:
+ * - lower topline and top labels
+ * - raise lowerline and lower readouts
+ */
 class RunZoneField extends Ui.DataField
 {
    const METERS_TO_MILES=0.000621371; // TODO rm, not used
@@ -49,7 +58,9 @@ class RunZoneField extends Ui.DataField
    // var value_picked = null;
 
    var currentTime = null;
+   /* battery
    var battery = null;
+   */
    var heartRate = null;
    var pace = null; // seconds/mile
    var duration = null; // seconds
@@ -187,43 +198,45 @@ class RunZoneField extends Ui.DataField
    function compute(info) {
 
       currentTime = fmtTime(Sys.getClockTime());
-//      currentTime = "00:00";
+      //currentTime = "00:00";
 
+      /* battery
       battery = Sys.getSystemStats().battery;
-// TESTED
-//      battery = 100;
+      //TESTED
+      //battery = 100;
+      */
 
       duration = info.timerTime * MILLISECONDS_TO_SECONDS;
-// TESTED
-//    duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
-//    duration = 3600; // = 60*60            -> 1:00:00
-//    duration = 728;  // 728 = 12*60 + 8    ->   12:08
-//    duration = 488;  // 484 = 8*60+8       ->    8:08
+      //TESTED
+      //duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
+      //duration = 3600; // = 60*60            -> 1:00:00
+      //duration = 728;  // 728 = 12*60 + 8    ->   12:08
+      //duration = 488;  // 484 = 8*60+8       ->    8:08
 
       distance = toDist(info.elapsedDistance);
-// TESTED
-//    distance = "9.99";
-//    distance = "10.00";
+      //TESTED
+      //distance = "9.99";
+      //distance = "10.00";
 
       heartRate = info.currentHeartRate;
-// TESTED
-//      hiliteZone = 3;
-//    heartRate = 140;
-//    heartRate = 100;
-//    heartRate = 88;
-//      if (cycleCounter < 50)
-//      {
-//         heartRate = testHeartRates[cycleCounter];
-//      }
+      // TESTED
+      //hiliteZone = 3;
+      //heartRate = 140;
+      //heartRate = 100;
+      //heartRate = 88;
+      //if (cycleCounter < 50)
+      //{
+      //   heartRate = testHeartRates[cycleCounter];
+      //}
 
       var speed = info.currentSpeed;
-//speed /= 4; // increase speed to get double digit pace
-//Sys.println("speed " + speed);
-//Sys.println("pace " + pace);
+      //speed /= 4; // increase speed to get double digit pace
+      //Sys.println("speed " + speed);
+      //Sys.println("pace " + pace);
       pace = toPace(speed); // sec/mile
-// TESTED
-//    pace = 8*60;  //  8:00
-//    pace = 10*60; // 10:00
+      //TESTED
+      //pace = 8*60;  //  8:00
+      //pace = 10*60; // 10:00
    }
 
    function onLayout(dc) {
@@ -422,8 +435,11 @@ class RunZoneField extends Ui.DataField
       }
 
       // current time
+      textC(dc, dc.getWidth()/2 + 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
+      /* battery
       textC(dc, dc.getWidth()/2 - 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
       textC(dc, dc.getWidth()/2 + 50, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
+      */
 
       // Draw lines
 
@@ -449,6 +465,20 @@ class RunZoneField extends Ui.DataField
       width = dc.getWidth();
       height = dc.getHeight();
       Sys.println("width,height: " + width + "," + height);
+/*
+ * forerunner: width,height: 215,180
+ * fenix:      width,height: 218,218
+ * bravo2d:    width,height: 218,218
+ * 
+ * for fenix and bravo:
+ * - lower topline and top labels
+ * - raise lowerline and lower readouts
+ */
+      
+      var notForerunner = false;
+      if (width == 218) {
+         notForerunner = true;
+      }
 
       yTopLine = Gfx.getFontHeight(Gfx.FONT_XTINY);
       yMiddleLine = height/2.0;
@@ -490,6 +520,19 @@ class RunZoneField extends Ui.DataField
       yRow2Number = yRow2Label;
       yRow2Number = yRow2Number + fontHeightNum/2 + 0;
       yRow2Number += vOffset1;
+
+      if (notForerunner) {
+         yTopLine += 7;
+         yRow0Label += 5;
+
+         yRow1Label += 10;
+         yRow1Number += 4;
+
+         yRow2Number -= 8;
+
+         yBottomLine -= 7;
+         yRow3Label -= 4;
+      }
    }
 
    function toPace(speed) {
@@ -593,10 +636,12 @@ class RunZoneField extends Ui.DataField
       return dist.format("%.2f", dist);
    }
 
+   /* battery
    function fmtBattery(battery) {
       var fmt = "" + battery.format("%2d") + "%";
       return fmt;
    }
+   */
    
    function getColorCode(color_index) {
 
