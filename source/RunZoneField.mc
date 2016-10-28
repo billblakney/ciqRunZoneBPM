@@ -198,28 +198,44 @@ class RunZoneField extends Ui.DataField
    function compute(info) {
 
       currentTime = fmtTime(Sys.getClockTime());
-      //currentTime = "00:00";
 
       /* battery
       battery = Sys.getSystemStats().battery;
-      //TESTED
-      //battery = 100;
       */
 
       duration = info.timerTime * MILLISECONDS_TO_SECONDS;
-      //TESTED
-      //duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
+
+      distance = toDist(info.elapsedDistance);
+
+      heartRate = info.currentHeartRate;
+
+      var speed = info.currentSpeed;
+      pace = toPace(speed); // sec/mile
+      
+//      setTestValues(info);
+   }
+   
+   function setTestValues(info) {
+
+      // clock time
+      //currentTime = "00:00";
+
+      /* battery
+      // battery
+      //battery = 100;
+      */
+
+      // duration
+      duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
       //duration = 3600; // = 60*60            -> 1:00:00
       //duration = 728;  // 728 = 12*60 + 8    ->   12:08
       //duration = 488;  // 484 = 8*60+8       ->    8:08
-
-      distance = toDist(info.elapsedDistance);
-      //TESTED
+      
+      // distance
       //distance = "9.99";
-      //distance = "10.00";
+      distance = "10.00";
 
-      heartRate = info.currentHeartRate;
-      // TESTED
+      // heart rate
       //hiliteZone = 3;
       //heartRate = 140;
       //heartRate = 100;
@@ -229,14 +245,9 @@ class RunZoneField extends Ui.DataField
       //   heartRate = testHeartRates[cycleCounter];
       //}
 
-      var speed = info.currentSpeed;
-      //speed /= 4; // increase speed to get double digit pace
-      //Sys.println("speed " + speed);
-      //Sys.println("pace " + pace);
-      pace = toPace(speed); // sec/mile
-      //TESTED
+      // pace
       //pace = 8*60;  //  8:00
-      //pace = 10*60; // 10:00
+      pace = 10*60; // 10:00
    }
 
    function onLayout(dc) {
