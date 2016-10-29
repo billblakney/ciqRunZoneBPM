@@ -10,7 +10,7 @@
         <property id="beginZ4" type="number">167</property>
         <property id="beginZ5" type="number">175</property>
         <!-- lowest hilite z -->
-        <property id="hiliteZone" type="number">3</property>
+        <property id="hiliteZone" type="number">1</property>
         <!-- display settings -->
         <property id="useBlackBack" type="boolean">false</property>
         <!-- heart rate zone colors -->
