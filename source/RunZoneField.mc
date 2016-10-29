@@ -212,10 +212,30 @@ class RunZoneField extends Ui.DataField
       var speed = info.currentSpeed;
       pace = toPace(speed); // sec/mile
       
-//      setTestValues(info);
+      //setTestValues(info);
    }
    
    function setTestValues(info) {
+      
+      /*
+       * Use this set for "biggest values"
+       */
+      /*
+      */
+      currentTime = "12:00pm";
+      duration = 1620; // = 27*60 + 0 -> 27:00
+      distance = "3.00";
+      heartRate = 128;
+      pace = 9*60; // 9:00
+      /*
+      */
+      /*
+      currentTime = "12:00pm";
+      duration = 7688; // = 60*60 + 8*60 + 8 -> 2:08:08
+      distance = "26.12";
+      heartRate = 140;
+      pace = 4*60 + 54; // 10:00
+      */
 
       // clock time
       //currentTime = "00:00";
@@ -226,14 +246,14 @@ class RunZoneField extends Ui.DataField
       */
 
       // duration
-      duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
+      //duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
       //duration = 3600; // = 60*60            -> 1:00:00
       //duration = 728;  // 728 = 12*60 + 8    ->   12:08
       //duration = 488;  // 484 = 8*60+8       ->    8:08
       
       // distance
       //distance = "9.99";
-      distance = "10.00";
+      //distance = "10.00";
 
       // heart rate
       //hiliteZone = 3;
@@ -247,7 +267,7 @@ class RunZoneField extends Ui.DataField
 
       // pace
       //pace = 8*60;  //  8:00
-      pace = 10*60; // 10:00
+      //pace = 10*60; // 10:00
    }
 
    function onLayout(dc) {
