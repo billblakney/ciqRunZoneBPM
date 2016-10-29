@@ -42,7 +42,7 @@
            <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
         </setting>
         <setting propertyKey="@Properties.hiliteZone" title="@Strings.HiliteZone" prompt="@Strings.PromptHiliteZone">
-           <settingConfig type="numeric" min="0" max="5"/>
+           <settingConfig type="numeric" min="1" max="6"/>
         </setting>
         <setting propertyKey="@Properties.useBlackBack" title="@Strings.UseBlackBack" prompt="@Strings.PromptUseBlackBack">
            <settingConfig type="boolean"/>
