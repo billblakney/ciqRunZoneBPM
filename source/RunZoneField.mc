@@ -156,10 +156,8 @@ class RunZoneField extends Ui.DataField
 
    function getUserSettings() {
 
-hiliteZone = 9;
-Sys.println("aaaa------> hiliteZone: " + hiliteZone);
       hiliteZone = App.getApp().getProperty("hiliteZone");
-      Sys.println("aaaa------> hiliteZone: " + hiliteZone);
+      Sys.println("hiliteZone: " + hiliteZone);
 
       useBlackBack = App.getApp().getProperty("useBlackBack");
 

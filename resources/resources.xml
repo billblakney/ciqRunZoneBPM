@@ -4,9 +4,9 @@
     </bitmaps>
     <properties>
         <!-- lowest hilite z -->
-        <property id="hiliteZone" type="number">3</property>
+        <property id="hiliteZone" type="number">1</property>
         <!-- display settings -->
-        <property id="useBlackBack" type="boolean">true</property>
+        <property id="useBlackBack" type="boolean">false</property>
         <!-- heart rate zone colors -->
         <property id="z1BgColor" type="number">8</property>
         <property id="z1FgColor" type="number">3</property>

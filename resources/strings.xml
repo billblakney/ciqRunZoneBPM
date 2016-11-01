@@ -1,7 +1,7 @@
 <resources>
     <string id="AppName">RunZone BPM</string>
     <!-- lowest hilite zone title -->
-    <string id="HiliteZone">XXXXXXXXXLowest Color Zone</string>
+    <string id="HiliteZone">Lowest Color Zone</string>
     <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
     <!-- -->
     <!--   > general display settings -->
