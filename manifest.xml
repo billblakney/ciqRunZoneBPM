@@ -12,7 +12,9 @@
             <iq:product id="d2bravo_titanium"/>
         </iq:products>
 
-        <iq:permissions/>
+        <iq:permissions>
+            <iq:uses-permission id="UserProfile"/>
+        </iq:permissions>
 
         <iq:languages>
             <iq:language>eng</iq:language>

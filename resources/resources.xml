@@ -3,16 +3,10 @@
         <bitmap id="id_monkey" filename="images/monkey.png" />
     </bitmaps>
     <properties>
-        <!-- heart rate zs -->
-        <property id="beginZ1" type="number">125</property>
-        <property id="beginZ2" type="number">134</property>
-        <property id="beginZ3" type="number">155</property>
-        <property id="beginZ4" type="number">167</property>
-        <property id="beginZ5" type="number">175</property>
         <!-- lowest hilite z -->
-        <property id="hiliteZone" type="number">1</property>
+        <property id="hiliteZone" type="number">3</property>
         <!-- display settings -->
-        <property id="useBlackBack" type="boolean">false</property>
+        <property id="useBlackBack" type="boolean">true</property>
         <!-- heart rate zone colors -->
         <property id="z1BgColor" type="number">8</property>
         <property id="z1FgColor" type="number">3</property>
@@ -26,21 +20,6 @@
         <property id="z5FgColor" type="number">0</property>
     </properties>
     <settings>
-        <setting propertyKey="@Properties.beginZ1" title="@Strings.Z1Title" prompt="@Strings.PromptZ1">
-           <settingConfig type="numeric" min="30" max="220" errorMessage="@Strings.ZoneNumberError" />
-        </setting>
-        <setting propertyKey="@Properties.beginZ2" title="@Strings.Z2Title" prompt="@Strings.PromptZ2">
-           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
-        </setting>
-        <setting propertyKey="@Properties.beginZ3" title="@Strings.Z3Title" prompt="@Strings.PromptZ3">
-           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
-        </setting>
-        <setting propertyKey="@Properties.beginZ4" title="@Strings.Z4Title" prompt="@Strings.PromptZ4">
-           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
-        </setting>
-        <setting propertyKey="@Properties.beginZ5" title="@Strings.Z5Title" prompt="@Strings.PromptZ5">
-           <settingConfig type="numeric" errorMessage="@Strings.ZoneNumberError" />
-        </setting>
         <setting propertyKey="@Properties.hiliteZone" title="@Strings.HiliteZone" prompt="@Strings.PromptHiliteZone">
            <settingConfig type="numeric" min="1" max="6"/>
         </setting>

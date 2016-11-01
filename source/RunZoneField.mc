@@ -4,12 +4,13 @@ using Toybox.System as Sys;
 using Toybox.Graphics as Gfx;
 using Toybox.Time as Time;
 using Toybox.Attention as Attn;
+using Toybox.UserProfile as Profile;
 
 /*
  * forerunner: width,height: 215,180
  * fenix:      width,height: 218,218
  * bravo2d:    width,height: 218,218
- * 
+ *
  * for fenix and bravo:
  * - lower topline and top labels
  * - raise lowerline and lower readouts
@@ -32,9 +33,9 @@ class RunZoneField extends Ui.DataField
    const COLOR_IDX_DK_BLUE  = 11;
    const COLOR_IDX_PURPLE   = 12;
    const COLOR_IDX_PINK     = 13;
-   
+
    var useBlackBack = false;
-   
+
    var defaultBgColor = Graphics.COLOR_WHITE;
    var defaultFgColor = Graphics.COLOR_BLACK;
 
@@ -45,14 +46,14 @@ class RunZoneField extends Ui.DataField
     * and is incremented at the end of each onUpdate call.
     */
    var cycleCounter;
-   
+
    /* TODO rm
     * Counter used to develop some tone code.
     */
    var testToneCounter;
 
    /* TODO rm
-    * 
+    *
     */
    var old_counter;
    // var value_picked = null;
@@ -100,7 +101,7 @@ class RunZoneField extends Ui.DataField
    var beginZone5;
 
    var hiliteZone = 0;
-   
+
    var zone1BgColor = Graphics.COLOR_WHITE;
    var zone1FgColor = Graphics.COLOR_BLACK;
    var zone2BgColor = Graphics.COLOR_WHITE;
@@ -116,7 +117,7 @@ class RunZoneField extends Ui.DataField
    function initialize() {
 
       DataField.initialize();
-      
+
       getUserSettings();
 
       if (useBlackBack) {
@@ -152,24 +153,15 @@ class RunZoneField extends Ui.DataField
 //      testHeartRates[48] = 102;
 //      testHeartRates[49] = 101;
    }
-   
+
    function getUserSettings() {
-      
-      useBlackBack = App.getApp().getProperty("useBlackBack");
 
-      beginZone1 = App.getApp().getProperty("beginZ1");
-      beginZone2 = App.getApp().getProperty("beginZ2");
-      beginZone3 = App.getApp().getProperty("beginZ3");
-      beginZone4 = App.getApp().getProperty("beginZ4");
-      beginZone5 = App.getApp().getProperty("beginZ5");
-//      Sys.println("beginZone1: " + beginZone1);
-//      Sys.println("beginZone2: " + beginZone2);
-//      Sys.println("beginZone3: " + beginZone3);
-//      Sys.println("beginZone4: " + beginZone4);
-//      Sys.println("beginZone5: " + beginZone5);
-
+hiliteZone = 9;
+Sys.println("aaaa------> hiliteZone: " + hiliteZone);
       hiliteZone = App.getApp().getProperty("hiliteZone");
-//      Sys.println("hiliteZone: " + hiliteZone);
+      Sys.println("aaaa------> hiliteZone: " + hiliteZone);
+
+      useBlackBack = App.getApp().getProperty("useBlackBack");
 
       var zone1BgColorNum = App.getApp().getProperty("z1BgColor");
       var zone1FgColorNum = App.getApp().getProperty("z1FgColor");
@@ -192,6 +184,21 @@ class RunZoneField extends Ui.DataField
       zone4FgColor = getColorCode(zone4FgColorNum);
       zone5BgColor = getColorCode(zone5BgColorNum);
       zone5FgColor = getColorCode(zone5FgColorNum);
+
+      var sport = Profile.getCurrentSport();
+      Sys.println("currentSport: " + sport);
+      var zones = Profile.getHeartRateZones(sport);
+
+      beginZone1 = zones[0];
+      beginZone2 = zones[1] + 1;
+      beginZone3 = zones[2] + 1;
+      beginZone4 = zones[3] + 1;
+      beginZone5 = zones[4] + 1;
+      Sys.println("beginZone1: " + beginZone1);
+      Sys.println("beginZone2: " + beginZone2);
+      Sys.println("beginZone3: " + beginZone3);
+      Sys.println("beginZone4: " + beginZone4);
+      Sys.println("beginZone5: " + beginZone5);
    }
 
    // Handle the update event
@@ -211,12 +218,12 @@ class RunZoneField extends Ui.DataField
 
       var speed = info.currentSpeed;
       pace = toPace(speed); // sec/mile
-      
+
       //setTestValues(info);
    }
-   
+
    function setTestValues(info) {
-      
+
       /*
        * Use this set for "biggest values"
        */
@@ -250,7 +257,7 @@ class RunZoneField extends Ui.DataField
       //duration = 3600; // = 60*60            -> 1:00:00
       //duration = 728;  // 728 = 12*60 + 8    ->   12:08
       //duration = 488;  // 484 = 8*60+8       ->    8:08
-      
+
       // distance
       //distance = "9.99";
       //distance = "10.00";
@@ -485,7 +492,7 @@ class RunZoneField extends Ui.DataField
       // vertical lines
       dc.drawLine(xTopLine,yTopLine,xTopLine,yMiddleLine);
       dc.drawLine(xBottomLine,yMiddleLine,xBottomLine,yBottomLine);
-      
+
       cycleCounter++;
 
       return true;
@@ -500,12 +507,12 @@ class RunZoneField extends Ui.DataField
  * forerunner: width,height: 215,180
  * fenix:      width,height: 218,218
  * bravo2d:    width,height: 218,218
- * 
+ *
  * for fenix and bravo:
  * - lower topline and top labels
  * - raise lowerline and lower readouts
  */
-      
+
       var notForerunner = false;
       if (width == 218) {
          notForerunner = true;
@@ -673,11 +680,11 @@ class RunZoneField extends Ui.DataField
       return fmt;
    }
    */
-   
+
    function getColorCode(color_index) {
 
       var color = Graphics.COLOR_WHITE;
-      
+
 
       if (color_index == COLOR_IDX_WHITE) {
          color = Graphics.COLOR_WHITE;
@@ -727,7 +734,7 @@ class RunZoneField extends Ui.DataField
 
       return color;
    }
-   
+
 //   function testTone() {
 //
 //      if (testToneCounter == 0)

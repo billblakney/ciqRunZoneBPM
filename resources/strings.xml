@@ -1,23 +1,7 @@
 <resources>
     <string id="AppName">RunZone BPM</string>
-    <!-- -->
-    <!--   > zones settings -->
-    <!-- -->
-    <string id="Z1Title">Zone 1 Base Heart Rate</string>
-    <string id="Z2Title">Zone 2 Base Heart Rate</string>
-    <string id="Z3Title">Zone 3 Base Heart Rate</string>
-    <string id="Z4Title">Zone 4 Base Heart Rate</string>
-    <string id="Z5Title">Zone 5 Base Heart Rate</string>
-    <string id="PromptZ1">Base heart rate for zone 1</string>
-    <string id="PromptZ2">Base heart rate for zone 2</string>
-    <string id="PromptZ3">Base heart rate for zone 3</string>
-    <string id="PromptZ4">Base heart rate for zone 4</string>
-    <string id="PromptZ5">Base heart rate for zone 5</string>
-    <!-- -->
-    <!--   > zones display settings -->
-    <!-- -->
     <!-- lowest hilite zone title -->
-    <string id="HiliteZone">Lowest Color Zone</string>
+    <string id="HiliteZone">XXXXXXXXXLowest Color Zone</string>
     <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
     <!-- -->
     <!--   > general display settings -->
