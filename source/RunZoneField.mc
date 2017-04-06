@@ -323,8 +323,8 @@ class RunZoneField extends Ui.DataField
          } else if (heartRate >= beginZone2) {
             zone = 2;
             zoneLabel = "Zone 2";
-            zoneColorBkg = zone3BgColor;
-            zoneColorFrg = zone3FgColor;
+            zoneColorBkg = zone2BgColor;
+            zoneColorFrg = zone2FgColor;
          } else if (heartRate >= beginZone1) {
             zone = 1;
             zoneLabel = "Zone 1";
