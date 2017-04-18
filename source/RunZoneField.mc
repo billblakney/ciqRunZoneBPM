@@ -206,66 +206,6 @@ class RunZoneField extends Ui.DataField
 //      Sys.println("beginZone5: " + beginZone5);
    }
 
-//   /*-------------------------------------------------------------------------
-//    * Sets the layout.
-//    *------------------------------------------------------------------------*/
-//   (:round_218x218) function setGeometryParams()
-//   {
-//      System.println("HELLO from round_218x218");
-// orig positions
-//xTopLine = 131;
-//xBottomLine = 111;
-//yTopLine = 25;
-//yMiddleLine = 109;
-//yBottomLine = 193;
-//yRow0Label = 13;
-//yRow1Number = 70;
-//yRow1Label = 34;
-//yRow2Number = 153;
-//yRow2Label = 119;
-//yRow3Label = 205;
-//xRow0Label = 109;
-//xRow1Col1Label = 96;
-//xRow1Col1Num = 123;
-//xRow1Col2Label = 145;
-//xRow1Col2Num = 136;
-//xRow2Col1Label = 83;
-//xRow2Col1Num = 104;
-//xRow2Col2Label = 141;
-//xRow2Col2Num = 116;
-//xRow3Label = 114;
-//   }
-//
-//   /*-------------------------------------------------------------------------
-//    * Sets the layout.
-//    *------------------------------------------------------------------------*/
-//   (:semiround_215x180) function setGeometryParams()
-//   {
-//      System.println("HELLO from semiround_215x180");
-// orig positions
-//xTopLine = 129;
-//xBottomLine = 109;
-//yTopLine = 19;
-//yMiddleLine = 90;
-//yBottomLine = 161;
-//yRow0Label = 8;
-//yRow1Number = 59;
-//yRow1Label = 29;
-//yRow2Number = 130;
-//yRow2Label = 100;
-//yRow3Label = 171;
-//xRow0Label = 107;
-//xRow1Col1Label = 94;
-//xRow1Col1Num = 121;
-//xRow1Col2Label = 143;
-//xRow1Col2Num = 134;
-//xRow2Col1Label = 81;
-//xRow2Col1Num = 102;
-//xRow2Col2Label = 139;
-//xRow2Col2Num = 114;
-//xRow3Label = 112;
-//   }
-
    // Handle the update event
    function compute(info) {
 
@@ -342,10 +282,71 @@ class RunZoneField extends Ui.DataField
       //pace = 10*60; // 10:00
    }
 
-   function onLayout(dc)
-   {
-         setupGeometry(dc);
+//   function onLayout(dc)
+//   {
 //      setGeometryParams();
+//   }
+
+   /*-------------------------------------------------------------------------
+    * Sets the layout.
+    *------------------------------------------------------------------------*/
+   (:round_218x218) function onLayout(dc)
+   {
+//      System.println("Setting geometry for round_218x218");
+      width = dc.getWidth();
+      height = dc.getHeight();
+      xTopLine = 131;
+      xBottomLine = 111;
+      yTopLine = 25;
+      yMiddleLine = 109;
+      yBottomLine = 193;
+      yRow0Label = 13;
+      yRow1Number = 70;
+      yRow1Label = 34;
+      yRow2Number = 153;
+      yRow2Label = 119;
+      yRow3Label = 205;
+      xRow0Label = 109;
+      xRow1Col1Label = 96;
+      xRow1Col1Num = 123;
+      xRow1Col2Label = 145;
+      xRow1Col2Num = 136;
+      xRow2Col1Label = 83;
+      xRow2Col1Num = 104;
+      xRow2Col2Label = 141;
+      xRow2Col2Num = 116;
+      xRow3Label = 114;
+   }
+
+   /*-------------------------------------------------------------------------
+    * Sets the layout.
+    *------------------------------------------------------------------------*/
+   (:semiround_215x180) function onLayout(dc)
+   {
+//      System.println("Setting geometry for semiround_215x180");
+      width = dc.getWidth();
+      height = dc.getHeight();
+      xTopLine = 129;
+      xBottomLine = 109;
+      yTopLine = 19;
+      yMiddleLine = 90;
+      yBottomLine = 161;
+      yRow0Label = 8;
+      yRow1Number = 59;
+      yRow1Label = 29;
+      yRow2Number = 130;
+      yRow2Label = 100;
+      yRow3Label = 171;
+      xRow0Label = 107;
+      xRow1Col1Label = 94;
+      xRow1Col1Num = 121;
+      xRow1Col2Label = 143;
+      xRow1Col2Num = 134;
+      xRow2Col1Label = 81;
+      xRow2Col1Num = 102;
+      xRow2Col2Label = 139;
+      xRow2Col2Num = 114;
+      xRow3Label = 112;
    }
 
    function onShow()
@@ -403,8 +404,6 @@ class RunZoneField extends Ui.DataField
 
       // heart rate zone
       dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
-xRow0Label = dc.getWidth()/2;
-//      textC(dc, dc.getWidth()/2/*-49*/, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
       textC(dc, xRow0Label, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
 
       var font;
@@ -422,7 +421,6 @@ xRow0Label = dc.getWidth()/2;
          dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
       }
 
-xRow1Col2Label = xTopLine+14;
       textL(dc, xTopLine+14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
 
       if (heartRate != null && heartRate > 100)
@@ -434,16 +432,12 @@ xRow1Col2Label = xTopLine+14;
          font = Gfx.FONT_NUMBER_HOT;
       }
 
-xRow1Col2Num = xTopLine+5;
-//         textL(dc, xTopLine+5, yRow1Number, font,  toStr(heartRate));
       textL(dc, xRow1Col2Num, yRow1Number, font,  toStr(heartRate));
 
       // other texts drawn in black font color
       dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
 
       // pace
-xRow2Col2Label = xBottomLine+30;
-//         textL(dc, xBottomLine+30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
       textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,  "Pace");
 
       if (pace != null && pace < 10*60) {
@@ -452,13 +446,9 @@ xRow2Col2Label = xBottomLine+30;
       else {
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
-xRow2Col2Num = xBottomLine+5;
-//         textL(dc, xBottomLine+5, yRow2Number, font, fmtSecs(pace));
       textL(dc, xRow2Col2Num , yRow2Number, font, fmtSecs(pace));
 
       // timer
-xRow1Col1Label = xTopLine-35;
-//         textR(dc, xTopLine-35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
       textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,  "Timer");
 
       // TODO offset for 10:00 vs 1:00
@@ -470,14 +460,9 @@ xRow1Col1Label = xTopLine-35;
       {
          font = Gfx.FONT_NUMBER_HOT;
       }
-xRow1Col1Num = xTopLine-8;
-//         textR(dc, xTopLine-8, yRow1Number, font,  fmtSecs(duration));
-         textR(dc, xTopLine-8, yRow1Number, font,  fmtSecs(duration));
       textR(dc, xRow1Col1Num , yRow1Number, font,  fmtSecs(duration));
 
       // distance
-xRow2Col1Label = xBottomLine-28;
-//         textR(dc, xBottomLine-28, yRow2Label, Gfx.FONT_XTINY, "Distance");
       textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY, "Distance");
 
       if (distance.toFloat() < 10) {
@@ -486,28 +471,10 @@ xRow2Col1Label = xBottomLine-28;
       else {
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
-xRow2Col1Num = xBottomLine-7;
-//         textR(dc, xBottomLine-7, yRow2Number, font, distance);
       textR(dc, xRow2Col1Num , yRow2Number, font, distance);
 
       // current time
-xRow3Label = dc.getWidth()/2 + 5;
-//      textC(dc, dc.getWidth()/2 + 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
       textC(dc, xRow3Label , yRow3Label, Gfx.FONT_XTINY,  currentTime);
-      /* battery
-      textC(dc, dc.getWidth()/2 - 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
-      textC(dc, dc.getWidth()/2 + 50, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
-      */
-Sys.println("xRow0Label = " + xRow0Label);
-Sys.println("xRow1Col1Label = " + xRow1Col1Label);
-Sys.println("xRow1Col1Num = " + xRow1Col1Num);
-Sys.println("xRow1Col2Label = " + xRow1Col2Label);
-Sys.println("xRow1Col2Num = " + xRow1Col2Num);
-Sys.println("xRow2Col1Label = " + xRow2Col1Label);
-Sys.println("xRow2Col1Num = " + xRow2Col1Num);
-Sys.println("xRow2Col2Label = " + xRow2Col2Label);
-Sys.println("xRow2Col2Num = " + xRow2Col2Num);
-Sys.println("xRow3Label = " + xRow3Label);
 
       // Draw lines
 
@@ -526,85 +493,6 @@ Sys.println("xRow3Label = " + xRow3Label);
       cycleCounter++;
    
       return true;
-   }
-
-   function setupGeometry(dc) {
-
-      width = dc.getWidth();
-      height = dc.getHeight();
-//      Sys.println("width,height: " + width + "," + height);
-/*
- * forerunner: width,height: 215,180
- * fenix:      width,height: 218,218
- * bravo2d:    width,height: 218,218
- *
- * for fenix and bravo:
- * - lower topline and top labels
- * - raise lowerline and lower readouts
- */
-
-      var notForerunner = false;
-      if (width == 218) {
-         notForerunner = true;
-      }
-
-      yTopLine = Gfx.getFontHeight(Gfx.FONT_XTINY);
-      yMiddleLine = height/2.0;
-      yBottomLine = height - Gfx.getFontHeight(Gfx.FONT_XTINY);
-
-      xTopLine = width/2 + 22;
-      xBottomLine = width/2 + 2;
-
-      // compute yRow0Label
-//      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
-
-      // compute yRow3Label
-      yRow3Label = height - Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
-
-      // compute yRow1Number and yRow1Label
-      var fontHeightNum = Gfx.getFontHeight(Gfx.FONT_NUMBER_HOT);
-      var fontHeightTxt = Gfx.getFontHeight(Gfx.FONT_XTINY);
-
-      yRow1Number = yMiddleLine;
-      yRow1Number = yRow1Number - fontHeightNum/2 - 3;
-      yRow1Number += vOffset1;
-
-      yRow1Label = yRow1Number - fontHeightNum/2;
-      yRow1Label = yRow1Label - fontHeightTxt/2 + 7;
-      yRow1Label += vOffset1;
-
-      // compute yRow2Number and yRow2Label
-      yRow2Label = yMiddleLine + fontHeightTxt/2 + 0;
-      yRow2Label += vOffset1;
-
-      yRow2Number = yRow2Label;
-      yRow2Number = yRow2Number + fontHeightNum/2 + 0;
-      yRow2Number += vOffset1;
-
-      if (notForerunner) {
-         yTopLine += 7;
-         yRow0Label += 5;
-
-         yRow1Label += 10;
-         yRow1Number += 4;
-
-         yRow2Number -= 8;
-
-         yBottomLine -= 7;
-         yRow3Label -= 4;
-      }
-
-Sys.println("xTopLine = " + xTopLine);
-Sys.println("xBottomLine = " + xBottomLine);
-Sys.println("yTopLine = " + yTopLine);
-Sys.println("yMiddleLine = " + yMiddleLine);
-Sys.println("yBottomLine = " + yBottomLine);
-Sys.println("yRow0Label = " + yRow0Label);
-Sys.println("yRow1Number = " + yRow1Number);
-Sys.println("yRow1Label = " + yRow1Label);
-Sys.println("yRow2Number = " + yRow2Number);
-Sys.println("yRow2Label = " + yRow2Label);
-Sys.println("yRow3Label = " + yRow3Label);
    }
 
    function toPace(speed) {
@@ -801,5 +689,105 @@ Sys.println("yRow3Label = " + yRow3Label);
 //         testToneCounter -= testToneCounter + 5;
 //      }
 //      testToneCounter++;
+//   }
+
+//   function setupGeometry(dc) {
+//
+//      width = dc.getWidth();
+//      height = dc.getHeight();
+////      Sys.println("width,height: " + width + "," + height);
+///*
+// * forerunner: width,height: 215,180
+// * fenix:      width,height: 218,218
+// * bravo2d:    width,height: 218,218
+// *
+// * for fenix and bravo:
+// * - lower topline and top labels
+// * - raise lowerline and lower readouts
+// */
+//
+//      var notForerunner = false;
+//      if (width == 218) {
+//         notForerunner = true;
+//      }
+//
+//      yTopLine = Gfx.getFontHeight(Gfx.FONT_XTINY);
+//      yMiddleLine = height/2.0;
+//      yBottomLine = height - Gfx.getFontHeight(Gfx.FONT_XTINY);
+//
+//      xTopLine = width/2 + 22;
+//      xBottomLine = width/2 + 2;
+//
+//      // compute yRow0Label
+////      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
+//
+//      // compute yRow3Label
+//      yRow3Label = height - Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
+//
+//      // compute yRow1Number and yRow1Label
+//      var fontHeightNum = Gfx.getFontHeight(Gfx.FONT_NUMBER_HOT);
+//      var fontHeightTxt = Gfx.getFontHeight(Gfx.FONT_XTINY);
+//
+//      yRow1Number = yMiddleLine;
+//      yRow1Number = yRow1Number - fontHeightNum/2 - 3;
+//      yRow1Number += vOffset1;
+//
+//      yRow1Label = yRow1Number - fontHeightNum/2;
+//      yRow1Label = yRow1Label - fontHeightTxt/2 + 7;
+//      yRow1Label += vOffset1;
+//
+//      // compute yRow2Number and yRow2Label
+//      yRow2Label = yMiddleLine + fontHeightTxt/2 + 0;
+//      yRow2Label += vOffset1;
+//
+//      yRow2Number = yRow2Label;
+//      yRow2Number = yRow2Number + fontHeightNum/2 + 0;
+//      yRow2Number += vOffset1;
+//
+//      if (notForerunner) {
+//         yTopLine += 7;
+//         yRow0Label += 5;
+//
+//         yRow1Label += 10;
+//         yRow1Number += 4;
+//
+//         yRow2Number -= 8;
+//
+//         yBottomLine -= 7;
+//         yRow3Label -= 4;
+//      }
+//
+//Sys.println("xTopLine = " + xTopLine);
+//Sys.println("xBottomLine = " + xBottomLine);
+//Sys.println("yTopLine = " + yTopLine);
+//Sys.println("yMiddleLine = " + yMiddleLine);
+//Sys.println("yBottomLine = " + yBottomLine);
+//Sys.println("yRow0Label = " + yRow0Label);
+//Sys.println("yRow1Number = " + yRow1Number);
+//Sys.println("yRow1Label = " + yRow1Label);
+//Sys.println("yRow2Number = " + yRow2Number);
+//Sys.println("yRow2Label = " + yRow2Label);
+//Sys.println("yRow3Label = " + yRow3Label);
+//
+//xRow0Label = dc.getWidth()/2;
+//xRow1Col2Label = xTopLine+14;
+//xRow1Col2Num = xTopLine+5;
+//xRow2Col2Label = xBottomLine+30;
+//xRow2Col2Num = xBottomLine+5;
+//xRow1Col1Label = xTopLine-35;
+//xRow1Col1Num = xTopLine-8;
+//xRow2Col1Label = xBottomLine-28;
+//xRow2Col1Num = xBottomLine-7;
+//xRow3Label = dc.getWidth()/2 + 5;
+//Sys.println("xRow0Label = " + xRow0Label);
+//Sys.println("xRow1Col1Label = " + xRow1Col1Label);
+//Sys.println("xRow1Col1Num = " + xRow1Col1Num);
+//Sys.println("xRow1Col2Label = " + xRow1Col2Label);
+//Sys.println("xRow1Col2Num = " + xRow1Col2Num);
+//Sys.println("xRow2Col1Label = " + xRow2Col1Label);
+//Sys.println("xRow2Col1Num = " + xRow2Col1Num);
+//Sys.println("xRow2Col2Label = " + xRow2Col2Label);
+//Sys.println("xRow2Col2Num = " + xRow2Col2Num);
+//Sys.println("xRow3Label = " + xRow3Label);
 //   }
 }
