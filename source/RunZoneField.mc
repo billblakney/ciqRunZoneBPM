@@ -74,8 +74,6 @@ class RunZoneField extends Ui.DataField
    var width;
    var height;
 
-   var switchColumns = false;
-
    var xTopLine;
    var xBottomLine;
 
@@ -420,14 +418,7 @@ xRow0Label = dc.getWidth()/2;
       if (zone >= hiliteZone)
       {
          dc.setColor(zoneColorBkg, zoneColorBkg);
-         if (switchColumns)
-         {
-            dc.fillRectangle(0, yTopLine, xTopLine-1, yMiddleLine-yTopLine-1);
-         }
-         else
-         {
-            dc.fillRectangle(xTopLine+1, yTopLine, width, yMiddleLine-yTopLine-1);
-         }
+         dc.fillRectangle(xTopLine+1, yTopLine, width, yMiddleLine-yTopLine-1);
 
          dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
       }
@@ -436,15 +427,8 @@ xRow0Label = dc.getWidth()/2;
          dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
       }
 
-      if (switchColumns)
-      {
-         textR(dc, xTopLine-14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
-      }
-      else
-      {
 xRow1Col2Label = xTopLine+14;
-         textL(dc, xTopLine+14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
-      }
+      textL(dc, xTopLine+14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
 
       if (heartRate != null && heartRate > 100)
       {
@@ -455,31 +439,17 @@ xRow1Col2Label = xTopLine+14;
          font = Gfx.FONT_NUMBER_HOT;
       }
 
-      if (switchColumns)
-      {
-         textR(dc, xTopLine-5, yRow1Number, font,  toStr(heartRate));
-      }
-      else
-      {
 xRow1Col2Num = xTopLine+5;
 //         textL(dc, xTopLine+5, yRow1Number, font,  toStr(heartRate));
-         textL(dc, xRow1Col2Num, yRow1Number, font,  toStr(heartRate));
-      }
+      textL(dc, xRow1Col2Num, yRow1Number, font,  toStr(heartRate));
 
       // other texts drawn in black font color
       dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
 
       // pace
-      if (switchColumns)
-      {
-         textR(dc, xBottomLine-30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
-      }
-      else
-      {
 xRow2Col2Label = xBottomLine+30;
 //         textL(dc, xBottomLine+30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
-         textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,  "Pace");
-      }
+      textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,  "Pace");
 
       if (pace != null && pace < 10*60) {
          font = Gfx.FONT_NUMBER_HOT;
@@ -487,28 +457,14 @@ xRow2Col2Label = xBottomLine+30;
       else {
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
-      if (switchColumns)
-      {
-         textR(dc, xBottomLine-5, yRow2Number, font, fmtSecs(pace));
-      }
-      else
-      {
 xRow2Col2Num = xBottomLine+5;
 //         textL(dc, xBottomLine+5, yRow2Number, font, fmtSecs(pace));
-         textL(dc, xRow2Col2Num , yRow2Number, font, fmtSecs(pace));
-      }
+      textL(dc, xRow2Col2Num , yRow2Number, font, fmtSecs(pace));
 
       // timer
-      if (switchColumns)
-      {
-         textL(dc, xTopLine+35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
-      }
-      else
-      {
 xRow1Col1Label = xTopLine-35;
 //         textR(dc, xTopLine-35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
-         textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,  "Timer");
-      }
+      textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,  "Timer");
 
       // TODO offset for 10:00 vs 1:00
       if (duration >= 3600)
@@ -519,29 +475,15 @@ xRow1Col1Label = xTopLine-35;
       {
          font = Gfx.FONT_NUMBER_HOT;
       }
-      if (switchColumns)
-      {
-         textL(dc, xTopLine+8, yRow1Number, font,  fmtSecs(duration));
-      }
-      else
-      {
 xRow1Col1Num = xTopLine-8;
 //         textR(dc, xTopLine-8, yRow1Number, font,  fmtSecs(duration));
          textR(dc, xTopLine-8, yRow1Number, font,  fmtSecs(duration));
-         textR(dc, xRow1Col1Num , yRow1Number, font,  fmtSecs(duration));
-      }
+      textR(dc, xRow1Col1Num , yRow1Number, font,  fmtSecs(duration));
 
       // distance
-      if (switchColumns)
-      {
-         textL(dc, xBottomLine+28, yRow2Label, Gfx.FONT_XTINY, "Distance");
-      }
-      else
-      {
 xRow2Col1Label = xBottomLine-28;
 //         textR(dc, xBottomLine-28, yRow2Label, Gfx.FONT_XTINY, "Distance");
-         textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY, "Distance");
-      }
+      textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY, "Distance");
 
       if (distance.toFloat() < 10) {
          font = Gfx.FONT_NUMBER_HOT;
@@ -549,16 +491,9 @@ xRow2Col1Label = xBottomLine-28;
       else {
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
-      if (switchColumns)
-      {
-         textL(dc, xBottomLine+7, yRow2Number, font, distance);
-      }
-      else
-      {
 xRow2Col1Num = xBottomLine-7;
 //         textR(dc, xBottomLine-7, yRow2Number, font, distance);
-         textR(dc, xRow2Col1Num , yRow2Number, font, distance);
-      }
+      textR(dc, xRow2Col1Num , yRow2Number, font, distance);
 
       // current time
 xRow3Label = dc.getWidth()/2 + 5;
@@ -622,16 +557,8 @@ Sys.println("xRow3Label = " + xRow3Label);
       yMiddleLine = height/2.0;
       yBottomLine = height - Gfx.getFontHeight(Gfx.FONT_XTINY);
 
-      if (switchColumns)
-      {
-         xTopLine = width/2 -22;
-         xBottomLine = width/2 - 2;
-      }
-      else
-      {
-         xTopLine = width/2 + 22;
-         xBottomLine = width/2 + 2;
-      }
+      xTopLine = width/2 + 22;
+      xBottomLine = width/2 + 2;
 
       // compute yRow0Label
 //      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
