@@ -86,11 +86,22 @@ class RunZoneField extends Ui.DataField
    var vOffset1 = 1; // applied to items of large rows
 
    var yRow0Label;
-   var yRow1Number;
    var yRow1Label;
-   var yRow2Number;
+   var yRow1Number;
    var yRow2Label;
+   var yRow2Number;
    var yRow3Label;
+   
+   var xRow0Label;
+   var xRow1Col1Label;
+   var xRow1Col1Num;
+   var xRow1Col2Label;
+   var xRow1Col2Num;
+   var xRow2Col1Label;
+   var xRow2Col1Num;
+   var xRow2Col2Label;
+   var xRow2Col2Num;
+   var xRow3Label;
 
    var firstUpdate = 1;
 
@@ -199,6 +210,32 @@ class RunZoneField extends Ui.DataField
       Sys.println("beginZone5: " + beginZone5);
    }
 
+   /*-------------------------------------------------------------------------
+    * Sets the layout.
+    *------------------------------------------------------------------------*/
+   (:round_218x218) function setGeometryParams()
+   {
+      System.println("HELLO from round_218x218");
+      xRow0Label = 107;
+      yRow0Label = 0;
+   }
+
+   /*-------------------------------------------------------------------------
+    * Sets the layout.
+    *------------------------------------------------------------------------*/
+   (:semiround_215x180) function setGeometryParams()
+   {
+      System.println("HELLO from semiround_215x180");
+      xRow0Label = 107;
+      
+      yRow0Label = 8;
+      yRow1Number = 59;
+      yRow1Label = 29;
+      yRow2Number = 130;
+      yRow2Label = 100;
+      yRow3Label = 171;
+   }
+
    // Handle the update event
    function compute(info) {
 
@@ -276,6 +313,7 @@ class RunZoneField extends Ui.DataField
    }
 
    function onLayout(dc) {
+      setGeometryParams();
    }
 
    function onShow()
@@ -338,7 +376,9 @@ class RunZoneField extends Ui.DataField
 
       // heart rate zone
       dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
-      textC(dc, dc.getWidth()/2/*-49*/, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
+xRow0Label = dc.getWidth()/2;
+//      textC(dc, dc.getWidth()/2/*-49*/, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
+      textC(dc, xRow0Label, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
 
       var font;
 
@@ -368,6 +408,7 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
+xRow1Col2Label = xTopLine+14;
          textL(dc, xTopLine+14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
       }
 
@@ -386,7 +427,9 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
-         textL(dc, xTopLine+5, yRow1Number, font,  toStr(heartRate));
+xRow1Col2Num = xTopLine+5;
+//         textL(dc, xTopLine+5, yRow1Number, font,  toStr(heartRate));
+         textL(dc, xRow1Col2Num, yRow1Number, font,  toStr(heartRate));
       }
 
       // other texts drawn in black font color
@@ -399,7 +442,9 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
-         textL(dc, xBottomLine+30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
+xRow2Col2Label = xBottomLine+30;
+//         textL(dc, xBottomLine+30, yRow2Label, Gfx.FONT_XTINY,  "Pace");
+         textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,  "Pace");
       }
 
       if (pace != null && pace < 10*60) {
@@ -414,7 +459,9 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
-         textL(dc, xBottomLine+5, yRow2Number, font, fmtSecs(pace));
+xRow2Col2Num = xBottomLine+5;
+//         textL(dc, xBottomLine+5, yRow2Number, font, fmtSecs(pace));
+         textL(dc, xRow2Col2Num , yRow2Number, font, fmtSecs(pace));
       }
 
       // timer
@@ -424,7 +471,9 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
-         textR(dc, xTopLine-35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
+xRow1Col1Label = xTopLine-35;
+//         textR(dc, xTopLine-35, yRow1Label, Gfx.FONT_XTINY,  "Timer");
+         textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,  "Timer");
       }
 
       // TODO offset for 10:00 vs 1:00
@@ -442,7 +491,10 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
+xRow1Col1Num = xTopLine-8;
+//         textR(dc, xTopLine-8, yRow1Number, font,  fmtSecs(duration));
          textR(dc, xTopLine-8, yRow1Number, font,  fmtSecs(duration));
+         textR(dc, xRow1Col1Num , yRow1Number, font,  fmtSecs(duration));
       }
 
       // distance
@@ -452,7 +504,9 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
-         textR(dc, xBottomLine-28, yRow2Label, Gfx.FONT_XTINY, "Distance");
+xRow2Col1Label = xBottomLine-28;
+//         textR(dc, xBottomLine-28, yRow2Label, Gfx.FONT_XTINY, "Distance");
+         textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY, "Distance");
       }
 
       if (distance.toFloat() < 10) {
@@ -467,15 +521,29 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
-         textR(dc, xBottomLine-7, yRow2Number, font, distance);
+xRow2Col1Num = xBottomLine-7;
+//         textR(dc, xBottomLine-7, yRow2Number, font, distance);
+         textR(dc, xRow2Col1Num , yRow2Number, font, distance);
       }
 
       // current time
-      textC(dc, dc.getWidth()/2 + 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
+xRow3Label = dc.getWidth()/2 + 5;
+//      textC(dc, dc.getWidth()/2 + 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
+      textC(dc, xRow3Label , yRow3Label, Gfx.FONT_XTINY,  currentTime);
       /* battery
       textC(dc, dc.getWidth()/2 - 5, yRow3Label, Gfx.FONT_XTINY,  currentTime);
       textC(dc, dc.getWidth()/2 + 50, yRow3Label, Gfx.FONT_XTINY,  fmtBattery(battery));
       */
+//Sys.println("xRow0Label = " + xRow0Label);
+//Sys.println("xRow1Col1Label = " + xRow1Col1Label);
+//Sys.println("xRow1Col1Num = " + xRow1Col1Num);
+//Sys.println("xRow1Col2Label = " + xRow1Col2Label);
+//Sys.println("xRow1Col2Num = " + xRow1Col2Num);
+//Sys.println("xRow2Col1Label = " + xRow2Col1Label);
+//Sys.println("xRow2Col1Num = " + xRow2Col1Num);
+//Sys.println("xRow2Col2Label = " + xRow2Col2Label);
+//Sys.println("xRow2Col2Num = " + xRow2Col2Num);
+//Sys.println("xRow3Label = " + xRow3Label);
 
       // Draw lines
 
@@ -492,6 +560,13 @@ class RunZoneField extends Ui.DataField
       dc.drawLine(xBottomLine,yMiddleLine,xBottomLine,yBottomLine);
 
       cycleCounter++;
+   
+Sys.println("xRow0Label = " + xRow0Label);
+Sys.println("xRow1Col1Label = " + xRow1Col1Label);
+Sys.println("xRow1Col2Label = " + xRow1Col2Label);
+Sys.println("xRow2Col1Label = " + xRow2Col1Label);
+Sys.println("xRow2Col2Label = " + xRow2Col2Label);
+Sys.println("xRow3Label = " + xRow3Label);
 
       return true;
    }
@@ -532,7 +607,8 @@ class RunZoneField extends Ui.DataField
       }
 
       // compute yRow0Label
-      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
+//      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
+Sys.println("bbb yRow0Label: " + yRow0Label);
 
       // compute yRow3Label
       yRow3Label = height - Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
@@ -569,6 +645,13 @@ class RunZoneField extends Ui.DataField
          yBottomLine -= 7;
          yRow3Label -= 4;
       }
+
+      Sys.println("yRow0Label = " + yRow0Label);
+      Sys.println("yRow1Number = " + yRow1Number);
+      Sys.println("yRow1Label = " + yRow1Label);
+      Sys.println("yRow2Number = " + yRow2Number);
+      Sys.println("yRow2Label = " + yRow2Label);
+      Sys.println("yRow3Label = " + yRow3Label);
    }
 
    function toPace(speed) {

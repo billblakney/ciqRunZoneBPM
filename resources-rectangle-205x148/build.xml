@@ -1,0 +1,8 @@
+<!-- rectangle-205x148 -->
+<build>
+  <exclude annotation="all"/>
+  <exclude annotation="fr920xt"/>
+  <!-- <exclude annotation="rectangle_205x148"/>-->
+  <exclude annotation="round_218x218"/>
+  <exclude annotation="semiround_215x180"/>
+</build>
