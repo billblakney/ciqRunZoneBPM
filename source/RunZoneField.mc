@@ -101,8 +101,6 @@ class RunZoneField extends Ui.DataField
    var xRow2Col2Num;
    var xRow3Label;
 
-   var firstUpdate = 1;
-
    var beginZone1;
    var beginZone2;
    var beginZone3;
@@ -344,7 +342,9 @@ class RunZoneField extends Ui.DataField
       //pace = 10*60; // 10:00
    }
 
-   function onLayout(dc) {
+   function onLayout(dc)
+   {
+         setupGeometry(dc);
 //      setGeometryParams();
    }
 
@@ -355,13 +355,8 @@ class RunZoneField extends Ui.DataField
    function onHide() {
    }
 
-   function onUpdate(dc) {
-
-      if (firstUpdate ==1) {
-         firstUpdate = 0;
-         setupGeometry(dc);
-      }
-
+   function onUpdate(dc)
+   {
       dc.setColor(defaultFgColor,defaultBgColor);
       dc.clear();
 
