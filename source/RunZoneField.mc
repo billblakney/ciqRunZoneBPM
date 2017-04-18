@@ -217,6 +217,11 @@ class RunZoneField extends Ui.DataField
 //   {
 //      System.println("HELLO from round_218x218");
 // orig positions
+//xTopLine = 131;
+//xBottomLine = 111;
+//yTopLine = 25;
+//yMiddleLine = 109;
+//yBottomLine = 193;
 //yRow0Label = 13;
 //yRow1Number = 70;
 //yRow1Label = 34;
@@ -242,6 +247,11 @@ class RunZoneField extends Ui.DataField
 //   {
 //      System.println("HELLO from semiround_215x180");
 // orig positions
+//xTopLine = 129;
+//xBottomLine = 109;
+//yTopLine = 19;
+//yMiddleLine = 90;
+//yBottomLine = 161;
 //yRow0Label = 8;
 //yRow1Number = 59;
 //yRow1Label = 29;
@@ -662,6 +672,11 @@ Sys.println("xRow3Label = " + xRow3Label);
          yRow3Label -= 4;
       }
 
+Sys.println("xTopLine = " + xTopLine);
+Sys.println("xBottomLine = " + xBottomLine);
+Sys.println("yTopLine = " + yTopLine);
+Sys.println("yMiddleLine = " + yMiddleLine);
+Sys.println("yBottomLine = " + yBottomLine);
 Sys.println("yRow0Label = " + yRow0Label);
 Sys.println("yRow1Number = " + yRow1Number);
 Sys.println("yRow1Label = " + yRow1Label);
