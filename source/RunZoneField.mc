@@ -83,7 +83,7 @@ class RunZoneField extends Ui.DataField
 
    var vOffset1 = 1; // applied to items of large rows
 
-   var yRow0Label = 8; //TODO rm = 8
+   var yRow0Label;
    var yRow1Label;
    var yRow1Number;
    var yRow2Label;
@@ -295,17 +295,31 @@ class RunZoneField extends Ui.DataField
 //      System.println("Setting geometry for round_218x218");
       width = dc.getWidth();
       height = dc.getHeight();
+
+//      yTopLine = 25;
+//      yMiddleLine = 109;
+//      yBottomLine = 193;
+//
+//      yRow0Label = 13;
+//      yRow1Label = 34;
+//      yRow1Number = 70;
+//      yRow2Label = 119;
+//      yRow2Number = 153;
+//      yRow3Label = 205;
+
+      yRow0Label = 13;   // zone area
+      yTopLine = 25;     // ----------
+      yRow1Label = 34;   // timer/BPM label
+      yRow1Number = 70;  // timer/BPM value
+      yMiddleLine = 109; // ----------
+      yRow2Label = 119;  // dist/pace label
+      yRow2Number = 153; // dist/pace value
+      yBottomLine = 193; // ----------
+      yRow3Label = 205;  // time
+
       xTopLine = 131;
       xBottomLine = 111;
-      yTopLine = 25;
-      yMiddleLine = 109;
-      yBottomLine = 193;
-      yRow0Label = 13;
-      yRow1Number = 70;
-      yRow1Label = 34;
-      yRow2Number = 153;
-      yRow2Label = 119;
-      yRow3Label = 205;
+
       xRow0Label = 109;
       xRow1Col1Label = 96;
       xRow1Col1Num = 123;
@@ -319,24 +333,73 @@ class RunZoneField extends Ui.DataField
    }
 
    /*-------------------------------------------------------------------------
-    * Sets the layout.
+    * Sets the layout for all forerunners except 920xt.
     *------------------------------------------------------------------------*/
    (:semiround_215x180) function onLayout(dc)
    {
 //      System.println("Setting geometry for semiround_215x180");
       width = dc.getWidth();
       height = dc.getHeight();
+
+// TODO rm after test`
+//      yTopLine = 19;
+//      yMiddleLine = 90;
+//      yBottomLine = 161;
+//
+//      yRow0Label = 8;
+//      yRow1Number = 59;
+//      yRow1Label = 29;
+//      yRow2Number = 130;
+//      yRow2Label = 100;
+//      yRow3Label = 171;
+
+      yRow0Label = 8;    // zone area
+      yTopLine = 19;     // ----------
+      yRow1Label = 29;   // timer/BPM label
+      yRow1Number = 59;  // timer/BPM value
+      yMiddleLine = 90;  // ----------
+      yRow2Label = 100;  // dist/pace label
+      yRow2Number = 130; // dist/pace value
+      yBottomLine = 161; // ----------
+      yRow3Label = 171;  // time
+
       xTopLine = 129;
       xBottomLine = 109;
-      yTopLine = 19;
-      yMiddleLine = 90;
-      yBottomLine = 161;
-      yRow0Label = 8;
-      yRow1Number = 59;
-      yRow1Label = 29;
-      yRow2Number = 130;
-      yRow2Label = 100;
-      yRow3Label = 171;
+
+      xRow0Label = 107;
+      xRow1Col1Label = 94;
+      xRow1Col1Num = 121;
+      xRow1Col2Label = 143;
+      xRow1Col2Num = 134;
+      xRow2Col1Label = 81;
+      xRow2Col1Num = 102;
+      xRow2Col2Label = 139;
+      xRow2Col2Num = 114;
+      xRow3Label = 112;
+   }
+
+   /*-------------------------------------------------------------------------
+    * Sets the layout for vivoactive, fr920xt, epix.
+    *------------------------------------------------------------------------*/
+   (:rectangle_205x148) function onLayout(dc)
+   {
+//      System.println("Setting geometry for rectangle_205x148");
+      width = dc.getWidth();
+      height = dc.getHeight();
+
+      yRow0Label = 5;    // zone area
+      yTopLine = 15;     // ----------
+      yRow1Label = 22;   // timer/BPM label
+      yRow1Number = 53;  // timer/BPM value
+      yMiddleLine = 76;  // ----------
+      yRow2Label = 83;   // dist/pace label
+      yRow2Number = 111; // dist/pace value
+      yBottomLine = 133; // ----------
+      yRow3Label = 140;  // time
+
+      xTopLine = 129;
+      xBottomLine = 109;
+
       xRow0Label = 107;
       xRow1Col1Label = 94;
       xRow1Col1Num = 121;
