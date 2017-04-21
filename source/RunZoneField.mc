@@ -242,6 +242,7 @@ class RunZoneField extends Ui.DataField
       previousTime = Sys.getTimer();
       var info = Activity.getActivityInfo();
       previousDistance = info.elapsedDistance;
+      lapSpeed = null;
    }
 
    function onTimerStop() {
@@ -256,6 +257,7 @@ class RunZoneField extends Ui.DataField
       var info = Activity.getActivityInfo();
       previousDistance = info.elapsedDistance;
       lapDistance = 0.0;
+      lapSpeed = null;
    }
 
    function onTimerReset() {
@@ -279,7 +281,8 @@ class RunZoneField extends Ui.DataField
 //         }
 //      }
 
-      if (!isPaused && !isStopped)
+      if ((useLapDistance || useLapDuration || useLapPace)
+            && (!isPaused && !isStopped))
       {
          if (lapDuration == null) {
             lapDuration = 0;
@@ -306,57 +309,71 @@ class RunZoneField extends Ui.DataField
          previousDistance = currentDistance;
          
 //         lapPace = 0;
-         lapSpeed = 0.0;
+//         lapSpeed = 0.0;
          if (lapDuration != 0)
          {
             lapSpeed = lapDistance/(lapDuration*MILLISECONDS_TO_SECONDS);
 //            lapPace = toPace(lapSpeed); // sec/mile
-Sys.println("computing lapSpeed="+lapDistance+"/"+lapDuration+"="+lapSpeed);
+         }
+         else
+         {
+            lapSpeed = 0;
          }
       }
 
-//      return new Time.Duration(lapDuration / 1000);
-      // end new lap time code
-
       currentTime = fmtTime(Sys.getClockTime());
 
-      /* battery
-      battery = Sys.getSystemStats().battery;
-      */
-
-      if (lapDuration)
+      /*
+       * Set duration
+       */
+      var tDuration = 0;
+      if (useLapDuration && lapDuration != null)
       {
-         duration = lapDuration * MILLISECONDS_TO_SECONDS;
+         tDuration = lapDuration;
       }
       else
       {
-         duration = 0;
+         duration = info.timerTime;
       }
-//      duration = info.timerTime * MILLISECONDS_TO_SECONDS;//TODO restore
+      duration = tDuration * MILLISECONDS_TO_SECONDS;
 
-
-      if (lapDistance)
+      /*
+       * Set distance
+       */
+      var tDistance = 0.0;
+      if (useLapDistance && lapDistance != null)
       {
-         distance = toDist(lapDistance);
+         tDistance = lapDistance;
       }
       else
       {
-         distance = 0;
+         tDistance = info.elapsedDistance;
       }
-//      distance = toDist(info.lapDistance);
+      distance = toDist(tDistance);
 
+      /*
+       * Set pace
+       */
+      var tSpeed = 0.0;
+      if (useLapPace && lapSpeed != null)
+      {
+         tSpeed = lapSpeed;
+      }
+      else
+      {
+         tSpeed = info.currentSpeed; // meters/sec
+      }
+      pace = toPace(tSpeed); // sec/mile
+
+      /*
+       * Set heart rate
+       */
       heartRate = info.currentHeartRate;
 
-      if (lapSpeed)
-      {
-         pace = toPace(lapSpeed); // sec/mile
-      }
-      else
-      {
-         pace = 0;
-      }
-//      var speed = info.currentSpeed; // meters/sec
-//      pace = toPace(speed); // sec/mile
+      /*
+       * Set battery
+       */
+      //battery = Sys.getSystemStats().battery;
 
       setTestValues(info);
    }
