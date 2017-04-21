@@ -36,6 +36,10 @@ class RunZoneField extends Ui.DataField
 
    var useBlackBack = false;
 
+   var useLapDuration = true;
+   var useLapDistance = true;
+   var useLapPace = true;
+
    var defaultBgColor = Graphics.COLOR_WHITE;
    var defaultFgColor = Graphics.COLOR_BLACK;
 
@@ -63,9 +67,19 @@ class RunZoneField extends Ui.DataField
    var battery = null;
    */
    var heartRate = null;
-   var pace = null; // seconds/mile
-   var duration = null; // seconds
+   var pace = null;      // seconds/mile
+   var duration = null;  // seconds
    var distance = null;
+
+   var isPaused;
+   var isStopped;
+   var previousTime;
+   var previousDistance;
+   
+   var lapDuration;
+   var lapDistance;
+   var lapSpeed;
+//   var lapPace;          // seconds/mile
 
    var maxPace = 3600-1;
 
@@ -140,6 +154,9 @@ class RunZoneField extends Ui.DataField
       pace = null;
       duration = 0;
       distance = 0.0;
+      
+      isPaused = false;
+      isStopped = true;
 
       if (Sys.getDeviceSettings().distanceUnits == Sys.UNIT_METRIC)
       {
@@ -205,9 +222,101 @@ class RunZoneField extends Ui.DataField
 //      Sys.println("beginZone4: " + beginZone4);
 //      Sys.println("beginZone5: " + beginZone5);
    }
+   
+   function onTimerPause() {
+      Sys.println("Pause");
+      isPaused = true;
+   }
+
+   function onTimerResume() {
+      Sys.println("Resume");
+      isPaused = false;
+      previousTime = Sys.getTimer();
+      var info = Activity.getActivityInfo();
+      previousDistance = info.elapsedDistance;
+   }
+
+   function onTimerStart() {
+      Sys.println("Start");
+      isStopped = false;
+      previousTime = Sys.getTimer();
+      var info = Activity.getActivityInfo();
+      previousDistance = info.elapsedDistance;
+   }
+
+   function onTimerStop() {
+      Sys.println("Stop");
+      isStopped = true;
+   }
+
+   function onTimerLap() {
+      Sys.println("Lap");
+      previousTime = Sys.getTimer();
+      lapDuration = 0;
+      var info = Activity.getActivityInfo();
+      previousDistance = info.elapsedDistance;
+      lapDistance = 0.0;
+   }
+
+   function onTimerReset() {
+      Sys.println("Reset");
+      lapDuration = null;
+      lapDistance = null;
+      lapSpeed = null;
+   }
 
    // Handle the update event
    function compute(info) {
+
+      // begin new lap time code
+//      if (isPaused || isStopped) {
+//
+//         if (lapDuration != null) {
+//            return new Time.Duration(lapDuration / 1000);
+//         }
+//         else {
+//            return "-:--";
+//         }
+//      }
+
+      if (!isPaused && !isStopped)
+      {
+         if (lapDuration == null) {
+            lapDuration = 0;
+         }
+
+         var tCurrentTime = Sys.getTimer();
+         if (previousTime != null) {
+            lapDuration += (tCurrentTime - previousTime);
+         }
+         previousTime = tCurrentTime;
+
+         if (lapDistance == null) {
+            lapDistance = 0.0;
+         }
+
+         var currentDistance = info.elapsedDistance;
+         if (currentDistance == null) // seem to need this
+         {
+            currentDistance = 0.0;
+         }
+         if (previousDistance != null) {
+            lapDistance += (currentDistance - previousDistance);
+         }
+         previousDistance = currentDistance;
+         
+//         lapPace = 0;
+         lapSpeed = 0.0;
+         if (lapDuration != 0)
+         {
+            lapSpeed = lapDistance/(lapDuration*MILLISECONDS_TO_SECONDS);
+//            lapPace = toPace(lapSpeed); // sec/mile
+Sys.println("computing lapSpeed="+lapDistance+"/"+lapDuration+"="+lapSpeed);
+         }
+      }
+
+//      return new Time.Duration(lapDuration / 1000);
+      // end new lap time code
 
       currentTime = fmtTime(Sys.getClockTime());
 
@@ -215,30 +324,56 @@ class RunZoneField extends Ui.DataField
       battery = Sys.getSystemStats().battery;
       */
 
-      duration = info.timerTime * MILLISECONDS_TO_SECONDS;
+      if (lapDuration)
+      {
+         duration = lapDuration * MILLISECONDS_TO_SECONDS;
+      }
+      else
+      {
+         duration = 0;
+      }
+//      duration = info.timerTime * MILLISECONDS_TO_SECONDS;//TODO restore
 
-      distance = toDist(info.elapsedDistance);
+
+      if (lapDistance)
+      {
+         distance = toDist(lapDistance);
+      }
+      else
+      {
+         distance = 0;
+      }
+//      distance = toDist(info.lapDistance);
 
       heartRate = info.currentHeartRate;
 
-      var speed = info.currentSpeed;
-      pace = toPace(speed); // sec/mile
+      if (lapSpeed)
+      {
+         pace = toPace(lapSpeed); // sec/mile
+      }
+      else
+      {
+         pace = 0;
+      }
+//      var speed = info.currentSpeed; // meters/sec
+//      pace = toPace(speed); // sec/mile
 
-      //setTestValues(info);
+      setTestValues(info);
    }
 
-   function setTestValues(info) {
+   function setTestValues(info)
+   {
 
       /*
        * Use this set for "biggest values"
        */
       /*
       */
-      currentTime = "12:00pm";
-      duration = 1620; // = 27*60 + 0 -> 27:00
-      distance = "3.00";
-      heartRate = 128;
-      pace = 9*60; // 9:00
+//      currentTime = "12:00pm";
+//      duration = 1620; // = 27*60 + 0 -> 27:00
+//      distance = "3.00";
+//      heartRate = 128;
+//      pace = 10*60; // 9:00
       /*
       */
       /*
@@ -412,6 +547,38 @@ class RunZoneField extends Ui.DataField
       xRow3Label = 112;
    }
 
+   /*-------------------------------------------------------------------------
+    *------------------------------------------------------------------------*/
+//   (:semiround_215x180) function someFunction()
+//   (:round_218x218) function someFunction()
+//   (:rectangle_205x148) function someFunction()
+
+   (:semiround_215x180) function getPaceFont(pace)
+   {
+      if (pace != null && pace < 10*60) {
+         return Gfx.FONT_NUMBER_HOT;
+      }
+      else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+
+   (:round_218x218) function getPaceFont(pace)
+   {
+      if (pace != null && pace < 10*60) {
+         return Gfx.FONT_NUMBER_HOT;
+      }
+      else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+
+   (:rectangle_205x148) function getPaceFont(pace)
+   {
+      return Gfx.FONT_NUMBER_HOT;
+   }
+
+
    function onShow()
    {
    }
@@ -501,15 +668,9 @@ class RunZoneField extends Ui.DataField
       dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
 
       // pace
+      var tPaceFont = getPaceFont(pace);
       textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,  "Pace");
-
-      if (pace != null && pace < 10*60) {
-         font = Gfx.FONT_NUMBER_HOT;
-      }
-      else {
-         font = Gfx.FONT_NUMBER_MEDIUM;
-      }
-      textL(dc, xRow2Col2Num , yRow2Number, font, fmtSecs(pace));
+      textL(dc, xRow2Col2Num , yRow2Number, tPaceFont, fmtSecs(pace));
 
       // timer
       textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,  "Timer");
@@ -545,9 +706,9 @@ class RunZoneField extends Ui.DataField
       dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
 
       // horizontal lines
-      dc.drawLine(0, yTopLine, 215, yTopLine);
-      dc.drawLine(0, yMiddleLine, 215, yMiddleLine);
-      dc.drawLine(0, yBottomLine, 215, yBottomLine);
+      dc.drawLine(0, yTopLine, width, yTopLine);
+      dc.drawLine(0, yMiddleLine, width, yMiddleLine);
+      dc.drawLine(0, yBottomLine, width, yBottomLine);
 
       // vertical lines
       dc.drawLine(xTopLine,yTopLine,xTopLine,yMiddleLine);
