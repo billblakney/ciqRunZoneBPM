@@ -134,14 +134,17 @@ class RunZoneField extends Ui.DataField
    var zone5BgColor = Graphics.COLOR_WHITE;
    var zone5FgColor = Graphics.COLOR_BLACK;
 
-   // Constructor
-   function initialize() {
-
+   /*
+    * Constructor.
+    */
+   function initialize()
+   {
       DataField.initialize();
 
       getUserSettings();
 
-      if (useBlackBack) {
+      if (useBlackBack)
+      {
          defaultBgColor = Graphics.COLOR_BLACK;
          defaultFgColor = Graphics.COLOR_WHITE;
       }
@@ -178,7 +181,11 @@ class RunZoneField extends Ui.DataField
 //      testHeartRates[49] = 101;
    }
 
-   function getUserSettings() {
+   /*
+    * Get user settings.
+    */
+   function getUserSettings()
+   {
 
       hiliteZone = App.getApp().getProperty("hiliteZone");
 //      Sys.println("hiliteZone: " + hiliteZone);
@@ -223,12 +230,20 @@ class RunZoneField extends Ui.DataField
 //      Sys.println("beginZone5: " + beginZone5);
    }
    
-   function onTimerPause() {
+   /*
+    * Handle timer pause.
+    */
+   function onTimerPause()
+   {
       Sys.println("Pause");
       isPaused = true;
    }
 
-   function onTimerResume() {
+   /*
+    * Handle timer resume.
+    */
+   function onTimerResume()
+   {
       Sys.println("Resume");
       isPaused = false;
       previousTime = Sys.getTimer();
@@ -236,7 +251,11 @@ class RunZoneField extends Ui.DataField
       previousDistance = info.elapsedDistance;
    }
 
-   function onTimerStart() {
+   /*
+    * Handle timer start.
+    */
+   function onTimerStart()
+   {
       Sys.println("Start");
       isStopped = false;
       previousTime = Sys.getTimer();
@@ -245,12 +264,20 @@ class RunZoneField extends Ui.DataField
       lapSpeed = null;
    }
 
-   function onTimerStop() {
+   /*
+    * Handle timer stop.
+    */
+   function onTimerStop()
+   {
       Sys.println("Stop");
       isStopped = true;
    }
 
-   function onTimerLap() {
+   /*
+    * Handle timer "on lap".
+    */
+   function onTimerLap()
+   {
       Sys.println("Lap");
       previousTime = Sys.getTimer();
       lapDuration = 0;
@@ -260,41 +287,42 @@ class RunZoneField extends Ui.DataField
       lapSpeed = null;
    }
 
-   function onTimerReset() {
+   /*
+    * Handle timer reset.
+    */
+   function onTimerReset()
+   {
       Sys.println("Reset");
       lapDuration = null;
       lapDistance = null;
       lapSpeed = null;
    }
 
-   // Handle the update event
-   function compute(info) {
-
-      // begin new lap time code
-//      if (isPaused || isStopped) {
-//
-//         if (lapDuration != null) {
-//            return new Time.Duration(lapDuration / 1000);
-//         }
-//         else {
-//            return "-:--";
-//         }
-//      }
-
+   /*
+    * Compute info to be displayed.
+    */
+   function compute(info)
+   {
+      /*
+       * Compute lap values if any lap fields are being used.
+       */
       if ((useLapDistance || useLapDuration || useLapPace)
             && (!isPaused && !isStopped))
       {
-         if (lapDuration == null) {
+         if (lapDuration == null)
+         {
             lapDuration = 0;
          }
 
          var tCurrentTime = Sys.getTimer();
-         if (previousTime != null) {
+         if (previousTime != null)
+         {
             lapDuration += (tCurrentTime - previousTime);
          }
          previousTime = tCurrentTime;
 
-         if (lapDistance == null) {
+         if (lapDistance == null)
+         {
             lapDistance = 0.0;
          }
 
@@ -308,12 +336,9 @@ class RunZoneField extends Ui.DataField
          }
          previousDistance = currentDistance;
          
-//         lapPace = 0;
-//         lapSpeed = 0.0;
          if (lapDuration != 0)
          {
             lapSpeed = lapDistance/(lapDuration*MILLISECONDS_TO_SECONDS);
-//            lapPace = toPace(lapSpeed); // sec/mile
          }
          else
          {
@@ -378,6 +403,9 @@ class RunZoneField extends Ui.DataField
       setTestValues(info);
    }
 
+   /*
+    * Set test values for items to be displayed.
+    */
    function setTestValues(info)
    {
 
@@ -439,9 +467,9 @@ class RunZoneField extends Ui.DataField
 //      setGeometryParams();
 //   }
 
-   /*-------------------------------------------------------------------------
+   /*
     * Sets the layout.
-    *------------------------------------------------------------------------*/
+    */
    (:round_218x218) function onLayout(dc)
    {
 //      System.println("Setting geometry for round_218x218");
@@ -484,9 +512,9 @@ class RunZoneField extends Ui.DataField
       xRow3Label = 114;
    }
 
-   /*-------------------------------------------------------------------------
+   /*
     * Sets the layout for all forerunners except 920xt.
-    *------------------------------------------------------------------------*/
+    */
    (:semiround_215x180) function onLayout(dc)
    {
 //      System.println("Setting geometry for semiround_215x180");
@@ -530,9 +558,9 @@ class RunZoneField extends Ui.DataField
       xRow3Label = 112;
    }
 
-   /*-------------------------------------------------------------------------
+   /*
     * Sets the layout for vivoactive, fr920xt, epix.
-    *------------------------------------------------------------------------*/
+    */
    (:rectangle_205x148) function onLayout(dc)
    {
 //      System.println("Setting geometry for rectangle_205x148");
@@ -570,19 +598,28 @@ class RunZoneField extends Ui.DataField
 //   (:round_218x218) function someFunction()
 //   (:rectangle_205x148) function someFunction()
 
+   /*
+    * Gets the pace font.
+    */
    (:semiround_215x180) function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
+      if (pace != null && pace < 10*60)
+      {
          return Gfx.FONT_NUMBER_HOT;
       }
-      else {
+      else
+      {
          return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
 
+   /*
+    * Gets the pace font.
+    */
    (:round_218x218) function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
+      if (pace != null && pace < 10*60)
+      {
          return Gfx.FONT_NUMBER_HOT;
       }
       else {
@@ -590,19 +627,32 @@ class RunZoneField extends Ui.DataField
       }
    }
 
+   /*
+    * Gets the pace font.
+    */
    (:rectangle_205x148) function getPaceFont(pace)
    {
       return Gfx.FONT_NUMBER_HOT;
    }
 
 
+   /*
+    * Handles "on show".
+    */
    function onShow()
    {
    }
 
-   function onHide() {
+   /*
+    * Handles "on hide".
+    */
+   function onHide()
+   {
    }
 
+   /*
+    * Handles "on update".
+    */
    function onUpdate(dc)
    {
       dc.setColor(defaultFgColor,defaultBgColor);
@@ -618,27 +668,36 @@ class RunZoneField extends Ui.DataField
       var zoneColorFrg = defaultFgColor;
 
       if (heartRate != null) {
-         if (heartRate >= beginZone5) {
+         if (heartRate >= beginZone5)
+         {
             zone = 5;
             zoneLabel = "Zone 5";
             zoneColorBkg = zone5BgColor;
             zoneColorFrg = zone5FgColor;
-         } else if (heartRate >= beginZone4) {
+         }
+         else if (heartRate >= beginZone4)
+         {
             zone = 4;
             zoneLabel = "Zone 4";
             zoneColorBkg = zone4BgColor;
             zoneColorFrg = zone4FgColor;
-         } else if (heartRate >= beginZone3) {
+         }
+         else if (heartRate >= beginZone3)
+         {
             zone = 3;
             zoneLabel = "Zone 3";
             zoneColorBkg = zone3BgColor;
             zoneColorFrg = zone3FgColor;
-         } else if (heartRate >= beginZone2) {
+         }
+         else if (heartRate >= beginZone2)
+         {
             zone = 2;
             zoneLabel = "Zone 2";
             zoneColorBkg = zone2BgColor;
             zoneColorFrg = zone2FgColor;
-         } else if (heartRate >= beginZone1) {
+         }
+         else if (heartRate >= beginZone1)
+         {
             zone = 1;
             zoneLabel = "Zone 1";
             zoneColorBkg = zone1BgColor;
@@ -706,10 +765,12 @@ class RunZoneField extends Ui.DataField
       // distance
       textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY, "Distance");
 
-      if (distance.toFloat() < 10) {
+      if (distance.toFloat() < 10)
+      {
          font = Gfx.FONT_NUMBER_HOT;
       }
-      else {
+      else
+      {
          font = Gfx.FONT_NUMBER_MEDIUM;
       }
       textR(dc, xRow2Col1Num , yRow2Number, font, distance);
@@ -736,8 +797,13 @@ class RunZoneField extends Ui.DataField
       return true;
    }
 
-   function toPace(speed) {
-      if (speed == null || speed == 0) {
+   /*
+    * Converts a speed to a pace.
+    */
+   function toPace(speed)
+   {
+      if (speed == null || speed == 0)
+      {
          return null;
       }
 
@@ -750,65 +816,100 @@ class RunZoneField extends Ui.DataField
       return pace;
    }
 
-   function textL(dc, x, y, font, s) {
-      if (s != null) {
+   /*
+    * Draws left-justified text.
+    */
+   function textL(dc, x, y, font, s)
+   {
+      if (s != null)
+      {
          dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
       }
    }
 
-   function textR(dc, x, y, font, s) {
-      if (s != null) {
+   /*
+    * Draws right-justified text.
+    */
+   function textR(dc, x, y, font, s)
+   {
+      if (s != null)
+      {
          dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER);
       }
    }
 
-   function textC(dc, x, y, font, s) {
-      if (s != null) {
+   /*
+    * Draws centered text.
+    */
+   function textC(dc, x, y, font, s)
+   {
+      if (s != null)
+      {
          dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       }
    }
 
-   function toStr(o) {
-      if (o != null && o > 0) {
+   /*
+    * Gets string for a heart rate.
+    */
+   function toStr(o)
+   {
+      if (o != null && o > 0)
+      {
          return "" + o;
-      } else {
+      }
+      else
+      {
          return "---";
       }
    }
 
-   function fmtTime(clock) {
-
+   /*
+    * Gets a formatted string for a time.
+    */
+   function fmtTime(clock)
+   {
       var h = clock.hour;
       var amPm = "";
       var timeFieldOffset = 0;
 
-      if (!Sys.getDeviceSettings().is24Hour) {
-         if (h == 0) {
+      if (!Sys.getDeviceSettings().is24Hour)
+      {
+         if (h == 0)
+         {
             h += 12;
             amPm = "am";
          }
-         else if (h < 12) {
+         else if (h < 12)
+         {
             amPm = "am";
          }
-         else if (h == 12) {
+         else if (h == 12)
+         {
             amPm = "pm";
          }
-         else { // h > 12
+         else // h > 12
+         {
             h -= 12;
             amPm = "pm";
          }
       }
 
-      if (h >= 10) {
+      if (h >= 10)
+      {
          timeFieldOffset = 2;
       }
 
       return "" + h + ":" + clock.min.format("%02d") + amPm;
    }
 
-   function fmtSecs(secs) {
-
-      if (secs == null) {
+   /*
+    * Gets a formatted string to represent a time or duration.
+    */
+   function fmtSecs(secs)
+   {
+      if (secs == null)
+      {
          return "----";
       }
 
@@ -819,17 +920,25 @@ class RunZoneField extends Ui.DataField
       s -= minutes * 60;
 
       var fmt;
-      if (hours > 0) {
+      if (hours > 0)
+      {
          fmt = "" + hours + ":" + minutes.format("%02d") + ":" + s.format("%02d");
-      } else {
+      }
+      else
+      {
          fmt = "" + minutes + ":" + s.format("%02d");
       }
 
       return fmt;
    }
 
-   function toDist(dist) {
-      if (dist == null) {
+   /*
+    * Gets a distance string.
+    */
+   function toDist(dist)
+   {
+      if (dist == null)
+      {
          return "0.00";
       }
 
@@ -844,7 +953,11 @@ class RunZoneField extends Ui.DataField
    }
    */
 
-   function getColorCode(color_index) {
+   /*
+    * Gets a color code for a user-selected color index.
+    */
+   function getColorCode(color_index)
+   {
 
       var color = Graphics.COLOR_WHITE;
 
