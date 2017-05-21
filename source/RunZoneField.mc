@@ -49,6 +49,10 @@ class RunZoneField extends Ui.DataField
    var distType = DIST_TYPE_TOTAL;
    var timeType = TIME_TYPE_TOTAL;
    var paceType = PACE_TYPE_CURRENT;
+   
+   var distLabel = "Dist";
+   var timeLabel = "Timer";
+   var paceLabel = "Pace";
 
    var defaultBgColor = Graphics.COLOR_WHITE;
    var defaultFgColor = Graphics.COLOR_BLACK;
@@ -199,6 +203,29 @@ class RunZoneField extends Ui.DataField
       distType = App.getApp().getProperty("distType");
       timeType = App.getApp().getProperty("timeType");
       paceType = App.getApp().getProperty("paceType");
+      
+      if (timeType == TIME_TYPE_LAP)
+      {
+         timeLabel += "(L)";
+      }
+      
+      if (distType == DIST_TYPE_LAP)
+      {
+         distLabel += "(L)";
+      }
+
+      if (paceType == PACE_TYPE_LAP)
+      {
+         paceLabel += "(L)";
+      }
+      else if (paceType == PACE_TYPE_AVERAGE)
+      {
+         paceLabel += "(Avg)";
+      }
+      else
+      {
+         paceLabel += "(Curr)";
+      }
 
       hiliteZone = App.getApp().getProperty("hiliteZone");
 //      Sys.println("hiliteZone: " + hiliteZone);
@@ -764,11 +791,11 @@ class RunZoneField extends Ui.DataField
 
       // pace
       var tPaceFont = getPaceFont(pace);
-      textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,  "Pace");
+      textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,paceLabel);
       textL(dc, xRow2Col2Num , yRow2Number, tPaceFont, fmtSecs(pace));
 
       // timer
-      textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,  "Timer");
+      textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,timeLabel);
 
       // TODO offset for 10:00 vs 1:00
       if (duration >= 3600)
@@ -782,7 +809,7 @@ class RunZoneField extends Ui.DataField
       textR(dc, xRow1Col1Num , yRow1Number, font,  fmtSecs(duration));
 
       // distance
-      textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY, "Distance");
+      textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY,distLabel);
 
       if (distance.toFloat() < 10)
       {
@@ -890,7 +917,6 @@ class RunZoneField extends Ui.DataField
    {
       var h = clock.hour;
       var amPm = "";
-      var timeFieldOffset = 0; //TODO rm (unused)
 
       if (!Sys.getDeviceSettings().is24Hour)
       {
@@ -912,11 +938,6 @@ class RunZoneField extends Ui.DataField
             h -= 12;
             amPm = "pm";
          }
-      }
-
-      if (h >= 10) //TODO rm block (unused)
-      {
-         timeFieldOffset = 2;
       }
 
       return "" + h + ":" + clock.min.format("%02d") + amPm;
