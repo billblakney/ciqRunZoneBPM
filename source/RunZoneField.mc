@@ -65,17 +65,6 @@ class RunZoneField extends Ui.DataField
     */
    var cycleCounter;
 
-   /* TODO rm
-    * Counter used to develop some tone code.
-    */
-   var testToneCounter;
-
-   /* TODO rm
-    *
-    */
-   var old_counter;
-   // var value_picked = null;
-
    var currentTime = null;
    /* battery
    var battery = null;
@@ -164,8 +153,6 @@ class RunZoneField extends Ui.DataField
       }
 
       cycleCounter = 0;
-      testToneCounter = 0;
-      old_counter = 0;
 
       heartRate = null;
       pace = null;
@@ -1050,40 +1037,6 @@ class RunZoneField extends Ui.DataField
 
       return color;
    }
-
-//   function testTone() {
-//
-//      if (testToneCounter == 0)
-//      {
-//         Attn.playTone(Attn.TONE_KEY);
-//      }
-//      else if (testToneCounter == 3)
-//      {
-//         Attn.playTone(Attn.TONE_ALARM);
-//      }
-//      else if (testToneCounter == 6)
-//      {
-//         Attn.playTone(Attn.TONE_ALERT_LO);//3
-//      }
-//      else if (testToneCounter == 9)
-//      {
-//         Attn.playTone(Attn.TONE_ALERT_HI);//4
-//      }
-//      else if (testToneCounter == 12)
-//      {
-//         Attn.playTone(Attn.TONE_LOUD_BEEP); //1
-//      }
-//      else if (testToneCounter == 15)
-//      {
-//         Attn.playTone(Attn.TONE_CANARY); //2
-//      }
-//      else if (testToneCounter == 18)
-//      {
-//         Attn.playTone(Attn.TONE_SUCCESS);//5
-//         testToneCounter -= testToneCounter + 5;
-//      }
-//      testToneCounter++;
-//   }
 
 //   function setupGeometry(dc) {
 //
