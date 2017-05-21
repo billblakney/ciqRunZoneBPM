@@ -33,12 +33,22 @@ class RunZoneField extends Ui.DataField
    const COLOR_IDX_DK_BLUE  = 11;
    const COLOR_IDX_PURPLE   = 12;
    const COLOR_IDX_PINK     = 13;
+   
+   const DIST_TYPE_TOTAL    = 0;
+   const DIST_TYPE_LAP      = 1;
+   
+   const TIME_TYPE_TOTAL    = 0;
+   const TIME_TYPE_LAP      = 1;
+   
+   const PACE_TYPE_CURRENT  = 0;
+   const PACE_TYPE_AVERAGE  = 1;
+   const PACE_TYPE_LAP      = 2;
 
    var useBlackBack = false;
 
-   var useLapDuration = true;
-   var useLapDistance = true;
-   var useLapPace = true;
+   var distType = DIST_TYPE_TOTAL;
+   var timeType = TIME_TYPE_TOTAL;
+   var paceType = PACE_TYPE_CURRENT;
 
    var defaultBgColor = Graphics.COLOR_WHITE;
    var defaultFgColor = Graphics.COLOR_BLACK;
@@ -186,6 +196,9 @@ class RunZoneField extends Ui.DataField
     */
    function getUserSettings()
    {
+      distType = App.getApp().getProperty("distType");
+      timeType = App.getApp().getProperty("timeType");
+      paceType = App.getApp().getProperty("paceType");
 
       hiliteZone = App.getApp().getProperty("hiliteZone");
 //      Sys.println("hiliteZone: " + hiliteZone);
@@ -306,8 +319,10 @@ class RunZoneField extends Ui.DataField
       /*
        * Compute lap values if any lap fields are being used.
        */
-      if ((useLapDistance || useLapDuration || useLapPace)
-            && (!isPaused && !isStopped))
+      if ( (distType == DIST_TYPE_LAP ||
+            timeType == TIME_TYPE_LAP ||
+            paceType == PACE_TYPE_LAP)
+         && (!isPaused && !isStopped))
       {
          if (lapDuration == null)
          {
@@ -352,13 +367,13 @@ class RunZoneField extends Ui.DataField
        * Set duration
        */
       var tDuration = 0;
-      if (useLapDuration && lapDuration != null)
+      if (timeType == TIME_TYPE_LAP && lapDuration != null)
       {
          tDuration = lapDuration;
       }
       else
       {
-         duration = info.timerTime;
+         tDuration = info.timerTime;
       }
       duration = tDuration * MILLISECONDS_TO_SECONDS;
 
@@ -366,7 +381,7 @@ class RunZoneField extends Ui.DataField
        * Set distance
        */
       var tDistance = 0.0;
-      if (useLapDistance && lapDistance != null)
+      if (distType == DIST_TYPE_LAP && lapDistance != null)
       {
          tDistance = lapDistance;
       }
@@ -380,9 +395,13 @@ class RunZoneField extends Ui.DataField
        * Set pace
        */
       var tSpeed = 0.0;
-      if (useLapPace && lapSpeed != null)
+      if (paceType == PACE_TYPE_LAP && lapSpeed != null)
       {
          tSpeed = lapSpeed;
+      }
+      else if (paceType == PACE_TYPE_AVERAGE)
+      {
+         tSpeed = info.averageSpeed; // meters/sec
       }
       else
       {
@@ -871,7 +890,7 @@ class RunZoneField extends Ui.DataField
    {
       var h = clock.hour;
       var amPm = "";
-      var timeFieldOffset = 0;
+      var timeFieldOffset = 0; //TODO rm (unused)
 
       if (!Sys.getDeviceSettings().is24Hour)
       {
@@ -895,7 +914,7 @@ class RunZoneField extends Ui.DataField
          }
       }
 
-      if (h >= 10)
+      if (h >= 10) //TODO rm block (unused)
       {
          timeFieldOffset = 2;
       }

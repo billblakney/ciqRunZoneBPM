@@ -1,5 +1,21 @@
 <resources>
     <string id="AppName">RunZone BPM</string>
+    <!-- dist type -->
+    <string id="DistType">Distance Setting</string>
+    <string id="PromptDistType">Distance to display</string>
+    <string id="TotalDist">Total Distance</string>
+    <string id="LapDist">Lap Distance</string>
+    <!-- time type -->
+    <string id="TimeType">Time Setting</string>
+    <string id="PromptTimeType">Time to display</string>
+    <string id="TotalTime">Total Time</string>
+    <string id="LapTime">Lap Time</string>
+    <!-- pace type -->
+    <string id="PaceType">Pace Setting</string>
+    <string id="PromptPaceType">Pace to display</string>
+    <string id="CurrentPace">Current Pace</string>
+    <string id="AveragePace">Average Pace</string>
+    <string id="LapPace">Lap Pace</string>
     <!-- lowest hilite zone title -->
     <string id="HiliteZone">Lowest Color Zone</string>
     <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
