@@ -89,7 +89,6 @@ class RunZoneField extends Ui.DataField
    var split;
 
    var width;
-   var height;
 
    var xTopLine;
    var xBottomLine;
@@ -97,8 +96,6 @@ class RunZoneField extends Ui.DataField
    var yTopLine;
    var yMiddleLine;  // centered vertically
    var yBottomLine;
-
-   var vOffset1 = 1; // applied to items of large rows
 
    var yRow0Label;
    var yRow1Label;
@@ -123,6 +120,10 @@ class RunZoneField extends Ui.DataField
    var beginZone3;
    var beginZone4;
    var beginZone5;
+   
+   //-------------------------
+   //
+   //-------------------------
 
    var hiliteZone = 0;
 
@@ -211,7 +212,7 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
-         paceLabel += "(Curr)";
+         paceLabel += "(Cur)";
       }
 
       hiliteZone = App.getApp().getProperty("hiliteZone");
@@ -507,18 +508,6 @@ class RunZoneField extends Ui.DataField
    {
 //      System.println("Setting geometry for round_218x218");
       width = dc.getWidth();
-      height = dc.getHeight();
-
-//      yTopLine = 25;
-//      yMiddleLine = 109;
-//      yBottomLine = 193;
-//
-//      yRow0Label = 13;
-//      yRow1Label = 34;
-//      yRow1Number = 70;
-//      yRow2Label = 119;
-//      yRow2Number = 153;
-//      yRow3Label = 205;
 
       yRow0Label = 13;   // zone area
       yTopLine = 25;     // ----------
@@ -540,7 +529,7 @@ class RunZoneField extends Ui.DataField
       xRow1Col2Num = 136;
       xRow2Col1Label = 83;
       xRow2Col1Num = 104;
-      xRow2Col2Label = 141;
+      xRow2Col2Label = 130;
       xRow2Col2Num = 116;
       xRow3Label = 114;
    }
@@ -552,19 +541,6 @@ class RunZoneField extends Ui.DataField
    {
 //      System.println("Setting geometry for semiround_215x180");
       width = dc.getWidth();
-      height = dc.getHeight();
-
-// TODO rm after test`
-//      yTopLine = 19;
-//      yMiddleLine = 90;
-//      yBottomLine = 161;
-//
-//      yRow0Label = 8;
-//      yRow1Number = 59;
-//      yRow1Label = 29;
-//      yRow2Number = 130;
-//      yRow2Label = 100;
-//      yRow3Label = 171;
 
       yRow0Label = 8;    // zone area
       yTopLine = 19;     // ----------
@@ -586,7 +562,7 @@ class RunZoneField extends Ui.DataField
       xRow1Col2Num = 134;
       xRow2Col1Label = 81;
       xRow2Col1Num = 102;
-      xRow2Col2Label = 139;
+      xRow2Col2Label = 134;
       xRow2Col2Num = 114;
       xRow3Label = 112;
    }
@@ -598,7 +574,6 @@ class RunZoneField extends Ui.DataField
    {
 //      System.println("Setting geometry for rectangle_205x148");
       width = dc.getWidth();
-      height = dc.getHeight();
 
       yRow0Label = 5;    // zone area
       yTopLine = 15;     // ----------
@@ -690,8 +665,6 @@ class RunZoneField extends Ui.DataField
    {
       dc.setColor(defaultFgColor,defaultBgColor);
       dc.clear();
-
-//      testTone();
 
       // Draw heartRate color indicator
 
@@ -1038,6 +1011,9 @@ class RunZoneField extends Ui.DataField
       return color;
    }
 
+
+//   var vOffset1 = 1; // applied to items of large rows
+//
 //   function setupGeometry(dc) {
 //
 //      width = dc.getWidth();
