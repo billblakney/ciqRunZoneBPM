@@ -1,0 +1,20 @@
+**************************************************
+Run gitk
+**************************************************
+From Windows, run "XWin Server".
+From cygwin terminal, run "gitk".
+
+To see all branches, run "gitk --all"
+
+**************************************************
+To Build.
+**************************************************
+Do "Project->Clean" and select ciqRunZoneBPM, with
+the "Build only the selected projects" button selected.
+
+**************************************************
+To Run.
+**************************************************
+In Eclipse, select "ConnectIQ->Start Simulator".
+In Eclipse, select "Run->Run Configurations".
+Select RunZoneBPM. I'm not sure how this originally got there.
