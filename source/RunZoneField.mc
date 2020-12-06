@@ -472,14 +472,15 @@ class RunZoneField extends Ui.DataField
       */
 
       // duration
-      //duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
+      duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
       //duration = 3600; // = 60*60            -> 1:00:00
       //duration = 728;  // 728 = 12*60 + 8    ->   12:08
       //duration = 488;  // 484 = 8*60+8       ->    8:08
 
       // distance
-      distance = "9.99";
-//      distance = "10.00";
+//      distance = "9.99";
+//      distance = "8.98";
+      distance = "10.00";
 
       // heart rate
       //hiliteZone = 3;
@@ -492,8 +493,9 @@ class RunZoneField extends Ui.DataField
       //}
 
       // pace
+//      pace = 8*60 + 8;  //  8:08
       //pace = 8*60;  //  8:00
-      //pace = 10*60; // 10:00
+      pace = 10*60; // 10:00
    }
 
 //   function onLayout(dc)
@@ -547,24 +549,28 @@ class RunZoneField extends Ui.DataField
       yRow1Label = 38;   // timer/BPM label
       yRow1Number = 80;  // timer/BPM value
       yMiddleLine = 120; // ----------
-      yRow2Label = 131;  // dist/pace label
-      yRow2Number = 170; // dist/pace value
-      yBottomLine = 210; // ----------
+//      yRow2Label = 131;  // dist/pace label
+//      yRow2Number = 170; // dist/pace value
+      yRow2Number = 153; // dist/pace value
+      yRow2Label = 193;  // dist/pace label
+      yBottomLine = 209; // ----------
       yRow3Label = 222;  // time
 
       xTopLine = 131;
-      xBottomLine = 111;
+//      xBottomLine = 111;
+      xBottomLine = 118;
 
       xRow0Label = 120;
       xRow1Col1Label = 100;
       xRow1Col1Num = 123;
       xRow1Col2Label = 145;
-      xRow1Col2Num = 136;
+      xRow1Col2Num = 130;
       xRow2Col1Label = 83;
-      xRow2Col1Num = 104;
-      xRow2Col2Label = 130;
-      xRow2Col2Num = 116;
-      xRow3Label = 114;
+      xRow2Col1Num = 114;
+//      xRow2Col2Label = 130;
+      xRow2Col2Label = 120;
+      xRow2Col2Num = 124;
+      xRow3Label = 124;
    }
 
    /*
@@ -642,52 +648,69 @@ class RunZoneField extends Ui.DataField
    /*
     * Gets the pace font.
     */
-   (:semiround_215x180) function getPaceFont(pace)
-   {
-      if (pace != null && pace < 10*60)
-      {
-         return Gfx.FONT_NUMBER_HOT;
-      }
-      else
-      {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
-   }
-
-   /*
-    * Gets the pace font.
-    */
    (:round_240x240) function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60)
-      {
+      if (pace != null && pace < 10*60) {
          return Gfx.FONT_NUMBER_HOT;
-      }
-      else {
+      } else {
          return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
-
-   /*
-    * Gets the pace font.
-    */
    (:round_218x218) function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60)
-      {
+      if (pace != null && pace < 10*60) {
          return Gfx.FONT_NUMBER_HOT;
-      }
-      else {
+      } else {
          return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
-
-   /*
-    * Gets the pace font.
-    */
+   (:semiround_215x180) function getPaceFont(pace)
+   {
+      if (pace != null && pace < 10*60) {
+         return Gfx.FONT_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
    (:rectangle_205x148) function getPaceFont(pace)
    {
       return Gfx.FONT_NUMBER_HOT;
+   }
+
+   /*
+    * Gets the distance font.
+    */
+   (:round_240x240) function getDistFont(dist)
+   {
+      if (dist.toFloat() < 10) {
+         return Gfx.FONT_SYSTEM_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+   (:round_218x218) function getDistFont(dist)
+   {
+      if (dist.toFloat() < 10) {
+         return Gfx.FONT_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+   (:semiround_215x180) function getDistFont(dist)
+   {
+      if (pace != null && pace < 10*60) {
+         return Gfx.FONT_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+   (:rectangle_205x148) function getDistFont(dist)
+   {
+      if (pace != null && pace < 10*60) {
+         return Gfx.FONT_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_HOT;
+      }
    }
 
 
@@ -816,17 +839,9 @@ class RunZoneField extends Ui.DataField
       textR(dc, xRow1Col1Num , yRow1Number, font,  fmtSecs(duration));
 
       // distance
+      var tDistFont = getDistFont(distance);
       textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY,distLabel);
-
-      if (distance.toFloat() < 10)
-      {
-         font = Gfx.FONT_NUMBER_HOT;
-      }
-      else
-      {
-         font = Gfx.FONT_NUMBER_MEDIUM;
-      }
-      textR(dc, xRow2Col1Num , yRow2Number, font, distance);
+      textR(dc, xRow2Col1Num , yRow2Number, tDistFont, distance);
 
       // current time
       textC(dc, xRow3Label , yRow3Label, Gfx.FONT_XTINY,  currentTime);
