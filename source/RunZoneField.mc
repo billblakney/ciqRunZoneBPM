@@ -478,8 +478,8 @@ class RunZoneField extends Ui.DataField
       //duration = 488;  // 484 = 8*60+8       ->    8:08
 
       // distance
-      //distance = "9.99";
-      //distance = "10.00";
+      distance = "9.99";
+//      distance = "10.00";
 
       // heart rate
       //hiliteZone = 3;
@@ -524,6 +524,39 @@ class RunZoneField extends Ui.DataField
 
       xRow0Label = 109;
       xRow1Col1Label = 96;
+      xRow1Col1Num = 123;
+      xRow1Col2Label = 145;
+      xRow1Col2Num = 136;
+      xRow2Col1Label = 83;
+      xRow2Col1Num = 104;
+      xRow2Col2Label = 130;
+      xRow2Col2Num = 116;
+      xRow3Label = 114;
+   }
+
+   /*
+    * Sets the layout.
+    */
+   (:round_240x240) function onLayout(dc)
+   {
+//      System.println("Setting geometry for round_218x218");
+      width = dc.getWidth();
+
+      yRow0Label = 13;   // zone area
+      yTopLine = 25;     // ----------
+      yRow1Label = 38;   // timer/BPM label
+      yRow1Number = 80;  // timer/BPM value
+      yMiddleLine = 120; // ----------
+      yRow2Label = 131;  // dist/pace label
+      yRow2Number = 170; // dist/pace value
+      yBottomLine = 210; // ----------
+      yRow3Label = 222;  // time
+
+      xTopLine = 131;
+      xBottomLine = 111;
+
+      xRow0Label = 120;
+      xRow1Col1Label = 100;
       xRow1Col1Num = 123;
       xRow1Col2Label = 145;
       xRow1Col2Num = 136;
@@ -617,6 +650,20 @@ class RunZoneField extends Ui.DataField
       }
       else
       {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+
+   /*
+    * Gets the pace font.
+    */
+   (:round_240x240) function getPaceFont(pace)
+   {
+      if (pace != null && pace < 10*60)
+      {
+         return Gfx.FONT_NUMBER_HOT;
+      }
+      else {
          return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
