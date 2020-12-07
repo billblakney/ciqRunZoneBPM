@@ -493,8 +493,8 @@ class RunZoneField extends Ui.DataField
 //      distance = "20.00";
 
       // pace
-      pace = 8*60 + 8;  //  8:08
-//      pace = 10*60; // 10:00
+//      pace = 8*60 + 8;  //  8:08
+//      pace = 10*60 + 20; // 10:00
    }
 
 //   function onLayout(dc)
@@ -521,17 +521,17 @@ class RunZoneField extends Ui.DataField
       yRow3Label = 222;  // time
 
       xTopLine = 135;
-      xBottomLine = 126;
+      xBottomLine = 124;
 
       xRow0Label = 120;
-      xRow1Col1Label = 100;
+      xRow1Col1Label = 80;
       xRow1Col1Num = 70;
-      xRow1Col2Label = 145;
+      xRow1Col2Label = 176;
       xRow1Col2Num = 180;
-      xRow2Col1Label = 83;
-      xRow2Col1Num = 116;
-      xRow2Col2Label = 128;
-      xRow2Col2Num = 129;
+      xRow2Col1Label = 77;
+      xRow2Col1Num = 70;
+      xRow2Col2Label = 168;
+      xRow2Col2Num = 177;
       xRow3Label = 121;
    }
 
@@ -545,23 +545,23 @@ class RunZoneField extends Ui.DataField
       yRow1Label = 34;   // timer/BPM label
       yRow1Number = 70;  // timer/BPM value
       yMiddleLine = 109; // ----------
-      yRow2Label = 119;  // dist/pace label
-      yRow2Number = 153; // dist/pace value
+      yRow2Number = 140; // dist/pace value
+      yRow2Label = 183;  // dist/pace label
       yBottomLine = 193; // ----------
       yRow3Label = 205;  // time
 
       xTopLine = 131;
-      xBottomLine = 111;
+      xBottomLine = 109;
 
       xRow0Label = 109;
-      xRow1Col1Label = 96;
+      xRow1Col1Label = 86;
       xRow1Col1Num = 70;
-      xRow1Col2Label = 145;
+      xRow1Col2Label = 160;
       xRow1Col2Num = 166;
-      xRow2Col1Label = 83;
-      xRow2Col1Num = 104;
-      xRow2Col2Label = 130;
-      xRow2Col2Num = 116;
+      xRow2Col1Label = 74;
+      xRow2Col1Num = 62;
+      xRow2Col2Label = 139;
+      xRow2Col2Num = 153;
       xRow3Label = 109;
    }
 
@@ -578,23 +578,23 @@ class RunZoneField extends Ui.DataField
       yRow1Label = 29;   // timer/BPM label
       yRow1Number = 59;  // timer/BPM value
       yMiddleLine = 90;  // ----------
-      yRow2Label = 100;  // dist/pace label
-      yRow2Number = 130; // dist/pace value
+      yRow2Number = 117; // dist/pace value
+      yRow2Label = 149;  // dist/pace label
       yBottomLine = 161; // ----------
       yRow3Label = 171;  // time
 
       xTopLine = 129;
-      xBottomLine = 109;
+      xBottomLine = 100;
 
       xRow0Label = 107;
-      xRow1Col1Label = 94;
+      xRow1Col1Label = 75;
       xRow1Col1Num = 66;
-      xRow1Col2Label = 150;
+      xRow1Col2Label = 161;
       xRow1Col2Num = 165;
-      xRow2Col1Label = 81;
-      xRow2Col1Num = 102;
-      xRow2Col2Label = 134;
-      xRow2Col2Num = 114;
+      xRow2Col1Label = 67;
+      xRow2Col1Num = 55;
+      xRow2Col2Label = 144;
+      xRow2Col2Num = 151;
       xRow3Label = 112;
    }
 
@@ -617,26 +617,38 @@ class RunZoneField extends Ui.DataField
       yRow3Label = 140;  // time
 
       xTopLine = 119;
-      xBottomLine = 109;
+      xBottomLine = 105;
 
       xRow0Label = 107;
-      xRow1Col1Label = 84;
+      xRow1Col1Label = 64;
       xRow1Col1Num = 61;
-      xRow1Col2Label = 150;
-      xRow1Col2Num = 164;
-      xRow2Col1Label = 81;
-      xRow2Col1Num = 102;
-      xRow2Col2Label = 139;
-      xRow2Col2Num = 114;
-      xRow3Label = 112;
+      xRow1Col2Label = 160;
+      xRow1Col2Num = 161;
+      xRow2Col1Label = 60;
+      xRow2Col1Num = 55;
+      xRow2Col2Label = 159;
+      xRow2Col2Num = 152;
+      xRow3Label = 100;
    }
 
    /*-------------------------------------------------------------------------
     *------------------------------------------------------------------------*/
-//   (:semiround_215x180) function someFunction()
-//   (:round_218x218) function someFunction()
-//   (:rectangle_205x148) function someFunction()
 
+   /*
+    * Gets the pace font.
+    */
+   function getHeartRateFont(heartRate)
+   {
+      return Gfx.FONT_NUMBER_HOT;
+//      if (heartRate != null && heartRate > 100)
+//      {
+//         return Gfx.FONT_NUMBER_HOT;
+//      }
+//      else
+//      {
+//         return Gfx.FONT_NUMBER_HOT;
+//      }
+   }
    /*
     * Gets the timer font.
     * 0:00-9:59     000-599
@@ -689,19 +701,21 @@ class RunZoneField extends Ui.DataField
    }
    (:round_218x218) function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_HOT;
+//      if (pace != null && pace < 10*60) {//TODO
+//         return Gfx.FONT_NUMBER_HOT;
+//      } else {
+//         return Gfx.FONT_NUMBER_MEDIUM;
+//      }
    }
    (:semiround_215x180) function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_HOT;
+//      if (pace != null && pace < 10*60) {
+//         return Gfx.FONT_NUMBER_HOT;
+//      } else {
+//         return Gfx.FONT_NUMBER_MEDIUM;
+//      }
    }
    (:rectangle_205x148) function getPaceFont(pace)
    {
@@ -729,7 +743,7 @@ class RunZoneField extends Ui.DataField
    }
    (:semiround_215x180) function getDistFont(dist)
    {
-      if (pace != null && pace < 10*60) {
+      if (dist.toFloat() < 10) {
          return Gfx.FONT_NUMBER_HOT;
       } else {
          return Gfx.FONT_NUMBER_MEDIUM;
@@ -737,7 +751,7 @@ class RunZoneField extends Ui.DataField
    }
    (:rectangle_205x148) function getDistFont(dist)
    {
-      if (pace != null && pace < 10*60) {
+      if (dist.toFloat() < 10) {
          return Gfx.FONT_NUMBER_HOT;
       } else {
          return Gfx.FONT_NUMBER_HOT;
@@ -819,8 +833,6 @@ class RunZoneField extends Ui.DataField
       dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow0Label, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
 
-      var font;
-
       // heart rate
       if (zone >= hiliteZone)
       {
@@ -834,35 +846,24 @@ class RunZoneField extends Ui.DataField
          dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
       }
 
-      textL(dc, xRow1Col2Label, yRow1Label, Gfx.FONT_XTINY,  "Heart");
-
-      if (heartRate != null && heartRate > 100)
-      {
-         font = Gfx.FONT_NUMBER_HOT;
-      }
-      else
-      {
-         font = Gfx.FONT_NUMBER_HOT;
-      }
-
-      textC(dc, xRow1Col2Num, yRow1Number, font,  toStr(heartRate));
+      // heart rate
+      textC(dc, xRow1Col2Label, yRow1Label, Gfx.FONT_XTINY,  "Heart");
+      textC(dc, xRow1Col2Num, yRow1Number, getHeartRateFont(heartRate),  toStr(heartRate));
 
       // other texts drawn in black font color
       dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
 
       // pace
-      var tPaceFont = getPaceFont(pace);
-      textL(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,paceLabel);
-      textL(dc, xRow2Col2Num , yRow2Number, tPaceFont, fmtSecs(pace));
+      textC(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,paceLabel);
+      textC(dc, xRow2Col2Num , yRow2Number, getPaceFont(pace), fmtSecs(pace));
 
       // timer
-      textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,timeLabel);
+      textC(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,timeLabel);
       textC(dc, xRow1Col1Num , yRow1Number, getTimerFont(duration),  fmtSecs(duration));
 
       // distance
-      var tDistFont = getDistFont(distance);
-      textR(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY,distLabel);
-      textR(dc, xRow2Col1Num , yRow2Number, tDistFont, distance);
+      textC(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY,distLabel);
+      textC(dc, xRow2Col1Num , yRow2Number, getDistFont(distance), distance);
 
       // current time
       textC(dc, xRow3Label , yRow3Label, Gfx.FONT_XTINY,  currentTime);
@@ -891,40 +892,14 @@ class RunZoneField extends Ui.DataField
     */
    function toPace(speed)
    {
-      if (speed == null || speed == 0)
-      {
+      if (speed == null || speed == 0) {
          return null;
       }
-
       var pace = split / speed; // cvt meter/sec to km or mi/sec
-      if (pace > maxPace)
-      {
+      if (pace > maxPace) {
          pace = null;
       }
-
       return pace;
-   }
-
-   /*
-    * Draws left-justified text.
-    */
-   function textL(dc, x, y, font, s)
-   {
-      if (s != null)
-      {
-         dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
-      }
-   }
-
-   /*
-    * Draws right-justified text.
-    */
-   function textR(dc, x, y, font, s)
-   {
-      if (s != null)
-      {
-         dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER);
-      }
    }
 
    /*
@@ -932,23 +907,39 @@ class RunZoneField extends Ui.DataField
     */
    function textC(dc, x, y, font, s)
    {
-      if (s != null)
-      {
+      if (s != null) {
          dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_CENTER|Graphics.TEXT_JUSTIFY_VCENTER);
       }
    }
+
+   /*
+    * Draws left-justified text.
+    */
+//   function textL(dc, x, y, font, s)
+//   {
+//      if (s != null) {
+//         dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_LEFT|Graphics.TEXT_JUSTIFY_VCENTER);
+//      }
+//   }
+
+   /*
+    * Draws right-justified text.
+    */
+//   function textR(dc, x, y, font, s)
+//   {
+//      if (s != null) {
+//         dc.drawText(x, y, font, s, Graphics.TEXT_JUSTIFY_RIGHT|Graphics.TEXT_JUSTIFY_VCENTER);
+//      }
+//   }
 
    /*
     * Gets string for a heart rate.
     */
    function toStr(o)
    {
-      if (o != null && o > 0)
-      {
+      if (o != null && o > 0) {
          return "" + o;
-      }
-      else
-      {
+      } else {
          return "---";
       }
    }
@@ -991,8 +982,7 @@ class RunZoneField extends Ui.DataField
     */
    function fmtSecs(secs)
    {
-      if (secs == null)
-      {
+      if (secs == null) {
          return "----";
       }
 
@@ -1003,15 +993,11 @@ class RunZoneField extends Ui.DataField
       s -= minutes * 60;
 
       var fmt;
-      if (hours > 0)
-      {
+      if (hours > 0) {
          fmt = "" + hours + ":" + minutes.format("%02d") + ":" + s.format("%02d");
-      }
-      else
-      {
+      } else {
          fmt = "" + minutes + ":" + s.format("%02d");
       }
-
       return fmt;
    }
 
@@ -1020,11 +1006,9 @@ class RunZoneField extends Ui.DataField
     */
    function toDist(dist)
    {
-      if (dist == null)
-      {
+      if (dist == null) {
          return "0.00";
       }
-
       dist = dist / split;
       return dist.format("%.2f");
    }
@@ -1041,9 +1025,7 @@ class RunZoneField extends Ui.DataField
     */
    function getColorCode(color_index)
    {
-
       var color = Graphics.COLOR_WHITE;
-
 
       if (color_index == COLOR_IDX_WHITE) {
          color = Graphics.COLOR_WHITE;
@@ -1090,110 +1072,6 @@ class RunZoneField extends Ui.DataField
       else {
          Sys.println("ERROR: unknown color: " + color_index);
       }
-
       return color;
    }
-
-
-//   var vOffset1 = 1; // applied to items of large rows
-//
-//   function setupGeometry(dc) {
-//
-//      width = dc.getWidth();
-//      height = dc.getHeight();
-////      Sys.println("width,height: " + width + "," + height);
-///*
-// * forerunner: width,height: 215,180
-// * fenix:      width,height: 218,218
-// * bravo2d:    width,height: 218,218
-// *
-// * for fenix and bravo:
-// * - lower topline and top labels
-// * - raise lowerline and lower readouts
-// */
-//
-//      var notForerunner = false;
-//      if (width == 218) {
-//         notForerunner = true;
-//      }
-//
-//      yTopLine = Gfx.getFontHeight(Gfx.FONT_XTINY);
-//      yMiddleLine = height/2.0;
-//      yBottomLine = height - Gfx.getFontHeight(Gfx.FONT_XTINY);
-//
-//      xTopLine = width/2 + 22;
-//      xBottomLine = width/2 + 2;
-//
-//      // compute yRow0Label
-////      yRow0Label = Gfx.getFontHeight(Gfx.FONT_XTINY)/2 - 1;
-//
-//      // compute yRow3Label
-//      yRow3Label = height - Gfx.getFontHeight(Gfx.FONT_XTINY)/2;
-//
-//      // compute yRow1Number and yRow1Label
-//      var fontHeightNum = Gfx.getFontHeight(Gfx.FONT_NUMBER_HOT);
-//      var fontHeightTxt = Gfx.getFontHeight(Gfx.FONT_XTINY);
-//
-//      yRow1Number = yMiddleLine;
-//      yRow1Number = yRow1Number - fontHeightNum/2 - 3;
-//      yRow1Number += vOffset1;
-//
-//      yRow1Label = yRow1Number - fontHeightNum/2;
-//      yRow1Label = yRow1Label - fontHeightTxt/2 + 7;
-//      yRow1Label += vOffset1;
-//
-//      // compute yRow2Number and yRow2Label
-//      yRow2Label = yMiddleLine + fontHeightTxt/2 + 0;
-//      yRow2Label += vOffset1;
-//
-//      yRow2Number = yRow2Label;
-//      yRow2Number = yRow2Number + fontHeightNum/2 + 0;
-//      yRow2Number += vOffset1;
-//
-//      if (notForerunner) {
-//         yTopLine += 7;
-//         yRow0Label += 5;
-//
-//         yRow1Label += 10;
-//         yRow1Number += 4;
-//
-//         yRow2Number -= 8;
-//
-//         yBottomLine -= 7;
-//         yRow3Label -= 4;
-//      }
-//
-//Sys.println("xTopLine = " + xTopLine);
-//Sys.println("xBottomLine = " + xBottomLine);
-//Sys.println("yTopLine = " + yTopLine);
-//Sys.println("yMiddleLine = " + yMiddleLine);
-//Sys.println("yBottomLine = " + yBottomLine);
-//Sys.println("yRow0Label = " + yRow0Label);
-//Sys.println("yRow1Number = " + yRow1Number);
-//Sys.println("yRow1Label = " + yRow1Label);
-//Sys.println("yRow2Number = " + yRow2Number);
-//Sys.println("yRow2Label = " + yRow2Label);
-//Sys.println("yRow3Label = " + yRow3Label);
-//
-//xRow0Label = dc.getWidth()/2;
-//xRow1Col2Label = xTopLine+14;
-//xRow1Col2Num = xTopLine+5;
-//xRow2Col2Label = xBottomLine+30;
-//xRow2Col2Num = xBottomLine+5;
-//xRow1Col1Label = xTopLine-35;
-//xRow1Col1Num = xTopLine-8;
-//xRow2Col1Label = xBottomLine-28;
-//xRow2Col1Num = xBottomLine-7;
-//xRow3Label = dc.getWidth()/2 + 5;
-//Sys.println("xRow0Label = " + xRow0Label);
-//Sys.println("xRow1Col1Label = " + xRow1Col1Label);
-//Sys.println("xRow1Col1Num = " + xRow1Col1Num);
-//Sys.println("xRow1Col2Label = " + xRow1Col2Label);
-//Sys.println("xRow1Col2Num = " + xRow1Col2Num);
-//Sys.println("xRow2Col1Label = " + xRow2Col1Label);
-//Sys.println("xRow2Col1Num = " + xRow2Col1Num);
-//Sys.println("xRow2Col2Label = " + xRow2Col2Label);
-//Sys.println("xRow2Col2Num = " + xRow2Col2Num);
-//Sys.println("xRow3Label = " + xRow3Label);
-//   }
 }
