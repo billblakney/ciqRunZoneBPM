@@ -471,31 +471,30 @@ class RunZoneField extends Ui.DataField
       //battery = 100;
       */
 
-      // duration
-      duration = 4088; // = 60*60 + 8*60 + 8 -> 1:08:08
-      //duration = 3600; // = 60*60            -> 1:00:00
-      //duration = 728;  // 728 = 12*60 + 8    ->   12:08
-      //duration = 488;  // 484 = 8*60+8       ->    8:08
-
-      // distance
-//      distance = "9.99";
-//      distance = "8.98";
-      distance = "10.00";
-
       // heart rate
       //hiliteZone = 3;
-      //heartRate = 140;
       //heartRate = 100;
-      //heartRate = 88;
+//      heartRate = 148;
+//      heartRate = 88;
       //if (cycleCounter < 50)
       //{
       //   heartRate = testHeartRates[cycleCounter];
       //}
 
+      // duration
+//       duration = 599; // 0:00-9:59     000-599
+//       duration = 3599; // 10:00-59:59   600-3599
+//       duration = 3608; // 1:00:08+     3600-...
+//       duration = 14400; // 4:00:00
+
+      // distance
+//      distance = "0.00";
+//      distance = "9.99";
+//      distance = "20.00";
+
       // pace
-//      pace = 8*60 + 8;  //  8:08
-      //pace = 8*60;  //  8:00
-      pace = 10*60; // 10:00
+      pace = 8*60 + 8;  //  8:08
+//      pace = 10*60; // 10:00
    }
 
 //   function onLayout(dc)
@@ -506,6 +505,36 @@ class RunZoneField extends Ui.DataField
    /*
     * Sets the layout.
     */
+   (:round_240x240) function onLayout(dc)
+   {
+//      System.println("Setting geometry for round_218x218");
+      width = dc.getWidth();
+
+      yRow0Label = 13;   // zone area
+      yTopLine = 30;     // ----------
+      yRow1Label = 43;   // timer/BPM label
+      yRow1Number = 85;  // timer/BPM value
+      yMiddleLine = 120; // ----------
+      yRow2Number = 153; // dist/pace value
+      yRow2Label = 193;  // dist/pace label
+      yBottomLine = 209; // ----------
+      yRow3Label = 222;  // time
+
+      xTopLine = 135;
+      xBottomLine = 126;
+
+      xRow0Label = 120;
+      xRow1Col1Label = 100;
+      xRow1Col1Num = 70;
+      xRow1Col2Label = 145;
+      xRow1Col2Num = 180;
+      xRow2Col1Label = 83;
+      xRow2Col1Num = 116;
+      xRow2Col2Label = 128;
+      xRow2Col2Num = 129;
+      xRow3Label = 121;
+   }
+
    (:round_218x218) function onLayout(dc)
    {
 //      System.println("Setting geometry for round_218x218");
@@ -526,51 +555,14 @@ class RunZoneField extends Ui.DataField
 
       xRow0Label = 109;
       xRow1Col1Label = 96;
-      xRow1Col1Num = 123;
+      xRow1Col1Num = 70;
       xRow1Col2Label = 145;
-      xRow1Col2Num = 136;
+      xRow1Col2Num = 166;
       xRow2Col1Label = 83;
       xRow2Col1Num = 104;
       xRow2Col2Label = 130;
       xRow2Col2Num = 116;
-      xRow3Label = 114;
-   }
-
-   /*
-    * Sets the layout.
-    */
-   (:round_240x240) function onLayout(dc)
-   {
-//      System.println("Setting geometry for round_218x218");
-      width = dc.getWidth();
-
-      yRow0Label = 13;   // zone area
-      yTopLine = 25;     // ----------
-      yRow1Label = 38;   // timer/BPM label
-      yRow1Number = 80;  // timer/BPM value
-      yMiddleLine = 120; // ----------
-//      yRow2Label = 131;  // dist/pace label
-//      yRow2Number = 170; // dist/pace value
-      yRow2Number = 153; // dist/pace value
-      yRow2Label = 193;  // dist/pace label
-      yBottomLine = 209; // ----------
-      yRow3Label = 222;  // time
-
-      xTopLine = 131;
-//      xBottomLine = 111;
-      xBottomLine = 118;
-
-      xRow0Label = 120;
-      xRow1Col1Label = 100;
-      xRow1Col1Num = 123;
-      xRow1Col2Label = 145;
-      xRow1Col2Num = 130;
-      xRow2Col1Label = 83;
-      xRow2Col1Num = 114;
-//      xRow2Col2Label = 130;
-      xRow2Col2Label = 120;
-      xRow2Col2Num = 124;
-      xRow3Label = 124;
+      xRow3Label = 109;
    }
 
    /*
@@ -596,9 +588,9 @@ class RunZoneField extends Ui.DataField
 
       xRow0Label = 107;
       xRow1Col1Label = 94;
-      xRow1Col1Num = 121;
-      xRow1Col2Label = 143;
-      xRow1Col2Num = 134;
+      xRow1Col1Num = 66;
+      xRow1Col2Label = 150;
+      xRow1Col2Num = 165;
       xRow2Col1Label = 81;
       xRow2Col1Num = 102;
       xRow2Col2Label = 134;
@@ -624,14 +616,14 @@ class RunZoneField extends Ui.DataField
       yBottomLine = 133; // ----------
       yRow3Label = 140;  // time
 
-      xTopLine = 129;
+      xTopLine = 119;
       xBottomLine = 109;
 
       xRow0Label = 107;
-      xRow1Col1Label = 94;
-      xRow1Col1Num = 121;
-      xRow1Col2Label = 143;
-      xRow1Col2Num = 134;
+      xRow1Col1Label = 84;
+      xRow1Col1Num = 61;
+      xRow1Col2Label = 150;
+      xRow1Col2Num = 164;
       xRow2Col1Label = 81;
       xRow2Col1Num = 102;
       xRow2Col2Label = 139;
@@ -644,6 +636,45 @@ class RunZoneField extends Ui.DataField
 //   (:semiround_215x180) function someFunction()
 //   (:round_218x218) function someFunction()
 //   (:rectangle_205x148) function someFunction()
+
+   /*
+    * Gets the timer font.
+    * 0:00-9:59     000-599
+    * 10:00-59:59   600-3599
+    * 1:00:00+     3600-...
+    */
+   (:round_240x240) function getTimerFont(duration)
+   {
+      if (duration < 600) {
+         return Gfx.FONT_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+   (:round_218x218) function getTimerFont(duration)
+   {
+      if (duration >= 3600) {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      } else {
+         return Gfx.FONT_NUMBER_HOT;
+      }
+   }
+   (:semiround_215x180) function getTimerFont(duration)
+   {
+      if (duration >= 3600) {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      } else {
+         return Gfx.FONT_NUMBER_HOT;
+      }
+   }
+   (:rectangle_205x148) function getTimerFont(duration)
+   {
+      if (duration >= 3600) {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      } else {
+         return Gfx.FONT_NUMBER_HOT;
+      }
+   }
 
    /*
     * Gets the pace font.
@@ -803,7 +834,7 @@ class RunZoneField extends Ui.DataField
          dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
       }
 
-      textL(dc, xTopLine+14, yRow1Label, Gfx.FONT_XTINY,  "Heart");
+      textL(dc, xRow1Col2Label, yRow1Label, Gfx.FONT_XTINY,  "Heart");
 
       if (heartRate != null && heartRate > 100)
       {
@@ -814,7 +845,7 @@ class RunZoneField extends Ui.DataField
          font = Gfx.FONT_NUMBER_HOT;
       }
 
-      textL(dc, xRow1Col2Num, yRow1Number, font,  toStr(heartRate));
+      textC(dc, xRow1Col2Num, yRow1Number, font,  toStr(heartRate));
 
       // other texts drawn in black font color
       dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
@@ -826,17 +857,7 @@ class RunZoneField extends Ui.DataField
 
       // timer
       textR(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,timeLabel);
-
-      // TODO offset for 10:00 vs 1:00
-      if (duration >= 3600)
-      {
-         font = Gfx.FONT_NUMBER_MEDIUM;
-      }
-      else
-      {
-         font = Gfx.FONT_NUMBER_HOT;
-      }
-      textR(dc, xRow1Col1Num , yRow1Number, font,  fmtSecs(duration));
+      textC(dc, xRow1Col1Num , yRow1Number, getTimerFont(duration),  fmtSecs(duration));
 
       // distance
       var tDistFont = getDistFont(distance);
