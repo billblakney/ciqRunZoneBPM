@@ -90,6 +90,31 @@ class RunZoneField extends Ui.DataField
 
    var width;
 
+   var yRow0Label = 13;   // zone area
+   var yTopLine = 30;     // ----------
+   var yRow1Label = 43;   // timer/BPM label
+   var yRow1Number = 85;  // timer/BPM value
+   var yMiddleLine = 120; // ----------
+   var yRow2Number = 153; // dist/pace value
+   var yRow2Label = 193;  // dist/pace label
+   var yBottomLine = 209; // ----------
+   var yRow3Label = 222;  // time
+
+   var xTopLine = 135;
+   var xBottomLine = 124;
+
+   var xRow0Label = 120;
+   var xRow1Col1Label = 80;
+   var xRow1Col1Num = 70;
+   var xRow1Col2Label = 176;
+   var xRow1Col2Num = 180;
+   var xRow2Col1Label = 77;
+   var xRow2Col1Num = 70;
+   var xRow2Col2Label = 168;
+   var xRow2Col2Num = 177;
+   var xRow3Label = 121;
+
+/* TODO rm
    var xTopLine;
    var xBottomLine;
 
@@ -114,6 +139,7 @@ class RunZoneField extends Ui.DataField
    var xRow2Col2Label;
    var xRow2Col2Num;
    var xRow3Label;
+*/
 
    var beginZone1;
    var beginZone2;
@@ -208,11 +234,11 @@ class RunZoneField extends Ui.DataField
       }
       else if (paceType == PACE_TYPE_AVERAGE)
       {
-         paceLabel += "(Avg)";
+         paceLabel += "(Av)";
       }
       else
       {
-         paceLabel += "(Cur)";
+         paceLabel += "(C)";
       }
 
       hiliteZone = App.getApp().getProperty("hiliteZone");
@@ -503,12 +529,11 @@ class RunZoneField extends Ui.DataField
 //   }
 
    /*
-    * Sets the layout.
     */
-   (:round_240x240) function onLayout(dc)
+   function onLayout(dc)
    {
-//      System.println("Setting geometry for round_218x218");
       width = dc.getWidth();
+/*
 
       yRow0Label = 13;   // zone area
       yTopLine = 30;     // ----------
@@ -533,102 +558,7 @@ class RunZoneField extends Ui.DataField
       xRow2Col2Label = 168;
       xRow2Col2Num = 177;
       xRow3Label = 121;
-   }
-
-   (:round_218x218) function onLayout(dc)
-   {
-//      System.println("Setting geometry for round_218x218");
-      width = dc.getWidth();
-
-      yRow0Label = 13;   // zone area
-      yTopLine = 25;     // ----------
-      yRow1Label = 34;   // timer/BPM label
-      yRow1Number = 70;  // timer/BPM value
-      yMiddleLine = 109; // ----------
-      yRow2Number = 140; // dist/pace value
-      yRow2Label = 183;  // dist/pace label
-      yBottomLine = 193; // ----------
-      yRow3Label = 205;  // time
-
-      xTopLine = 131;
-      xBottomLine = 109;
-
-      xRow0Label = 109;
-      xRow1Col1Label = 86;
-      xRow1Col1Num = 70;
-      xRow1Col2Label = 160;
-      xRow1Col2Num = 166;
-      xRow2Col1Label = 74;
-      xRow2Col1Num = 62;
-      xRow2Col2Label = 139;
-      xRow2Col2Num = 153;
-      xRow3Label = 109;
-   }
-
-   /*
-    * Sets the layout for all forerunners except 920xt.
-    */
-   (:semiround_215x180) function onLayout(dc)
-   {
-//      System.println("Setting geometry for semiround_215x180");
-      width = dc.getWidth();
-
-      yRow0Label = 8;    // zone area
-      yTopLine = 19;     // ----------
-      yRow1Label = 29;   // timer/BPM label
-      yRow1Number = 59;  // timer/BPM value
-      yMiddleLine = 90;  // ----------
-      yRow2Number = 117; // dist/pace value
-      yRow2Label = 149;  // dist/pace label
-      yBottomLine = 161; // ----------
-      yRow3Label = 171;  // time
-
-      xTopLine = 129;
-      xBottomLine = 100;
-
-      xRow0Label = 107;
-      xRow1Col1Label = 75;
-      xRow1Col1Num = 66;
-      xRow1Col2Label = 161;
-      xRow1Col2Num = 165;
-      xRow2Col1Label = 67;
-      xRow2Col1Num = 55;
-      xRow2Col2Label = 144;
-      xRow2Col2Num = 151;
-      xRow3Label = 112;
-   }
-
-   /*
-    * Sets the layout for vivoactive, fr920xt, epix.
-    */
-   (:rectangle_205x148) function onLayout(dc)
-   {
-//      System.println("Setting geometry for rectangle_205x148");
-      width = dc.getWidth();
-
-      yRow0Label = 5;    // zone area
-      yTopLine = 15;     // ----------
-      yRow1Label = 22;   // timer/BPM label
-      yRow1Number = 53;  // timer/BPM value
-      yMiddleLine = 76;  // ----------
-      yRow2Label = 83;   // dist/pace label
-      yRow2Number = 111; // dist/pace value
-      yBottomLine = 133; // ----------
-      yRow3Label = 140;  // time
-
-      xTopLine = 119;
-      xBottomLine = 105;
-
-      xRow0Label = 107;
-      xRow1Col1Label = 64;
-      xRow1Col1Num = 61;
-      xRow1Col2Label = 160;
-      xRow1Col2Num = 161;
-      xRow2Col1Label = 60;
-      xRow2Col1Num = 55;
-      xRow2Col2Label = 159;
-      xRow2Col2Num = 152;
-      xRow3Label = 100;
+*/
    }
 
    /*-------------------------------------------------------------------------
@@ -654,8 +584,9 @@ class RunZoneField extends Ui.DataField
     * 0:00-9:59     000-599
     * 10:00-59:59   600-3599
     * 1:00:00+     3600-...
+    * defaults work for round_240x240
     */
-   (:round_240x240) function getTimerFont(duration)
+   function getTimerFont(duration)
    {
       if (duration < 600) {
          return Gfx.FONT_NUMBER_HOT;
@@ -663,35 +594,12 @@ class RunZoneField extends Ui.DataField
          return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
-   (:round_218x218) function getTimerFont(duration)
-   {
-      if (duration >= 3600) {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_HOT;
-      }
-   }
-   (:semiround_215x180) function getTimerFont(duration)
-   {
-      if (duration >= 3600) {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_HOT;
-      }
-   }
-   (:rectangle_205x148) function getTimerFont(duration)
-   {
-      if (duration >= 3600) {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_HOT;
-      }
-   }
 
    /*
     * Gets the pace font.
+    * defaults work for round_240x240
     */
-   (:round_240x240) function getPaceFont(pace)
+   function getPaceFont(pace)
    {
       if (pace != null && pace < 10*60) {
          return Gfx.FONT_NUMBER_HOT;
@@ -699,33 +607,12 @@ class RunZoneField extends Ui.DataField
          return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
-   (:round_218x218) function getPaceFont(pace)
-   {
-      return Gfx.FONT_NUMBER_HOT;
-//      if (pace != null && pace < 10*60) {//TODO
-//         return Gfx.FONT_NUMBER_HOT;
-//      } else {
-//         return Gfx.FONT_NUMBER_MEDIUM;
-//      }
-   }
-   (:semiround_215x180) function getPaceFont(pace)
-   {
-      return Gfx.FONT_NUMBER_HOT;
-//      if (pace != null && pace < 10*60) {
-//         return Gfx.FONT_NUMBER_HOT;
-//      } else {
-//         return Gfx.FONT_NUMBER_MEDIUM;
-//      }
-   }
-   (:rectangle_205x148) function getPaceFont(pace)
-   {
-      return Gfx.FONT_NUMBER_HOT;
-   }
 
    /*
     * Gets the distance font.
+    * defaults work for round_240x240
     */
-   (:round_240x240) function getDistFont(dist)
+   function getDistFont(dist)
    {
       if (dist.toFloat() < 10) {
          return Gfx.FONT_SYSTEM_NUMBER_HOT;
@@ -733,31 +620,6 @@ class RunZoneField extends Ui.DataField
          return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
-   (:round_218x218) function getDistFont(dist)
-   {
-      if (dist.toFloat() < 10) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
-   }
-   (:semiround_215x180) function getDistFont(dist)
-   {
-      if (dist.toFloat() < 10) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
-   }
-   (:rectangle_205x148) function getDistFont(dist)
-   {
-      if (dist.toFloat() < 10) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_HOT;
-      }
-   }
-
 
    /*
     * Handles "on show".

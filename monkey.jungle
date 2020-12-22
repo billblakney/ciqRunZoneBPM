@@ -1,33 +1,25 @@
 project.manifest = manifest.xml
 
-base.resourcePath = resources
-base.excludeAnnotations = round_240x240;rectangle_205x148;round_218x218
+base.sourcePath=$(fr230.sourcePath)
 
-#d2bravo_titanium.resourcePath = resources;resources-round;resources-round-218x218
-#d2bravo.resourcePath = resources;resources-round;resources-round-218x218
-#epix.resourcePath = resources;resources-rectangle;resources-rectangle-205x148
-#fenix3.resourcePath = resources;resources-round;resources-round-218x218
-#fenix3_hr.resourcePath = resources;resources-round;resources-round-218x218
-#fenixchronos.resourcePath = resources;resources-round;resources-round-218x218
-#fr230.resourcePath = resources;resources-semiround;resources-semiround-215x180
-#fr235.resourcePath =  resources;resources-semiround;resources-semiround-215x180
-#fr630.resourcePath =  resources;resources-semiround;resources-semiround-215x180
-#fr735x6.resourcePath =  resources;resources-semiround;resources-semiround-215x180
-#fr645.resourcePath =  resources;resources-semiround;resources-round-218x218
-#fr920xt.resourcePath = resources;resources-rectangle;resources-rectangle-205x148
-#oregon7xx.resourcePath = resources;resources-rectangle;resources-rectangle-240x400
-#vivoactive.resourcePath = resources;resources-rectangle;resources-rectangle-205x148
+vivoactive.sourcePath=source;source-rectangle_205x148
+d2bravo.sourcePath=source;source-round_218x218
+d2bravo_titanium.sourcePath=source;source-round_218x218
+fenix3.sourcePath=source;source-round_218x218
+fenix3_hr.sourcePath=source;source-round_218x218
+fenixchronos.sourcePath=source;source-round_218x218_fenixchronos
+fr230.sourcePath=source;source-semiround_215x180
+fr235.sourcePath=source;source-semiround_215x180
+fr245.sourcePath=source;source-round_240x240_fr245
+fr245m.sourcePath=source;source-round_240x240_fr245
+fr630.sourcePath=source;source-semiround_215x180
+fr645.sourcePath=source;source-round_240x240
+fr735xt.sourcePath=source;source-semiround_215x180
 
-vivoactive.excludeAnnotations =       round_240x240;round_218x218;semiround_215x180
-d2bravo.excludeAnnotations =          round_240x240;rectangle_205x148;semiround_215x180
-d2bravo_titanium.excludeAnnotations = round_240x240;rectangle_205x148;semiround_215x180
-fenix3.excludeAnnotations =           round_240x240;rectangle_205x148;semiround_215x180
-fenix3_hr.excludeAnnotations =        round_240x240;rectangle_205x148;semiround_215x180
-fenixchronos.excludeAnnotations =     round_240x240;rectangle_205x148;semiround_215x180
-fr230.excludeAnnotations =            round_240x240;rectangle_205x148;round_218x218
-fr235.excludeAnnotations =            round_240x240;rectangle_205x148;round_218x218
-fr630.excludeAnnotations =            round_240x240;rectangle_205x148;round_218x218
-fr735xt.excludeAnnotations =          round_240x240;rectangle_205x148;round_218x218
-fr645.excludeAnnotations =            round_218x218;rectangle_205x148;semiround_215x180
+base.resourcePath=$(fr245.resourcePath)
 
+fr245.resourcePath=resources;resources-round_240x240_fr245
 
+# for future reference on excludeAnnotations syntax
+#base.excludeAnnotations = round_240x240;rectangle_205x148;round_218x218
+#vivoactive.excludeAnnotations = round_240x240;round_218x218;semiround_215x180

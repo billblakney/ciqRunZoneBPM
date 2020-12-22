@@ -13,7 +13,7 @@ class RunZoneApp extends App.AppBase
     }
 
    function getInitialView() {
-        return [new RunZoneField()];
+        return [new DeviceField()];
     }
 
    function onStop(state) {

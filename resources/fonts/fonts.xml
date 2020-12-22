@@ -1,0 +1,4 @@
+<fonts>
+   <font id="verdana62numbers" filename="verdana62numbers.fnt" filter="0123456789:" />
+   <font id="robocn62numbers" filename="robocn62numbers.fnt" filter="0123456789:" />
+</fonts>
