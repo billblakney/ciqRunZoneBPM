@@ -1,6 +1,6 @@
 <fonts>
-   <font id="robobk40numbers" filename="robobk40numbers.fnt" filter=".0123456789:" />
-   <font id="robobk48numbers" filename="robobk48numbers.fnt" filter=".0123456789:" />
+   <font id="robobk40numbers" filename="robobk40numbers.fnt" filter="-.0123456789:" />
+   <font id="robobk48numbers" filename="robobk48numbers.fnt" filter="-.0123456789:" />
    <!-- -->
    <!--font id="test" filename="test.fnt" filter=".0123456789:" /-->
 </fonts>

@@ -506,10 +506,12 @@ class RunZoneField extends Ui.DataField
       }
 
       // pace
-      if (testCounter % 8 < 4) {
+      if (testCounter % 9 < 3) {
          pace = 8*60 + 8;  //  8:08
-      } else {
+      } else if (testCounter % 9 < 6) {
          pace = 10*60 + 20; // 10:00
+      } else {
+         pace = null; // ----
       }
    }
 
