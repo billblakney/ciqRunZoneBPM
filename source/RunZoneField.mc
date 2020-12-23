@@ -460,7 +460,7 @@ class RunZoneField extends Ui.DataField
        */
       //battery = Sys.getSystemStats().battery;
 
-      setTestValues(info);
+//      setTestValues(info); // uncomment this for testing
    }
 
    /*
@@ -468,65 +468,52 @@ class RunZoneField extends Ui.DataField
     */
    function setTestValues(info)
    {
+      var testCounter = cycleCounter;
+//      var testCounter = 0;
 
-      /*
-       * Use this set for "biggest values"
-       */
-      /*
-      */
-//      currentTime = "12:00pm";
-//      duration = 1620; // = 27*60 + 0 -> 27:00
-//      distance = "3.00";
-//      heartRate = 128;
-//      pace = 10*60; // 9:00
-      /*
-      */
-      /*
-      currentTime = "12:00pm";
-      duration = 7688; // = 60*60 + 8*60 + 8 -> 2:08:08
-      distance = "26.12";
-      heartRate = 140;
-      pace = 4*60 + 54; // 10:00
-      */
+      // heartRate
+      if (testCounter % 9 < 3) {
+         heartRate = 138;
+      } else if (testCounter % 9 < 6) {
+         heartRate = 88;
+      } else {
+         heartRate = 238;
+      }
 
       // clock time
-      //currentTime = "00:00";
-
-      /* battery
-      // battery
-      //battery = 100;
-      */
-
-      // heart rate
-      //hiliteZone = 3;
-      //heartRate = 100;
-//      heartRate = 148;
-//      heartRate = 88;
-      //if (cycleCounter < 50)
-      //{
-      //   heartRate = testHeartRates[cycleCounter];
-      //}
+      if (testCounter % 6 < 3) {
+         currentTime = "12:18am";
+      } else {
+         currentTime = "8:38pm";
+      }
 
       // duration
-//       duration = 599; // 0:00-9:59     000-599
-//       duration = 3599; // 10:00-59:59   600-3599
-//       duration = 3608; // 1:00:08+     3600-...
-//       duration = 14400; // 4:00:00
+      if (testCounter % 12 < 3) {
+         duration = 599; // 0:00-9:59     000-599
+      } else if (testCounter % 12 < 6) {
+         duration = 3599; // 10:00-59:59   600-3599
+      } else if (testCounter % 12 < 9) {
+         duration = 3608; // 1:00:08+     3600-...
+      } else {
+         duration = 14400; // 4:00:00
+      }
 
       // distance
-//      distance = "0.00";
-//      distance = "9.99";
-//      distance = "20.00";
+      if (testCounter % 9 < 3) {
+         distance = "0.00";
+      } else if (testCounter % 9 < 6) {
+         distance = "9.99";
+      } else {
+         distance = "20.00";
+      }
 
       // pace
-//      pace = 8*60 + 8;  //  8:08
-//      pace = 10*60 + 20; // 10:00
+      if (testCounter % 8 < 4) {
+         pace = 8*60 + 8;  //  8:08
+      } else {
+         pace = 10*60 + 20; // 10:00
+      }
    }
-
-//   function onLayout(dc)
-//   {
-//      setGeometryParams();
-//   }
 
    /*
     */
@@ -622,6 +609,22 @@ class RunZoneField extends Ui.DataField
    }
 
    /*
+    * Gets the zone font.
+    */
+   function getZoneFont()
+   {
+      return Gfx.FONT_XTINY;
+   }
+
+   /*
+    * Gets the time-of-day font.
+    */
+   function getTimeOfDayFont()
+   {
+      return Gfx.FONT_XTINY;
+   }
+
+   /*
     * Handles "on show".
     */
    function onShow()
@@ -693,7 +696,7 @@ class RunZoneField extends Ui.DataField
 
       // heart rate zone
       dc.setColor(zoneColorFrg, Gfx.COLOR_TRANSPARENT);
-      textC(dc, xRow0Label, yRow0Label, Gfx.FONT_XTINY,  zoneLabel);
+      textC(dc, xRow0Label, yRow0Label, getZoneFont(),  zoneLabel);
 
       // heart rate
       if (zone >= hiliteZone)
@@ -728,7 +731,7 @@ class RunZoneField extends Ui.DataField
       textC(dc, xRow2Col1Num , yRow2Number, getDistFont(distance), distance);
 
       // current time
-      textC(dc, xRow3Label , yRow3Label, Gfx.FONT_XTINY,  currentTime);
+      textC(dc, xRow3Label , yRow3Label, getTimeOfDayFont(),  currentTime);
 
       // Draw lines
 

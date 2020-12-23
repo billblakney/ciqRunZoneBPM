@@ -37,7 +37,7 @@ class DeviceField extends RunZoneField
       yBottomLine = 193; // ----------
       yRow3Label = 205;  // time
 
-      xTopLine = 131;
+      xTopLine = 127;
       xBottomLine = 109;
 
       xRow0Label = 109;
@@ -48,7 +48,7 @@ class DeviceField extends RunZoneField
       xRow2Col1Label = 74;
       xRow2Col1Num = 62;
       xRow2Col2Label = 144;
-      xRow2Col2Num = 157;
+      xRow2Col2Num = 152;
       xRow3Label = 109;
    }
 

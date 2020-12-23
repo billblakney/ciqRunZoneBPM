@@ -10,15 +10,15 @@ fenix3_hr.sourcePath=source;source-round_218x218
 fenixchronos.sourcePath=source;source-round_218x218_fenixchronos
 fr230.sourcePath=source;source-semiround_215x180
 fr235.sourcePath=source;source-semiround_215x180
-fr245.sourcePath=source;source-round_240x240_fr245
-fr245m.sourcePath=source;source-round_240x240_fr245
+fr245.sourcePath=source;source-round_240x240_cfont
+fr245m.sourcePath=source;source-round_240x240_cfont
 fr630.sourcePath=source;source-semiround_215x180
-fr645.sourcePath=source;source-round_240x240
+fr645.sourcePath=source;source-round_240x240_cfont
 fr735xt.sourcePath=source;source-semiround_215x180
 
 base.resourcePath=$(fr245.resourcePath)
 
-fr245.resourcePath=resources;resources-round_240x240_fr245
+fr245.resourcePath=resources;resources-round_240x240_cfont
 
 # for future reference on excludeAnnotations syntax
 #base.excludeAnnotations = round_240x240;rectangle_205x148;round_218x218

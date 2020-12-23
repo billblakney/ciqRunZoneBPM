@@ -12,6 +12,7 @@ using Toybox.UserProfile as Profile;
 class DeviceField extends RunZoneField
 {
    var testFont = null;
+   var testFont2 = null;
    /*
     * Constructor.
     */
@@ -27,23 +28,23 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
       
-//      testFont = Ui.loadResource(Rez.Fonts.verdana62numbers);
-      testFont = Ui.loadResource(Rez.Fonts.robocn62numbers);
+      testFont = Ui.loadResource(Rez.Fonts.robobk48numbers);
+      testFont2 = Ui.loadResource(Rez.Fonts.robobk40numbers);
 
-      yRow0Label = 13;   // zone area
-      yTopLine = 30;     // ----------
-      yRow1Label = 43;   // timer/BPM label
+      yRow0Label = 18;   // zone area
+      yTopLine = 35;     // ----------
+      yRow1Label = 48;   // timer/BPM label
       yRow1Number = 85;  // timer/BPM value
       yMiddleLine = 120; // ----------
       yRow2Number = 153; // dist/pace value
-      yRow2Label = 193;  // dist/pace label
-      yBottomLine = 209; // ----------
-      yRow3Label = 222;  // time
+      yRow2Label = 188;  // dist/pace label
+      yBottomLine = 203; // ----------
+      yRow3Label = 219;  // time
 
       xTopLine = 135;
       xBottomLine = 124;
 
-      xRow0Label = 120;
+      xRow0Label = 122;
       xRow1Col1Label = 80;
       xRow1Col1Num = 70;
       xRow1Col2Label = 176;
@@ -63,16 +64,14 @@ class DeviceField extends RunZoneField
     */
    function getHeartRateFont(heartRate)
    {
-   System.println("hello in, heartRate=" + heartRate);
        if (heartRate != null && heartRate > 99) {
           return testFont;
 //          return Gfx.FONT_NUMBER_HOT;
 //          return Gfx.FONT_NUMBER_MEDIUM;
        } else {
-//          return testFont;
-          return Gfx.FONT_NUMBER_HOT;
+          return testFont;
+//          return Gfx.FONT_NUMBER_HOT;
        }
-   System.println("hello out");
    }
    /*
     * Gets the timer font.
@@ -82,15 +81,14 @@ class DeviceField extends RunZoneField
     */
    function getTimerFont(duration)
    {
-      return Gfx.FONT_NUMBER_MEDIUM;
-//      return testFont;
-   /*
-      if (duration < 600) {
-         return Gfx.FONT_NUMBER_HOT;
+      if (duration < 3600) {           // "59:59"
+         return testFont;
+//         return Gfx.FONT_NUMBER_HOT;
       } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
+         return testFont2;
+//         return Gfx.FONT_NUMBER_MEDIUM;
+//         return Gfx.FONT_SMALL;
       }
-      */
    }
 
    /*
@@ -98,11 +96,12 @@ class DeviceField extends RunZoneField
     */
    function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
-//        return testFont;
-         return Gfx.FONT_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
+      if (pace != null && pace < 10*60) { // "8:38"
+        return testFont;
+//         return Gfx.FONT_NUMBER_MEDIUM;
+      } else {                            // "12:38"
+        return testFont;
+//         return Gfx.FONT_NUMBER_MEDIUM;
       }
    }
 
@@ -111,10 +110,20 @@ class DeviceField extends RunZoneField
     */
    function getDistFont(dist)
    {
-      if (dist.toFloat() < 10) {
-         return Gfx.FONT_SYSTEM_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
+      if (dist.toFloat() < 10) { // "8.98"
+//         return Gfx.FONT_SYSTEM_NUMBER_MEDIUM;
+         return testFont;
+      } else {                                 // "26.02"
+//         return Gfx.FONT_NUMBER_MEDIUM;
+         return testFont;
       }
+   }
+
+   /*
+    * Gets the time-of-day font.
+    */
+   function getTimeOfDayFont()
+   {
+      return Gfx.FONT_TINY;
    }
 }

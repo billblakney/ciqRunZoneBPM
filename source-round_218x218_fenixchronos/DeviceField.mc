@@ -22,20 +22,19 @@ class DeviceField extends RunZoneField
    /*
     * Sets the layout.
     */
-
    function onLayout(dc)
    {
       RunZoneField.onLayout(dc);
 
       yRow0Label = 13;   // zone area
-      yTopLine = 25;     // ----------
-      yRow1Label = 34;   // timer/BPM label
-      yRow1Number = 70;  // timer/BPM value
+      yTopLine = 30;     // ----------
+      yRow1Label = 39;   // timer/BPM label
+      yRow1Number = 79;  // timer/BPM value
       yMiddleLine = 109; // ----------
-      yRow2Number = 145; // dist/pace value
-      yRow2Label = 181;  // dist/pace label
-      yBottomLine = 193; // ----------
-      yRow3Label = 205;  // time
+      yRow2Number = 142; // dist/pace value
+      yRow2Label = 179;  // dist/pace label
+      yBottomLine = 191; // ----------
+      yRow3Label = 203;  // time
 
       xTopLine = 131;
       xBottomLine = 109;
@@ -52,36 +51,29 @@ class DeviceField extends RunZoneField
       xRow3Label = 109;
    }
 
-   /*-------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
-
    /*
     * Gets the pace font.
     */
    function getHeartRateFont(heartRate)
    {
-      return Gfx.FONT_NUMBER_HOT;
-//      if (heartRate != null && heartRate > 100)
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
-//      else
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
+      if (heartRate != null && heartRate > 100)
+      {
+         return Gfx.FONT_NUMBER_MEDIUM; // "158"
+      }
+      else
+      {
+         return Gfx.FONT_NUMBER_HOT; // "88"
+      }
    }
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
     */
    function getTimerFont(duration)
    {
       if (duration >= 3600) {
-         return Gfx.FONT_NUMBER_MEDIUM;
+         return Gfx.FONT_NUMBER_MEDIUM; // "1:00:00"
       } else {
-         return Gfx.FONT_NUMBER_HOT;
+         return Gfx.FONT_NUMBER_HOT; // "59:88", "9:59"
       }
    }
 
@@ -90,12 +82,11 @@ class DeviceField extends RunZoneField
     */
    function getPaceFont(pace)
    {
-      return Gfx.FONT_NUMBER_HOT;
-//      if (pace != null && pace < 10*60) {//TODO
-//         return Gfx.FONT_NUMBER_HOT;
-//      } else {
-//         return Gfx.FONT_NUMBER_MEDIUM;
-//      }
+      if (pace != null && pace < 10*60) {
+         return Gfx.FONT_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
    }
 
    /*
