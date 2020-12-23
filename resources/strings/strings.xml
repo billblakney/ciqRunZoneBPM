@@ -5,6 +5,11 @@
     <string id="PromptDistType">Distance to display</string>
     <string id="TotalDist">Total Distance</string>
     <string id="LapDist">Lap Distance</string>
+    <!-- colors for lap, avg pace -->
+    <string id="LapColor">Lap Color</string>
+    <string id="PromptLapColor">Text color for Lap pace, distance, time</string>
+    <string id="AvgColor">Avg Pace Color</string>
+    <string id="PromptAvgColor">Text color for Average pace</string>
     <!-- time type -->
     <string id="TimeType">Time Setting</string>
     <string id="PromptTimeType">Time to display</string>

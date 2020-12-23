@@ -9,6 +9,10 @@
         <property id="timeType" type="number">0</property>
         <!-- pace type -->
         <property id="paceType" type="number">0</property>
+        <!-- lap color -->
+        <property id="lapColor" type="number">6</property>
+        <!-- avg pace color -->
+        <property id="avgPaceColor" type="number">2</property>
         <!-- lowest hilite zone -->
         <property id="hiliteZone" type="number">1</property>
         <!-- display settings -->
@@ -43,6 +47,42 @@
            		<listEntry value="0">@Strings.CurrentPace</listEntry>
            		<listEntry value="1">@Strings.AveragePace</listEntry>
            		<listEntry value="2">@Strings.LapPace</listEntry>
+           </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.lapColor" title="@Strings.LapColor" prompt="@Strings.PromptLapColor">
+           <settingConfig type="list">
+           		<listEntry value="0">@Strings.WhiteColor</listEntry>
+           		<listEntry value="1">@Strings.LightGrayColor</listEntry>
+           		<listEntry value="2">@Strings.DarkGrayColor</listEntry>
+           		<listEntry value="3">@Strings.BlackColor</listEntry>
+           		<listEntry value="4">@Strings.RedColor</listEntry>
+           		<listEntry value="5">@Strings.DarkRedColor</listEntry>
+           		<listEntry value="6">@Strings.OrangeColor</listEntry>
+           		<listEntry value="7">@Strings.YellowColor</listEntry>
+           		<listEntry value="8">@Strings.GreenColor</listEntry>
+           		<listEntry value="9">@Strings.DarkGreenColor</listEntry>
+           		<listEntry value="10">@Strings.BlueColor</listEntry>
+           		<listEntry value="11">@Strings.DarkBlueColor</listEntry>
+           		<listEntry value="12">@Strings.PurpleColor</listEntry>
+           		<listEntry value="13">@Strings.PinkColor</listEntry>
+           </settingConfig>
+        </setting>
+        <setting propertyKey="@Properties.avgPaceColor" title="@Strings.AvgColor" prompt="@Strings.PromptAvgColor">
+           <settingConfig type="list">
+           		<listEntry value="0">@Strings.WhiteColor</listEntry>
+           		<listEntry value="1">@Strings.LightGrayColor</listEntry>
+           		<listEntry value="2">@Strings.DarkGrayColor</listEntry>
+           		<listEntry value="3">@Strings.BlackColor</listEntry>
+           		<listEntry value="4">@Strings.RedColor</listEntry>
+           		<listEntry value="5">@Strings.DarkRedColor</listEntry>
+           		<listEntry value="6">@Strings.OrangeColor</listEntry>
+           		<listEntry value="7">@Strings.YellowColor</listEntry>
+           		<listEntry value="8">@Strings.GreenColor</listEntry>
+           		<listEntry value="9">@Strings.DarkGreenColor</listEntry>
+           		<listEntry value="10">@Strings.BlueColor</listEntry>
+           		<listEntry value="11">@Strings.DarkBlueColor</listEntry>
+           		<listEntry value="12">@Strings.PurpleColor</listEntry>
+           		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
         <setting propertyKey="@Properties.hiliteZone" title="@Strings.HiliteZone" prompt="@Strings.PromptHiliteZone">

@@ -84,6 +84,10 @@ class RunZoneField extends Ui.DataField
    var lapSpeed;
 //   var lapPace;          // seconds/mile
 
+   var durationColor = Graphics.COLOR_BLACK;
+   var distanceColor = Graphics.COLOR_BLACK;
+   var paceColor = Graphics.COLOR_BLACK;
+
    var maxPace = 3600-1;
 
    var split;
@@ -197,16 +201,6 @@ class RunZoneField extends Ui.DataField
       {
          split = 1609.0;
       }
-
-//      for (var i = 0; i < 50; i++) //TODO
-//      {
-//         testHeartRates[i] = 120+i;
-//      }
-//      testHeartRates[45] = 105;
-//      testHeartRates[46] = 104;
-//      testHeartRates[47] = 103;
-//      testHeartRates[48] = 102;
-//      testHeartRates[49] = 101;
    }
 
    /*
@@ -221,20 +215,24 @@ class RunZoneField extends Ui.DataField
       if (timeType == TIME_TYPE_LAP)
       {
          timeLabel += "(L)";
+         durationColor = getColorCode(App.getApp().getProperty("lapColor"));
       }
       
       if (distType == DIST_TYPE_LAP)
       {
          distLabel += "(L)";
+         distanceColor = getColorCode(App.getApp().getProperty("lapColor"));
       }
 
       if (paceType == PACE_TYPE_LAP)
       {
          paceLabel += "(L)";
+         paceColor = getColorCode(App.getApp().getProperty("lapColor"));
       }
       else if (paceType == PACE_TYPE_AVERAGE)
       {
          paceLabel += "(Av)";
+         paceColor = getColorCode(App.getApp().getProperty("avgPaceColor"));
       }
       else
       {
@@ -715,22 +713,23 @@ class RunZoneField extends Ui.DataField
       textC(dc, xRow1Col2Label, yRow1Label, Gfx.FONT_XTINY,  "Heart");
       textC(dc, xRow1Col2Num, yRow1Number, getHeartRateFont(heartRate),  toStr(heartRate));
 
-      // other texts drawn in black font color
-      dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
-
       // pace
+      dc.setColor(paceColor, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,paceLabel);
       textC(dc, xRow2Col2Num , yRow2Number, getPaceFont(pace), fmtSecs(pace));
 
       // timer
+      dc.setColor(durationColor, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,timeLabel);
       textC(dc, xRow1Col1Num , yRow1Number, getTimerFont(duration),  fmtSecs(duration));
 
       // distance
+      dc.setColor(distanceColor, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY,distLabel);
       textC(dc, xRow2Col1Num , yRow2Number, getDistFont(distance), distance);
 
       // current time
+      dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow3Label , yRow3Label, getTimeOfDayFont(),  currentTime);
 
       // Draw lines
