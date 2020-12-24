@@ -37,9 +37,9 @@ class DeviceField extends RunZoneField
       yRow1Number = 85;  // timer/BPM value
       yMiddleLine = 120; // ----------
       yRow2Number = 153; // dist/pace value
-      yRow2Label = 188;  // dist/pace label
-      yBottomLine = 203; // ----------
-      yRow3Label = 219;  // time
+      yRow2Label = 187;  // dist/pace label
+      yBottomLine = 201; // ----------
+      yRow3Label = 218;  // time
 
       xTopLine = 135;
       xBottomLine = 124;
