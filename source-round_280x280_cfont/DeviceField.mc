@@ -11,6 +11,7 @@ using Toybox.UserProfile as Profile;
  */
 class DeviceField extends RunZoneField
 {
+   var fontNumberMedium = null;
    /*
     * Constructor.
     */
@@ -26,29 +27,31 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
 
+      fontNumberMedium = Ui.loadResource(Rez.Fonts.robobk48numbers);
+
       yRow0Label = 20;   // zone area
       yTopLine = 40;     // ----------
       yRow1Label = 58;   // timer/BPM label
-      yRow1Number = 96;  // timer/BPM value
-      yMiddleLine = 130; // ----------
-      yRow2Number = 160; // dist/pace value
-      yRow2Label = 193;  // dist/pace label
-      yBottomLine = 209; // ----------
-      yRow3Label = 232;  // time
+      yRow1Number = 99;  // timer/BPM value
+      yMiddleLine = 140; // ----------
+      yRow2Number = 177; // dist/pace value
+      yRow2Label = 213;  // dist/pace label
+      yBottomLine = 229; // ----------
+      yRow3Label = 250;  // time
 
-      xTopLine = 147;
-      xBottomLine = 130;
+      xTopLine = 160;
+      xBottomLine = 142;
 
-      xRow0Label = 133;
-      xRow1Col1Label = 80;
-      xRow1Col1Num = 74;
-      xRow1Col2Label = 185;
-      xRow1Col2Num = 192;
-      xRow2Col1Label = 77;
-      xRow2Col1Num = 70;
-      xRow2Col2Label = 168;
-      xRow2Col2Num = 187;
-      xRow3Label = 132;
+      xRow0Label = 141;
+      xRow1Col1Label = 95;
+      xRow1Col1Num = 85;
+      xRow1Col2Label = 200;
+      xRow1Col2Num = 211;
+      xRow2Col1Label = 80;
+      xRow2Col1Num = 79;
+      xRow2Col2Label = 194;
+      xRow2Col2Num = 207;
+      xRow3Label = 146;
    }
 
    /*
@@ -57,7 +60,7 @@ class DeviceField extends RunZoneField
    function getTimerFont(duration)
    {
       if (duration < 3600) {
-         return Gfx.FONT_NUMBER_MEDIUM;
+         return fontNumberMedium;
       } else {
          return Gfx.FONT_NUMBER_MILD;
       }
@@ -68,7 +71,7 @@ class DeviceField extends RunZoneField
     */
    function getHeartRateFont(heartRate)
    {
-      return Gfx.FONT_NUMBER_MEDIUM;
+      return fontNumberMedium;
    }
 
    /*
@@ -76,11 +79,7 @@ class DeviceField extends RunZoneField
     */
    function getDistFont(dist)
    {
-      if (dist.toFloat() < 10) {
-         return Gfx.FONT_SYSTEM_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return fontNumberMedium;
    }
 
    /*
@@ -88,7 +87,7 @@ class DeviceField extends RunZoneField
     */
    function getPaceFont(pace)
    {
-      return Gfx.FONT_NUMBER_MEDIUM;
+      return fontNumberMedium;
    }
 
    /*

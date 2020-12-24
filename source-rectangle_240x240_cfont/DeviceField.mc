@@ -67,17 +67,9 @@ class DeviceField extends RunZoneField
    }
 
    /*
-    * Gets the pace font.
+    * Gets the heartRate font.
     */
    function getHeartRateFont(heartRate)
-   {
-      return fontNumMedium;
-   }
-
-   /*
-    * Gets the pace font.
-    */
-   function getPaceFont(pace)
    {
       return fontNumMedium;
    }
@@ -86,6 +78,14 @@ class DeviceField extends RunZoneField
     * Gets the distance font.
     */
    function getDistFont(dist)
+   {
+      return fontNumMedium;
+   }
+
+   /*
+    * Gets the pace font.
+    */
+   function getPaceFont(pace)
    {
       return fontNumMedium;
    }

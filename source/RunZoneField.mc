@@ -6,18 +6,8 @@ using Toybox.Time as Time;
 using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
-/*
- * forerunner: width,height: 215,180
- * fenix:      width,height: 218,218
- * bravo2d:    width,height: 218,218
- *
- * for fenix and bravo:
- * - lower topline and top labels
- * - raise lowerline and lower readouts
- */
 class RunZoneField extends Ui.DataField
 {
-   const METERS_TO_MILES=0.000621371; // TODO rm, not used
    const MILLISECONDS_TO_SECONDS=0.001;
    const COLOR_IDX_WHITE    = 0;
    const COLOR_IDX_LT_GRAY  = 1;
@@ -57,8 +47,6 @@ class RunZoneField extends Ui.DataField
    var defaultBgColor = Graphics.COLOR_WHITE;
    var defaultFgColor = Graphics.COLOR_BLACK;
 
-//   var testHeartRates = new [50];
-
    /* Counts number of times that onUpdate has been called. Will have a
     * value of 0 during first pass through compute and entering onUpdate,
     * and is incremented at the end of each onUpdate call.
@@ -82,7 +70,6 @@ class RunZoneField extends Ui.DataField
    var lapDuration;
    var lapDistance;
    var lapSpeed;
-//   var lapPace;          // seconds/mile
 
    var durationColor = Graphics.COLOR_BLACK;
    var distanceColor = Graphics.COLOR_BLACK;
@@ -118,43 +105,12 @@ class RunZoneField extends Ui.DataField
    var xRow2Col2Num = 177;
    var xRow3Label = 121;
 
-/* TODO rm
-   var xTopLine;
-   var xBottomLine;
-
-   var yTopLine;
-   var yMiddleLine;  // centered vertically
-   var yBottomLine;
-
-   var yRow0Label;
-   var yRow1Label;
-   var yRow1Number;
-   var yRow2Label;
-   var yRow2Number;
-   var yRow3Label;
-   
-   var xRow0Label;
-   var xRow1Col1Label;
-   var xRow1Col1Num;
-   var xRow1Col2Label;
-   var xRow1Col2Num;
-   var xRow2Col1Label;
-   var xRow2Col1Num;
-   var xRow2Col2Label;
-   var xRow2Col2Num;
-   var xRow3Label;
-*/
-
    var beginZone1;
    var beginZone2;
    var beginZone3;
    var beginZone4;
    var beginZone5;
    
-   //-------------------------
-   //
-   //-------------------------
-
    var hiliteZone = 0;
 
    var zone1BgColor = Graphics.COLOR_WHITE;
@@ -231,7 +187,7 @@ class RunZoneField extends Ui.DataField
       }
       else if (paceType == PACE_TYPE_AVERAGE)
       {
-         paceLabel += "(Av)";
+         paceLabel += "(A)";
          paceColor = getColorCode(App.getApp().getProperty("avgPaceColor"));
       }
       else
@@ -521,7 +477,6 @@ class RunZoneField extends Ui.DataField
    {
       width = dc.getWidth();
 /*
-
       yRow0Label = 13;   // zone area
       yTopLine = 30;     // ----------
       yRow1Label = 43;   // timer/BPM label
@@ -557,55 +512,29 @@ class RunZoneField extends Ui.DataField
    function getHeartRateFont(heartRate)
    {
       return Gfx.FONT_NUMBER_HOT;
-//      if (heartRate != null && heartRate > 100)
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
-//      else
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
    }
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
-    * defaults work for round_240x240
     */
    function getTimerFont(duration)
    {
-      if (duration < 600) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_HOT;
    }
 
    /*
     * Gets the pace font.
-    * defaults work for round_240x240
     */
    function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_HOT;
    }
 
    /*
     * Gets the distance font.
-    * defaults work for round_240x240
     */
    function getDistFont(dist)
    {
-      if (dist.toFloat() < 10) {
-         return Gfx.FONT_SYSTEM_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_HOT;
    }
 
    /*

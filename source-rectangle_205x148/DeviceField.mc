@@ -7,7 +7,7 @@ using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
 /*
- * DeviceField for round_240x240
+ * DeviceField
  */
 class DeviceField extends RunZoneField
 {
@@ -21,10 +21,6 @@ class DeviceField extends RunZoneField
 
    /*
     * Sets the layout.
-    */
-
-   /*
-    * Sets the layout for vivoactive, fr920xt, epix.
     */
    function onLayout(dc)
    {
@@ -55,29 +51,8 @@ class DeviceField extends RunZoneField
       xRow3Label = 100;
    }
 
-   /*-------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
-
-   /*
-    * Gets the pace font.
-    */
-   function getHeartRateFont(heartRate)
-   {
-      return Gfx.FONT_NUMBER_HOT;
-//      if (heartRate != null && heartRate > 100)
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
-//      else
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
-   }
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
     */
    function getTimerFont(duration)
    {
@@ -89,9 +64,9 @@ class DeviceField extends RunZoneField
    }
 
    /*
-    * Gets the pace font.
+    * Gets the heartRate font.
     */
-   function getPaceFont(pace)
+   function getHeartRateFont(heartRate)
    {
       return Gfx.FONT_NUMBER_HOT;
    }
@@ -106,5 +81,13 @@ class DeviceField extends RunZoneField
       } else {
          return Gfx.FONT_NUMBER_HOT;
       }
+   }
+
+   /*
+    * Gets the pace font.
+    */
+   function getPaceFont(pace)
+   {
+      return Gfx.FONT_NUMBER_HOT;
    }
 }

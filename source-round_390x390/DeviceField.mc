@@ -7,7 +7,7 @@ using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
 /*
- * DeviceField for round_240x240
+ * DeviceField
  */
 class DeviceField extends RunZoneField
 {
@@ -50,19 +50,13 @@ class DeviceField extends RunZoneField
       xRow2Col2Num = 285;
       xRow3Label = 196;
    }
+
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
     */
    function getTimerFont(duration)
    {
-      if (duration < 600) {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_MEDIUM;
    }
 
    /*
@@ -71,14 +65,6 @@ class DeviceField extends RunZoneField
    function getHeartRateFont(heartRate)
    {
       return Gfx.FONT_NUMBER_MEDIUM;
-//      if (heartRate != null && heartRate > 100)
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
-//      else
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
    }
 
    /*
@@ -86,11 +72,7 @@ class DeviceField extends RunZoneField
     */
    function getDistFont(dist)
    {
-      if (dist.toFloat() < 10) {
-         return Gfx.FONT_SYSTEM_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_MEDIUM;
    }
 
    /*
@@ -98,11 +80,7 @@ class DeviceField extends RunZoneField
     */
    function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+      return Gfx.FONT_NUMBER_MEDIUM;
    }
 
    /*

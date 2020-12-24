@@ -7,7 +7,7 @@ using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
 /*
- * DeviceField for round_240x240
+ * DeviceField
  */
 class DeviceField extends RunZoneField
 {
@@ -52,20 +52,6 @@ class DeviceField extends RunZoneField
    }
 
    /*
-    * Gets the pace font.
-    */
-   function getHeartRateFont(heartRate)
-   {
-      if (heartRate != null && heartRate > 100)
-      {
-         return Gfx.FONT_NUMBER_MEDIUM; // "158"
-      }
-      else
-      {
-         return Gfx.FONT_NUMBER_HOT; // "88"
-      }
-   }
-   /*
     * Gets the timer font.
     */
    function getTimerFont(duration)
@@ -78,14 +64,17 @@ class DeviceField extends RunZoneField
    }
 
    /*
-    * Gets the pace font.
+    * Gets the heartRate font.
     */
-   function getPaceFont(pace)
+   function getHeartRateFont(heartRate)
    {
-      if (pace != null && pace < 10*60) {
-         return Gfx.FONT_NUMBER_HOT;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
+      if (heartRate != null && heartRate > 100)
+      {
+         return Gfx.FONT_NUMBER_MEDIUM; // "158"
+      }
+      else
+      {
+         return Gfx.FONT_NUMBER_HOT; // "88"
       }
    }
 
@@ -95,6 +84,18 @@ class DeviceField extends RunZoneField
    function getDistFont(dist)
    {
       if (dist.toFloat() < 10) {
+         return Gfx.FONT_NUMBER_HOT;
+      } else {
+         return Gfx.FONT_NUMBER_MEDIUM;
+      }
+   }
+
+   /*
+    * Gets the pace font.
+    */
+   function getPaceFont(pace)
+   {
+      if (pace != null && pace < 10*60) {
          return Gfx.FONT_NUMBER_HOT;
       } else {
          return Gfx.FONT_NUMBER_MEDIUM;

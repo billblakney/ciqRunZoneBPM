@@ -7,12 +7,12 @@ using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
 /*
- * DeviceField for round_240x240
+ * DeviceField
  */
 class DeviceField extends RunZoneField
 {
-   var testFont = null;
-   var testFont2 = null;
+   var fontNumberHot = null;
+   var fontNumberMedium = null;
    /*
     * Constructor.
     */
@@ -28,8 +28,8 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
       
-      testFont = Ui.loadResource(Rez.Fonts.robobk48numbers);
-      testFont2 = Ui.loadResource(Rez.Fonts.robobk40numbers);
+      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk48numbers);
+      fontNumberMedium = Ui.loadResource(Rez.Fonts.robobk40numbers);
 
       yRow0Label = 18;   // zone area
       yTopLine = 35;     // ----------
@@ -56,38 +56,39 @@ class DeviceField extends RunZoneField
       xRow3Label = 121;
    }
 
-   /*-------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
-
-   /*
-    * Gets the pace font.
-    */
-   function getHeartRateFont(heartRate)
-   {
-       if (heartRate != null && heartRate > 99) {
-          return testFont;
-//          return Gfx.FONT_NUMBER_HOT;
-//          return Gfx.FONT_NUMBER_MEDIUM;
-       } else {
-          return testFont;
-//          return Gfx.FONT_NUMBER_HOT;
-       }
-   }
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
     */
    function getTimerFont(duration)
    {
       if (duration < 3600) {           // "59:59"
-         return testFont;
-//         return Gfx.FONT_NUMBER_HOT;
+         return fontNumberHot;
       } else {
-         return testFont2;
-//         return Gfx.FONT_NUMBER_MEDIUM;
-//         return Gfx.FONT_SMALL;
+         return fontNumberMedium;
+      }
+   }
+
+   /*
+    * Gets the heartRate font.
+    */
+   function getHeartRateFont(heartRate)
+   {
+       if (heartRate != null && heartRate > 99) {
+          return fontNumberHot;
+       } else {
+          return fontNumberHot;
+       }
+   }
+
+   /*
+    * Gets the distance font.
+    */
+   function getDistFont(dist)
+   {
+      if (dist.toFloat() < 10) { // "8.98"
+         return fontNumberHot;
+      } else {                                 // "26.02"
+         return fontNumberHot;
       }
    }
 
@@ -97,25 +98,9 @@ class DeviceField extends RunZoneField
    function getPaceFont(pace)
    {
       if (pace != null && pace < 10*60) { // "8:38"
-        return testFont;
-//         return Gfx.FONT_NUMBER_MEDIUM;
+        return fontNumberHot;
       } else {                            // "12:38"
-        return testFont;
-//         return Gfx.FONT_NUMBER_MEDIUM;
-      }
-   }
-
-   /*
-    * Gets the distance font.
-    */
-   function getDistFont(dist)
-   {
-      if (dist.toFloat() < 10) { // "8.98"
-//         return Gfx.FONT_SYSTEM_NUMBER_MEDIUM;
-         return testFont;
-      } else {                                 // "26.02"
-//         return Gfx.FONT_NUMBER_MEDIUM;
-         return testFont;
+        return fontNumberHot;
       }
    }
 

@@ -7,12 +7,12 @@ using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
 /*
- * DeviceField for round_240x240
+ * DeviceField
  */
 class DeviceField extends RunZoneField
 {
-   var customFontMedium = null;
-   var customFontHot = null;
+   var fontNumberMedium = null;
+   var fontNumberHot = null;
    /*
     * Constructor.
     */
@@ -29,8 +29,8 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
 
-      customFontMedium = Ui.loadResource(Rez.Fonts.robobk40numbers);
-      customFontHot = Ui.loadResource(Rez.Fonts.robobk48numbers);
+      fontNumberMedium = Ui.loadResource(Rez.Fonts.robobk40numbers);
+      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk48numbers);
 
       yRow0Label = 17;   // zone area
       yTopLine = 34;     // ----------
@@ -59,16 +59,13 @@ class DeviceField extends RunZoneField
 
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
     */
    function getTimerFont(duration)
    {
       if (duration >= 3600) {
-         return customFontMedium;
+         return fontNumberMedium;
       } else {
-         return customFontHot;
+         return fontNumberHot;
       }
    }
 
@@ -77,15 +74,7 @@ class DeviceField extends RunZoneField
     */
    function getHeartRateFont(heartRate)
    {
-      return customFontMedium;
-//      if (heartRate != null && heartRate > 100)
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
-//      else
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
+      return fontNumberHot;
    }
 
    /*
@@ -94,9 +83,9 @@ class DeviceField extends RunZoneField
    function getDistFont(dist)
    {
       if (dist.toFloat() < 10) {
-         return customFontHot;
+         return fontNumberHot;
       } else {
-         return customFontMedium;
+         return fontNumberMedium;
       }
    }
 
@@ -106,9 +95,9 @@ class DeviceField extends RunZoneField
    function getPaceFont(pace)
    {
       if (pace != null && pace < 10*60) {
-         return customFontHot;
+         return fontNumberHot;
       } else {
-         return customFontMedium;
+         return fontNumberMedium;
       }
    }
 }

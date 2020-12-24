@@ -7,12 +7,11 @@ using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
 /*
- * DeviceField for round_240x240
+ * DeviceField
  */
 class DeviceField extends RunZoneField
 {
-//   var customFontMedium = null;
-   var customFontHot = null;
+   var fontNumberHot = null;
    /*
     * Constructor.
     */
@@ -28,8 +27,7 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
 
-//      customFontMedium = Ui.loadResource(Rez.Fonts.testfont);
-      customFontHot = Ui.loadResource(Rez.Fonts.robobk76numbers);
+      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk76numbers);
 
       yRow0Label = 34;   // zone area
       yTopLine = 62;     // ----------
@@ -55,16 +53,14 @@ class DeviceField extends RunZoneField
       xRow2Col2Num = 285;
       xRow3Label = 196;
    }
+
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
     */
    function getTimerFont(duration)
    {
       if (duration < 3600) {
-         return customFontHot;
+         return fontNumberHot;
       } else {
          return Gfx.FONT_NUMBER_MEDIUM;
       }
@@ -75,15 +71,7 @@ class DeviceField extends RunZoneField
     */
    function getHeartRateFont(heartRate)
    {
-      return customFontHot;
-//      if (heartRate != null && heartRate > 100)
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
-//      else
-//      {
-//         return Gfx.FONT_NUMBER_HOT;
-//      }
+      return fontNumberHot;
    }
 
    /*
@@ -91,11 +79,7 @@ class DeviceField extends RunZoneField
     */
    function getDistFont(dist)
    {
-      if (dist.toFloat() < 10) {
-         return customFontHot;
-      } else {
-         return customFontHot;
-      }
+      return fontNumberHot;
    }
 
    /*
@@ -103,11 +87,7 @@ class DeviceField extends RunZoneField
     */
    function getPaceFont(pace)
    {
-      if (pace != null && pace < 10*60) {
-         return customFontHot;
-      } else {
-         return customFontHot;
-      }
+      return fontNumberHot;
    }
 
    /*

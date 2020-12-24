@@ -7,12 +7,12 @@ using Toybox.Attention as Attn;
 using Toybox.UserProfile as Profile;
 
 /*
- * DeviceField for round_240x240
+ * DeviceField
  */
 class DeviceField extends RunZoneField
 {
-   var customFontMedium = null;
-   var customFontHot = null;
+   var fontNumberMedium = null;
+   var fontNumberHot = null;
    /*
     * Constructor.
     */
@@ -28,8 +28,8 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
       
-      customFontMedium = Ui.loadResource(Rez.Fonts.robobk40numbers);
-      customFontHot = Ui.loadResource(Rez.Fonts.robobk48numbers);
+      fontNumberMedium = Ui.loadResource(Rez.Fonts.robobk40numbers);
+      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk48numbers);
 
       yRow0Label = 20;   // zone area
       yTopLine = 40;     // ----------
@@ -56,51 +56,24 @@ class DeviceField extends RunZoneField
       xRow3Label = 132;
    }
 
-   /*-------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
-
-   /*
-    * Gets the pace font.
-    */
-   function getHeartRateFont(heartRate)
-   {
-      if (heartRate != null && heartRate > 100)
-      {
-         return customFontHot;
-      }
-      else
-      {
-         return customFontHot;
-      }
-   }
    /*
     * Gets the timer font.
-    * 0:00-9:59     000-599
-    * 10:00-59:59   600-3599
-    * 1:00:00+     3600-...
     */
    function getTimerFont(duration)
    {
-      if (duration < 600) {
-         return customFontHot;
-      }
       if (duration < 3600) {
-         return customFontHot;
+         return fontNumberHot;
       } else {
-         return customFontMedium;
+         return fontNumberMedium;
       }
    }
 
    /*
-    * Gets the pace font.
+    * Gets the heartRate font.
     */
-   function getPaceFont(pace)
+   function getHeartRateFont(heartRate)
    {
-      if (pace != null && pace < 10*60) {
-         return customFontHot;
-      } else {
-         return customFontHot;
-      }
+      return fontNumberHot;
    }
 
    /*
@@ -108,11 +81,15 @@ class DeviceField extends RunZoneField
     */
    function getDistFont(dist)
    {
-      if (dist.toFloat() < 10) {
-         return customFontHot;
-      } else {
-         return customFontHot;
-      }
+      return fontNumberHot;
+   }
+
+   /*
+    * Gets the pace font.
+    */
+   function getPaceFont(pace)
+   {
+      return fontNumberHot;
    }
 
    /*
