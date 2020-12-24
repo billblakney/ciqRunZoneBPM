@@ -414,12 +414,59 @@ class RunZoneField extends Ui.DataField
        */
       //battery = Sys.getSystemStats().battery;
 
-      setTestValues(info); // uncomment this for testing
+//      setFixedTestValues(info); // uncomment this for testing
+//      setTestValues(info); // uncomment this for testing
    }
 
    /*
     * Set test values for items to be displayed.
     */
+    /*
+   function setFixedTestValues(info)
+   {
+      //basics1 - zone color
+//      heartRate = 128;
+//      currentTime = "12:00pm";
+//      duration = 27*60;
+//      distance = "3.00";
+//      pace = 9*60;
+
+      //basics2 - zone color change
+//      heartRate = 147;
+//      currentTime = "12:00pm";
+//      duration = 27*60;
+//      distance = "3.00";
+//      pace = 9*60;
+
+      //basics3 - adaptive font
+//      heartRate = 158;
+//      currentTime = "12:00pm";
+//      duration = 2*3600 + 8*60 + 8;
+//      distance = "26.12";
+//      pace = 4*60 + 54;
+
+      //basics4 - lap pace
+//      heartRate = 165;
+//      currentTime = "12:00pm";
+//      duration = 35*60 + 29;
+//      distance = "4.73";
+//      pace = 6*60 + 18;
+
+      //basics4 - avg pace
+      heartRate = 128;
+      currentTime = "12:00pm";
+      duration = 54*60;
+      distance = "6.00";
+      pace = 9*60;
+
+      //basics5 - avg pace
+   }
+   */
+
+   /*
+    * Set test values for items to be displayed.
+    */
+    /*
    function setTestValues(info)
    {
       var testCounter = cycleCounter;
@@ -470,6 +517,7 @@ class RunZoneField extends Ui.DataField
          pace = null; // ----
       }
    }
+   */
 
    /*
     */
