@@ -130,6 +130,8 @@ class RunZoneField extends Ui.DataField
    function initialize()
    {
       DataField.initialize();
+      
+      getZonesFromUserProfile();
 
       getUserSettings();
 
@@ -157,6 +159,27 @@ class RunZoneField extends Ui.DataField
       {
          split = 1609.0;
       }
+   }
+
+   /*
+    * Get zones from user profile.
+    */
+   function getZonesFromUserProfile()
+   {
+      var sport = Profile.getCurrentSport();
+//      Sys.println("currentSport: " + sport);
+      var zones = Profile.getHeartRateZones(sport);
+
+      beginZone1 = zones[0];
+      beginZone2 = zones[1] + 1;
+      beginZone3 = zones[2] + 1;
+      beginZone4 = zones[3] + 1;
+      beginZone5 = zones[4] + 1;
+//      Sys.println("beginZone1: " + beginZone1);
+//      Sys.println("beginZone2: " + beginZone2);
+//      Sys.println("beginZone3: " + beginZone3);
+//      Sys.println("beginZone4: " + beginZone4);
+//      Sys.println("beginZone5: " + beginZone5);
    }
 
    /*
@@ -222,20 +245,6 @@ class RunZoneField extends Ui.DataField
       zone5BgColor = getColorCode(zone5BgColorNum);
       zone5FgColor = getColorCode(zone5FgColorNum);
 
-      var sport = Profile.getCurrentSport();
-//      Sys.println("currentSport: " + sport);
-      var zones = Profile.getHeartRateZones(sport);
-
-      beginZone1 = zones[0];
-      beginZone2 = zones[1] + 1;
-      beginZone3 = zones[2] + 1;
-      beginZone4 = zones[3] + 1;
-      beginZone5 = zones[4] + 1;
-//      Sys.println("beginZone1: " + beginZone1);
-//      Sys.println("beginZone2: " + beginZone2);
-//      Sys.println("beginZone3: " + beginZone3);
-//      Sys.println("beginZone4: " + beginZone4);
-//      Sys.println("beginZone5: " + beginZone5);
    }
    
    /*
