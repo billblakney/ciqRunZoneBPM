@@ -2,13 +2,13 @@
 fileVersion=1
 
 # font settings
-fontName=Roboto Bk
-fontFile=../../../../resources/RobotoFonts/Roboto-Black.ttf
+fontName=Arial Narrow
+fontFile=../../../../resources/SteelfishFont_ExtraBold/Fonts/steelfish_eb.otf
 charSet=0
-fontSize=48
-aa=4
-scaleH=160
-useSmoothing=1
+fontSize=64
+aa=1
+scaleH=100
+useSmoothing=0
 isBold=1
 isItalic=0
 useUnicode=1
@@ -27,8 +27,8 @@ paddingDown=0
 paddingUp=0
 paddingRight=0
 paddingLeft=0
-spacingHoriz=1
-spacingVert=1
+spacingHoriz=0
+spacingVert=0
 useFixedHeight=0
 forceZero=0
 widthPaddingFactor=0.00
@@ -51,7 +51,7 @@ invG=0
 invB=0
 
 # outline
-outlineThickness=0
+outlineThickness=1
 
 # selected chars
 chars=45-46,48-58

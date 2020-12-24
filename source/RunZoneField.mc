@@ -458,7 +458,7 @@ class RunZoneField extends Ui.DataField
        */
       //battery = Sys.getSystemStats().battery;
 
-//      setTestValues(info); // uncomment this for testing
+      setTestValues(info); // uncomment this for testing
    }
 
    /*
