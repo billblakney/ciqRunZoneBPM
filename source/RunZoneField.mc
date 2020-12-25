@@ -346,10 +346,8 @@ class RunZoneField extends Ui.DataField
    {
       activePaceCycles++;
 
-//Sys.println("setActivePaceType: " + activePaceCycles + "," + paceSwapTime);
       if (activePaceCycles == paceSwapTime)
       {
-//Sys.println("ifblock");
         activePaceCycles = 0;
         if (activePaceType == CUR_PACE)
         {
@@ -390,15 +388,6 @@ class RunZoneField extends Ui.DataField
    /*
     * Compute info to be displayed.
     */
-//   var showCurPace = true;
-//   var showLapPace = false;
-//   var showAvgPace = false;
-//   var curPaceColor = Graphics.COLOR_BLACK;
-//   var lapPaceColor = Graphics.COLOR_DK_BLUE;
-//   var avgPaceColor = Graphics.COLOR_DK_GRAY;
-//   var activePaceType = CUR_PACE;
-//   var activePaceTypeCycles = 0;
-//   var paceSwapCycles = 0;
    function compute(info)
    {
       setActivePaceType();
@@ -407,13 +396,6 @@ class RunZoneField extends Ui.DataField
        * Compute lap pace if lap pace is active
        */
       if ( activePaceType == LAP_PACE && (!isPaused && !isStopped))
-//      /*
-//       * Compute lap values if any lap fields are being used.
-//       */
-//      if ( (distType == DIST_TYPE_LAP ||
-//            timeType == TIME_TYPE_LAP ||
-//            paceType == PACE_TYPE_LAP)
-//         && (!isPaused && !isStopped))
       {
          if (lapDuration == null)
          {
