@@ -5,10 +5,10 @@
     <properties>
         <!-- pace settings -->
         <property id="showCurPace" type="boolean">true</property>
-        <property id="showLapPace" type="boolean">true</property>
-        <property id="showAvgPace" type="boolean">true</property>
-        <property id="curPaceColor" type="number">6</property>
-        <property id="lapPaceColor" type="number">6</property>
+        <property id="showLapPace" type="boolean">false</property>
+        <property id="showAvgPace" type="boolean">false</property>
+        <property id="curPaceColor" type="number">3</property>
+        <property id="lapPaceColor" type="number">11</property>
         <property id="avgPaceColor" type="number">2</property>
         <property id="paceSwapTime" type="number">3</property>
         <!-- lowest hilite zone -->

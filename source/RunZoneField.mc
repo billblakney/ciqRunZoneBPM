@@ -43,8 +43,8 @@ class RunZoneField extends Ui.DataField
    var useBlackBack = false;
 
    var showCurPace = true;
-   var showLapPace = true;
-   var showAvgPace = true;
+   var showLapPace = false;
+   var showAvgPace = false;
    var curPaceColor = Graphics.COLOR_BLACK;
    var lapPaceColor = Graphics.COLOR_DK_BLUE;
    var avgPaceColor = Graphics.COLOR_DK_GRAY;
@@ -152,6 +152,15 @@ class RunZoneField extends Ui.DataField
          defaultFgColor = Graphics.COLOR_WHITE;
       }
 
+      // Initialize settings for pace type.
+      if (showCurPace) {
+        changeToCurPace();
+      } else if (showLapPace) {
+        changeToLapPace();
+      } else {
+        changeToAvgPace();
+      }
+
       cycleCounter = 0;
 
       heartRate = null;
@@ -199,8 +208,19 @@ class RunZoneField extends Ui.DataField
    function getUserSettings()
    {
       showCurPace = App.getApp().getProperty("showCurPace");
+      Sys.println("showCurPace = " + showCurPace);
       showLapPace = App.getApp().getProperty("showLapPace");
+      Sys.println("showLapPace = " + showLapPace);
       showAvgPace = App.getApp().getProperty("showAvgPace");
+      Sys.println("showAvgPace = " + showAvgPace);
+
+      // Make sure that atleast one pace type is selected.
+      if (!showCurPace && !showLapPace && !showAvgPace)
+      {
+        Sys.println("defaulting to showAvgPace");
+        showCurPace = true;
+      }
+
       curPaceColor = getColorCode(App.getApp().getProperty("curPaceColor"));
       lapPaceColor = getColorCode(App.getApp().getProperty("lapPaceColor"));
       avgPaceColor = getColorCode(App.getApp().getProperty("avgPaceColor"));
@@ -303,36 +323,66 @@ class RunZoneField extends Ui.DataField
       lapSpeed = null;
    }
 
-//   var paceSwapTime = 3; //TODO rm
-//
-//   var activePaceType = CUR_PACE;
-//   var activePaceCycles = 0;
+   function changeToCurPace()
+   {
+      activePaceType = CUR_PACE;
+      paceLabel = "Pace(C)";
+      paceColor = curPaceColor;
+   }
+   function changeToLapPace()
+   {
+      activePaceType = LAP_PACE;
+      paceLabel = "Pace(L)";
+      paceColor = lapPaceColor;
+   }
+   function changeToAvgPace()
+   {
+      activePaceType = AVG_PACE;
+      paceLabel = "Pace(A)";
+      paceColor = avgPaceColor;
+   }
+
    function setActivePaceType()
    {
       activePaceCycles++;
 
-Sys.println("setActivePaceType: " + activePaceCycles + "," + paceSwapTime);
+//Sys.println("setActivePaceType: " + activePaceCycles + "," + paceSwapTime);
       if (activePaceCycles == paceSwapTime)
       {
-Sys.println("ifblock");
+//Sys.println("ifblock");
         activePaceCycles = 0;
         if (activePaceType == CUR_PACE)
         {
-            activePaceType = LAP_PACE;
-            paceLabel = "Pace(L)";
-            paceColor = lapPaceColor;
+           if (showLapPace)
+           {
+              changeToLapPace();
+           }
+           else if (showAvgPace)
+           {
+              changeToAvgPace();
+           }
         }
         else if (activePaceType == LAP_PACE)
         {
-            activePaceType = AVG_PACE;
-            paceLabel = "Pace(A)";
-            paceColor = avgPaceColor;
+           if (showAvgPace)
+           {
+              changeToAvgPace();
+           }
+           else if (showCurPace)
+           {
+              changeToCurPace();
+           }
         }
         else // AVG_PACE
         {
-            activePaceType = CUR_PACE;
-            paceLabel = "Pace(C)";
-            paceColor = curPaceColor;
+           if (showCurPace)
+           {
+              changeToCurPace();
+           }
+           else if (showLapPace)
+           {
+              changeToLapPace();
+           }
         }
       }
    }
@@ -423,17 +473,14 @@ Sys.println("ifblock");
       if (activePaceType == LAP_PACE && lapSpeed != null)
       {
          tSpeed = lapSpeed;
-Sys.println("computing LAP_PACE, tSpeed= " + tSpeed);
       }
       else if (activePaceType == AVG_PACE)
       {
          tSpeed = info.averageSpeed; // meters/sec
-Sys.println("computing AVG_PACE, tSpeed= " + tSpeed);
       }
       else
       {
          tSpeed = info.currentSpeed; // meters/sec
-Sys.println("computing CUR_PACE, tSpeed= " + tSpeed);
       }
       pace = toPace(tSpeed); // sec/mile
 
