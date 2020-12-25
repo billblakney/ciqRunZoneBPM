@@ -1,26 +1,48 @@
 <resources>
     <string id="AppName">RunZone BPM</string>
+
+
+    <!-- pace -->
+    <string id="PromptShowCurPace">Show Current Pace</string>
+    <string id="PromptShowLapPace">Show Lap Pace</string>
+    <string id="PromptShowAvgPace">Show Average Pace</string>
+
+    <string id="ShowCurPace">Show Current Pace</string>
+    <string id="ShowLapPace">Show Lap Pace</string>
+    <string id="ShowAvgPace">Show Average Pace</string>
+
+    <string id="PromptCurPaceColor">Current Pace Color</string>
+    <string id="PromptLapPaceColor">Lap Pace Color</string>
+    <string id="PromptAvgPaceColor">Average Pace Color</string>
+
+    <string id="CurPaceColor">Current Pace Color</string>
+    <string id="LapPaceColor">Lap Pace Color</string>
+    <string id="AvgPaceColor">Average Pace Color</string>
+
+    <string id="PaceSwapTime">Pace Swap Time (Seconds)</string>
+    <string id="PromptPaceSwapTime">Pace Swap Time (Seconds)</string>
+
     <!-- dist type -->
-    <string id="DistType">Distance Setting</string>
-    <string id="PromptDistType">Distance to display</string>
-    <string id="TotalDist">Total Distance</string>
-    <string id="LapDist">Lap Distance</string>
+    <!--string id="DistType">Distance Setting</string-->
+    <!--string id="PromptDistType">Distance to display</string-->
+    <!--string id="TotalDist">Total Distance</string-->
+    <!--string id="LapDist">Lap Distance</string-->
     <!-- colors for lap, avg pace -->
-    <string id="LapColor">Lap Color</string>
-    <string id="PromptLapColor">Text color for Lap pace, distance, time</string>
-    <string id="AvgColor">Avg Pace Color</string>
-    <string id="PromptAvgColor">Text color for Average pace</string>
+    <!--string id="LapColor">Lap Color</string-->
+    <!--string id="PromptLapColor">Text color for Lap pace, distance, time</string-->
+    <!--string id="AvgColor">Avg Pace Color</string-->
+    <!--string id="PromptAvgColor">Text color for Average pace</string-->
     <!-- time type -->
-    <string id="TimeType">Time Setting</string>
-    <string id="PromptTimeType">Time to display</string>
-    <string id="TotalTime">Total Time</string>
-    <string id="LapTime">Lap Time</string>
+    <!--string id="TimeType">Time Setting</string-->
+    <!--string id="PromptTimeType">Time to display</string-->
+    <!--string id="TotalTime">Total Time</string-->
+    <!--string id="LapTime">Lap Time</string-->
     <!-- pace type -->
-    <string id="PaceType">Pace Setting</string>
-    <string id="PromptPaceType">Pace to display</string>
-    <string id="CurrentPace">Current Pace</string>
-    <string id="AveragePace">Average Pace</string>
-    <string id="LapPace">Lap Pace</string>
+    <!--string id="PaceType">Pace Setting</string-->
+    <!--string id="PromptPaceType">Pace to display</string-->
+    <!--string id="CurrentPace">Current Pace</string-->
+    <!--string id="AveragePace">Average Pace</string-->
+    <!--string id="LapPace">Lap Pace</string-->
     <!-- lowest hilite zone title -->
     <string id="HiliteZone">Lowest Color Zone</string>
     <string id="PromptHiliteZone">Zone at which HR field gets colored</string>

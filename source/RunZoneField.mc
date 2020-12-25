@@ -8,6 +8,12 @@ using Toybox.UserProfile as Profile;
 
 class RunZoneField extends Ui.DataField
 {
+   enum
+   {
+      CUR_PACE = 1,
+      LAP_PACE = 2,
+      AVG_PACE = 3
+   }
    const MILLISECONDS_TO_SECONDS=0.001;
    const COLOR_IDX_WHITE    = 0;
    const COLOR_IDX_LT_GRAY  = 1;
@@ -36,9 +42,16 @@ class RunZoneField extends Ui.DataField
 
    var useBlackBack = false;
 
-   var distType = DIST_TYPE_TOTAL;
-   var timeType = TIME_TYPE_TOTAL;
-   var paceType = PACE_TYPE_CURRENT;
+   var showCurPace = true;
+   var showLapPace = true;
+   var showAvgPace = true;
+   var curPaceColor = Graphics.COLOR_BLACK;
+   var lapPaceColor = Graphics.COLOR_DK_BLUE;
+   var avgPaceColor = Graphics.COLOR_DK_GRAY;
+   var paceSwapTime = 3;
+
+   var activePaceType = CUR_PACE;
+   var activePaceCycles = -1;
    
    var distLabel = "Dist";
    var timeLabel = "Timer";
@@ -71,9 +84,7 @@ class RunZoneField extends Ui.DataField
    var lapDistance;
    var lapSpeed;
 
-   var durationColor = Graphics.COLOR_BLACK;
-   var distanceColor = Graphics.COLOR_BLACK;
-   var paceColor = Graphics.COLOR_BLACK;
+   var paceColor = getColorCode(Graphics.COLOR_BLACK);
 
    var maxPace = 3600-1;
 
@@ -187,36 +198,13 @@ class RunZoneField extends Ui.DataField
     */
    function getUserSettings()
    {
-      distType = App.getApp().getProperty("distType");
-      timeType = App.getApp().getProperty("timeType");
-      paceType = App.getApp().getProperty("paceType");
-      
-      if (timeType == TIME_TYPE_LAP)
-      {
-         timeLabel += "(L)";
-         durationColor = getColorCode(App.getApp().getProperty("lapColor"));
-      }
-      
-      if (distType == DIST_TYPE_LAP)
-      {
-         distLabel += "(L)";
-         distanceColor = getColorCode(App.getApp().getProperty("lapColor"));
-      }
-
-      if (paceType == PACE_TYPE_LAP)
-      {
-         paceLabel += "(L)";
-         paceColor = getColorCode(App.getApp().getProperty("lapColor"));
-      }
-      else if (paceType == PACE_TYPE_AVERAGE)
-      {
-         paceLabel += "(A)";
-         paceColor = getColorCode(App.getApp().getProperty("avgPaceColor"));
-      }
-      else
-      {
-         paceLabel += "(C)";
-      }
+      showCurPace = App.getApp().getProperty("showCurPace");
+      showLapPace = App.getApp().getProperty("showLapPace");
+      showAvgPace = App.getApp().getProperty("showAvgPace");
+      curPaceColor = getColorCode(App.getApp().getProperty("curPaceColor"));
+      lapPaceColor = getColorCode(App.getApp().getProperty("lapPaceColor"));
+      avgPaceColor = getColorCode(App.getApp().getProperty("avgPaceColor"));
+      paceSwapTime = App.getApp().getProperty("paceSwapTime");
 
       hiliteZone = App.getApp().getProperty("hiliteZone");
 //      Sys.println("hiliteZone: " + hiliteZone);
@@ -315,18 +303,67 @@ class RunZoneField extends Ui.DataField
       lapSpeed = null;
    }
 
+//   var paceSwapTime = 3; //TODO rm
+//
+//   var activePaceType = CUR_PACE;
+//   var activePaceCycles = 0;
+   function setActivePaceType()
+   {
+      activePaceCycles++;
+
+Sys.println("setActivePaceType: " + activePaceCycles + "," + paceSwapTime);
+      if (activePaceCycles == paceSwapTime)
+      {
+Sys.println("ifblock");
+        activePaceCycles = 0;
+        if (activePaceType == CUR_PACE)
+        {
+            activePaceType = LAP_PACE;
+            paceLabel = "Pace(L)";
+            paceColor = lapPaceColor;
+        }
+        else if (activePaceType == LAP_PACE)
+        {
+            activePaceType = AVG_PACE;
+            paceLabel = "Pace(A)";
+            paceColor = avgPaceColor;
+        }
+        else // AVG_PACE
+        {
+            activePaceType = CUR_PACE;
+            paceLabel = "Pace(C)";
+            paceColor = curPaceColor;
+        }
+      }
+   }
+
    /*
     * Compute info to be displayed.
     */
+//   var showCurPace = true;
+//   var showLapPace = false;
+//   var showAvgPace = false;
+//   var curPaceColor = Graphics.COLOR_BLACK;
+//   var lapPaceColor = Graphics.COLOR_DK_BLUE;
+//   var avgPaceColor = Graphics.COLOR_DK_GRAY;
+//   var activePaceType = CUR_PACE;
+//   var activePaceTypeCycles = 0;
+//   var paceSwapCycles = 0;
    function compute(info)
    {
+      setActivePaceType();
+
       /*
-       * Compute lap values if any lap fields are being used.
+       * Compute lap pace if lap pace is active
        */
-      if ( (distType == DIST_TYPE_LAP ||
-            timeType == TIME_TYPE_LAP ||
-            paceType == PACE_TYPE_LAP)
-         && (!isPaused && !isStopped))
+      if ( activePaceType == LAP_PACE && (!isPaused && !isStopped))
+//      /*
+//       * Compute lap values if any lap fields are being used.
+//       */
+//      if ( (distType == DIST_TYPE_LAP ||
+//            timeType == TIME_TYPE_LAP ||
+//            paceType == PACE_TYPE_LAP)
+//         && (!isPaused && !isStopped))
       {
          if (lapDuration == null)
          {
@@ -370,46 +407,33 @@ class RunZoneField extends Ui.DataField
       /*
        * Set duration
        */
-      var tDuration = 0;
-      if (timeType == TIME_TYPE_LAP && lapDuration != null)
-      {
-         tDuration = lapDuration;
-      }
-      else
-      {
-         tDuration = info.timerTime;
-      }
+      var tDuration = info.timerTime;
       duration = tDuration * MILLISECONDS_TO_SECONDS;
 
       /*
        * Set distance
        */
-      var tDistance = 0.0;
-      if (distType == DIST_TYPE_LAP && lapDistance != null)
-      {
-         tDistance = lapDistance;
-      }
-      else
-      {
-         tDistance = info.elapsedDistance;
-      }
+      var tDistance = info.elapsedDistance;
       distance = toDist(tDistance);
 
       /*
        * Set pace
        */
       var tSpeed = 0.0;
-      if (paceType == PACE_TYPE_LAP && lapSpeed != null)
+      if (activePaceType == LAP_PACE && lapSpeed != null)
       {
          tSpeed = lapSpeed;
+Sys.println("computing LAP_PACE, tSpeed= " + tSpeed);
       }
-      else if (paceType == PACE_TYPE_AVERAGE)
+      else if (activePaceType == AVG_PACE)
       {
          tSpeed = info.averageSpeed; // meters/sec
+Sys.println("computing AVG_PACE, tSpeed= " + tSpeed);
       }
       else
       {
          tSpeed = info.currentSpeed; // meters/sec
+Sys.println("computing CUR_PACE, tSpeed= " + tSpeed);
       }
       pace = toPace(tSpeed); // sec/mile
 
@@ -706,18 +730,18 @@ class RunZoneField extends Ui.DataField
       textC(dc, xRow2Col2Label , yRow2Label, Gfx.FONT_XTINY,paceLabel);
       textC(dc, xRow2Col2Num , yRow2Number, getPaceFont(pace), fmtSecs(pace));
 
+      // other fields use default color
+      dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
+
       // timer
-      dc.setColor(durationColor, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow1Col1Label , yRow1Label, Gfx.FONT_XTINY,timeLabel);
       textC(dc, xRow1Col1Num , yRow1Number, getTimerFont(duration),  fmtSecs(duration));
 
       // distance
-      dc.setColor(distanceColor, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow2Col1Label , yRow2Label, Gfx.FONT_XTINY,distLabel);
       textC(dc, xRow2Col1Num , yRow2Number, getDistFont(distance), distance);
 
       // current time
-      dc.setColor(defaultFgColor, Gfx.COLOR_TRANSPARENT);
       textC(dc, xRow3Label , yRow3Label, getTimeOfDayFont(),  currentTime);
 
       // Draw lines
