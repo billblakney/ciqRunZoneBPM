@@ -42,9 +42,6 @@ class RunZoneField extends Ui.DataField
 
    var useBlackBack = false;
 
-   var showCurPace = true;
-   var showLapPace = false;
-   var showAvgPace = false;
    var curPaceColor = Graphics.COLOR_BLACK;
    var lapPaceColor = Graphics.COLOR_DK_BLUE;
    var avgPaceColor = Graphics.COLOR_DK_GRAY;
@@ -205,20 +202,16 @@ class RunZoneField extends Ui.DataField
     */
    function getUserSettings()
    {
-      showCurPace = App.getApp().getProperty("showCurPace");
-      Sys.println("showCurPace = " + showCurPace);
-      showLapPace = App.getApp().getProperty("showLapPace");
-      Sys.println("showLapPace = " + showLapPace);
-      showAvgPace = App.getApp().getProperty("showAvgPace");
-      Sys.println("showAvgPace = " + showAvgPace);
-      
-      if (showCurPace) {
+      if (App.getApp().getProperty("showCurPace") == true) {
+        //Sys.println("using CUR_PACE");
         paceTypes.add(CUR_PACE);
       }
-      if (showLapPace) {
+      if (App.getApp().getProperty("showLapPace") == true) {
+        //Sys.println("using LAP_PACE");
         paceTypes.add(LAP_PACE);
       }
-      if (showAvgPace) {
+      if (App.getApp().getProperty("showAvgPace") == true) {
+        //Sys.println("using AVG_PACE");
         paceTypes.add(AVG_PACE);
       }
       // Make sure that atleast one pace type is selected.
@@ -257,7 +250,6 @@ class RunZoneField extends Ui.DataField
       zone4FgColor = getColorCode(zone4FgColorNum);
       zone5BgColor = getColorCode(zone5BgColorNum);
       zone5FgColor = getColorCode(zone5FgColorNum);
-
    }
    
    /*
