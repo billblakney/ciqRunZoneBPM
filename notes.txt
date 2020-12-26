@@ -1,20 +1,33 @@
 **************************************************
-Run gitk
+Using git gui apps.
 **************************************************
-From Windows, run "XWin Server".
-From cygwin terminal, run "gitk".
-
-To see all branches, run "gitk --all"
-
-**************************************************
-To Build.
-**************************************************
-Do "Project->Clean" and select ciqRunZoneBPM, with
-the "Build only the selected projects" button selected.
+From a Git Bash term, run gitk.
+To see all branches, run "gitk -all"
+From a Git Bash term, run git-gui.
 
 **************************************************
-To Run.
+To Build via Eclipse.
 **************************************************
-In Eclipse, select "ConnectIQ->Start Simulator".
-In Eclipse, select "Run->Run Configurations".
-Select RunZoneBPM. I'm not sure how this originally got there.
+Three ways to do a build:
+1. "Project->Clean". Can do plain clean, or clean and build.
+2. "Project->Build Project". Builds current project.
+3. "Project->Build All". Close other projects to build only the current one.
+
+**************************************************
+Connect IQ Device Simulator.
+**************************************************
+1. In Eclipse, select "ConnectIQ->Start Simulator".
+2. Configure for either simulated data or playback from a FIT file. FIT files
+   can be found on your watch in the GARMIN/ACTIVITY folder.
+   - To use simulated data: "Simulations->FIT Data->Simulate"
+   - To use FIT data: "Simulations->FIT Data->Playback File..."
+3.  In Eclipse, select "Run->Run Configurations". Select your project.
+4. In the simulator, "Data Fields->Timer->Start Activity".
+
+**************************************************
+Issue using App Editor for the Device Simulator.
+**************************************************
+Sometimes the App Editor settings don't take properly in the Device Simulator.
+"File->Reset All App Data" seems to fix that.
+
+
