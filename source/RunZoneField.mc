@@ -10,9 +10,9 @@ class RunZoneField extends Ui.DataField
 {
    enum
    {
-      CUR_PACE = 1,
-      LAP_PACE = 2,
-      AVG_PACE = 3
+      CUR_PACE = 0,
+      LAP_PACE = 1,
+      AVG_PACE = 2
    }
    const MILLISECONDS_TO_SECONDS=0.001;
    const COLOR_IDX_WHITE    = 0;
@@ -49,7 +49,9 @@ class RunZoneField extends Ui.DataField
    var lapPaceColor = Graphics.COLOR_DK_BLUE;
    var avgPaceColor = Graphics.COLOR_DK_GRAY;
    var paceSwapTime = 3;
-
+   
+   var paceTypes = new [0]; // populated in getUserSettings
+   var activePaceTypeIndex = 0;
    var activePaceType = CUR_PACE;
    var activePaceCycles = -1;
    
@@ -152,14 +154,10 @@ class RunZoneField extends Ui.DataField
          defaultFgColor = Graphics.COLOR_WHITE;
       }
 
-      // Initialize settings for pace type.
-      if (showCurPace) {
-        changeToCurPace();
-      } else if (showLapPace) {
-        changeToLapPace();
-      } else {
-        changeToAvgPace();
-      }
+      // paceTypes must be properly set in getUserSettings.
+      activePaceTypeIndex = 0;
+      activePaceType = paceTypes[0];
+      updatePaceLabelAndColor();
 
       cycleCounter = 0;
 
@@ -213,12 +211,19 @@ class RunZoneField extends Ui.DataField
       Sys.println("showLapPace = " + showLapPace);
       showAvgPace = App.getApp().getProperty("showAvgPace");
       Sys.println("showAvgPace = " + showAvgPace);
-
+      
+      if (showCurPace) {
+        paceTypes.add(CUR_PACE);
+      }
+      if (showLapPace) {
+        paceTypes.add(LAP_PACE);
+      }
+      if (showAvgPace) {
+        paceTypes.add(AVG_PACE);
+      }
       // Make sure that atleast one pace type is selected.
-      if (!showCurPace && !showLapPace && !showAvgPace)
-      {
-        Sys.println("defaulting to showAvgPace");
-        showCurPace = true;
+      if (paceTypes.size() == 0) {
+        paceTypes.add(CUR_PACE);
       }
 
       curPaceColor = getColorCode(App.getApp().getProperty("curPaceColor"));
@@ -323,65 +328,37 @@ class RunZoneField extends Ui.DataField
       lapSpeed = null;
    }
 
-   function changeToCurPace()
+   function updatePaceLabelAndColor()
    {
-      activePaceType = CUR_PACE;
-      paceLabel = "Pace(C)";
-      paceColor = curPaceColor;
-   }
-   function changeToLapPace()
-   {
-      activePaceType = LAP_PACE;
-      paceLabel = "Pace(L)";
-      paceColor = lapPaceColor;
-   }
-   function changeToAvgPace()
-   {
-      activePaceType = AVG_PACE;
-      paceLabel = "Pace(A)";
-      paceColor = avgPaceColor;
+      if (activePaceType == CUR_PACE) {
+         paceLabel = "Pace(C)";
+         paceColor = curPaceColor;
+      }
+      else if (activePaceType == LAP_PACE) {
+         paceLabel = "Pace(L)";
+         paceColor = lapPaceColor;
+      }
+      else if (activePaceType == AVG_PACE) {
+         paceLabel = "Pace(A)";
+         paceColor = avgPaceColor;
+      }
    }
 
-   function setActivePaceType()
+   function updateActivePaceType()
    {
+      if (paceTypes.size() == 1) {
+         return;
+      }
+
       activePaceCycles++;
-
       if (activePaceCycles == paceSwapTime)
       {
         activePaceCycles = 0;
-        if (activePaceType == CUR_PACE)
-        {
-           if (showLapPace)
-           {
-              changeToLapPace();
-           }
-           else if (showAvgPace)
-           {
-              changeToAvgPace();
-           }
-        }
-        else if (activePaceType == LAP_PACE)
-        {
-           if (showAvgPace)
-           {
-              changeToAvgPace();
-           }
-           else if (showCurPace)
-           {
-              changeToCurPace();
-           }
-        }
-        else // AVG_PACE
-        {
-           if (showCurPace)
-           {
-              changeToCurPace();
-           }
-           else if (showLapPace)
-           {
-              changeToLapPace();
-           }
-        }
+        // Note: This relies on the pace types enum being a sequence of numbers
+        // starting at zero.
+        activePaceTypeIndex = (activePaceTypeIndex+1) % paceTypes.size();
+        activePaceType = paceTypes[activePaceTypeIndex];
+        updatePaceLabelAndColor();
       }
    }
 
@@ -390,7 +367,7 @@ class RunZoneField extends Ui.DataField
     */
    function compute(info)
    {
-      setActivePaceType();
+      updateActivePaceType();
 
       /*
        * Compute lap pace if lap pace is active
