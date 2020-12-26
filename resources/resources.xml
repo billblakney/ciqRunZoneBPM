@@ -9,22 +9,22 @@
         <property id="showAvgPace" type="boolean">false</property>
         <property id="curPaceColor" type="number">3</property>
         <property id="lapPaceColor" type="number">11</property>
-        <property id="avgPaceColor" type="number">2</property>
+        <property id="avgPaceColor" type="number">9</property>
         <property id="paceSwapTime" type="number">3</property>
         <!-- lowest hilite zone -->
         <property id="hiliteZone" type="number">1</property>
         <!-- display settings -->
         <property id="useBlackBack" type="boolean">false</property>
         <!-- heart rate zone colors -->
-        <property id="z1BgColor" type="number">8</property>
+        <property id="z1BgColor" type="number">1</property>
         <property id="z1FgColor" type="number">3</property>
-        <property id="z2BgColor" type="number">7</property>
+        <property id="z2BgColor" type="number">10</property>
         <property id="z2FgColor" type="number">3</property>
-        <property id="z3BgColor" type="number">6</property>
-        <property id="z3FgColor" type="number">0</property>
-        <property id="z4BgColor" type="number">4</property>
+        <property id="z3BgColor" type="number">8</property>
+        <property id="z3FgColor" type="number">3</property>
+        <property id="z4BgColor" type="number">6</property>
         <property id="z4FgColor" type="number">0</property>
-        <property id="z5BgColor" type="number">5</property>
+        <property id="z5BgColor" type="number">4</property>
         <property id="z5FgColor" type="number">0</property>
     </properties>
     <settings>

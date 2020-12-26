@@ -447,8 +447,28 @@ class RunZoneField extends Ui.DataField
 
 //      setFixedTestValues(info); // uncomment this for testing
 //      setTestValues(info); // uncomment this for testing
+      setTestZonesValues(); // uncomment this for testing
    }
 
+   function setTestZonesValues()
+   {
+      var testCounter = cycleCounter;
+
+      // heartRate
+      if (testCounter % 18 < 3) {
+         heartRate = beginZone1 - 1;
+      } else if (testCounter % 18 < 6) {
+         heartRate = beginZone1;
+      } else if (testCounter % 18 < 9) {
+         heartRate = beginZone2;
+      } else if (testCounter % 18 < 12) {
+         heartRate = beginZone3;
+      } else if (testCounter % 18 < 15) {
+         heartRate = beginZone4;
+      } else {
+         heartRate = beginZone5;
+      }
+   }
    /*
     * Set test values for items to be displayed.
     */
