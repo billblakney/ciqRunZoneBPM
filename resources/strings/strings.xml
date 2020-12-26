@@ -3,30 +3,22 @@
     <!-- -->
     <!-- pace -->
     <!-- -->
-    <string id="PromptShowCurPace">Show Current Pace</string>
-    <string id="PromptShowLapPace">Show Lap Pace</string>
-    <string id="PromptShowAvgPace">Show Average Pace</string>
     <string id="ShowCurPace">Show Current Pace</string>
     <string id="ShowLapPace">Show Lap Pace</string>
     <string id="ShowAvgPace">Show Average Pace</string>
-    <string id="PromptCurPaceColor">Current Pace Color</string>
-    <string id="PromptLapPaceColor">Lap Pace Color</string>
-    <string id="PromptAvgPaceColor">Average Pace Color</string>
     <string id="CurPaceColor">Current Pace Color</string>
     <string id="LapPaceColor">Lap Pace Color</string>
     <string id="AvgPaceColor">Average Pace Color</string>
     <string id="PaceSwapTime">Pace Swap Time (Seconds)</string>
-    <string id="PromptPaceSwapTime">Pace Swap Time (Seconds)</string>
     <!-- -->
     <!-- lowest hilite zone title -->
     <!-- -->
     <string id="HiliteZone">Lowest Color Zone</string>
-    <string id="PromptHiliteZone">Zone at which HR field gets colored</string>
+    <string id="PromptHiliteZone">Lowest fully colored zone</string>
     <!-- -->
     <!--   > general display settings -->
     <!-- -->
     <string id="UseBlackBack">Use Black Background</string>
-    <string id="PromptUseBlackBack">Use Black Background</string>
     <!-- -->
     <!--   > zone colors -->
     <!-- -->
@@ -40,16 +32,6 @@
     <string id="Z4FgColor">Zone 4 Foreground Color</string>
     <string id="Z5BgColor">Zone 5 Background Color</string>
     <string id="Z5FgColor">Zone 5 Foreground Color</string>
-    <string id="PromptZ1BgColor">Zone 1 background color</string>
-    <string id="PromptZ1FgColor">Zone 1 foreground color</string>
-    <string id="PromptZ2BgColor">Zone 2 background color</string>
-    <string id="PromptZ2FgColor">Zone 2 foreground color</string>
-    <string id="PromptZ3BgColor">Zone 3 background color</string>
-    <string id="PromptZ3FgColor">Zone 3 foreground color</string>
-    <string id="PromptZ4BgColor">Zone 4 background color</string>
-    <string id="PromptZ4FgColor">Zone 4 foreground color</string>
-    <string id="PromptZ5BgColor">Zone 5 background color</string>
-    <string id="PromptZ5FgColor">Zone 5 foreground color</string>
     <!-- -->
     <!--   > error messages -->
     <!-- -->

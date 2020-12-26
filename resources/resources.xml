@@ -28,19 +28,19 @@
         <property id="z5FgColor" type="number">0</property>
     </properties>
     <settings>
-        <setting propertyKey="@Properties.showCurPace" title="@Strings.ShowCurPace" prompt="@Strings.PromptShowCurPace">
+        <setting propertyKey="@Properties.showCurPace" title="@Strings.ShowCurPace" prompt="@Strings.ShowCurPace">
            <settingConfig type="boolean"/>
         </setting>
-        <setting propertyKey="@Properties.showLapPace" title="@Strings.ShowLapPace" prompt="@Strings.PromptShowLapPace">
+        <setting propertyKey="@Properties.showLapPace" title="@Strings.ShowLapPace" prompt="@Strings.ShowLapPace">
            <settingConfig type="boolean"/>
         </setting>
-        <setting propertyKey="@Properties.showAvgPace" title="@Strings.ShowAvgPace" prompt="@Strings.PromptShowAvgPace">
+        <setting propertyKey="@Properties.showAvgPace" title="@Strings.ShowAvgPace" prompt="@Strings.ShowAvgPace">
            <settingConfig type="boolean"/>
         </setting>
-        <setting propertyKey="@Properties.paceSwapTime" title="@Strings.PaceSwapTime" prompt="@Strings.PromptPaceSwapTime">
+        <setting propertyKey="@Properties.paceSwapTime" title="@Strings.PaceSwapTime" prompt="@Strings.PaceSwapTime">
            <settingConfig type="numeric" min="1" max="60"/>
         </setting>
-        <setting propertyKey="@Properties.curPaceColor" title="@Strings.CurPaceColor" prompt="@Strings.PromptCurPaceColor">
+        <setting propertyKey="@Properties.curPaceColor" title="@Strings.CurPaceColor" prompt="@Strings.CurPaceColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -58,7 +58,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.lapPaceColor" title="@Strings.LapPaceColor" prompt="@Strings.PromptLapPaceColor">
+        <setting propertyKey="@Properties.lapPaceColor" title="@Strings.LapPaceColor" prompt="@Strings.LapPaceColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -76,7 +76,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.avgPaceColor" title="@Strings.AvgPaceColor" prompt="@Strings.PromptAvgPaceColor">
+        <setting propertyKey="@Properties.avgPaceColor" title="@Strings.AvgPaceColor" prompt="@Strings.AvgPaceColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -97,10 +97,10 @@
         <setting propertyKey="@Properties.hiliteZone" title="@Strings.HiliteZone" prompt="@Strings.PromptHiliteZone">
            <settingConfig type="numeric" min="1" max="6"/>
         </setting>
-        <setting propertyKey="@Properties.useBlackBack" title="@Strings.UseBlackBack" prompt="@Strings.PromptUseBlackBack">
+        <setting propertyKey="@Properties.useBlackBack" title="@Strings.UseBlackBack" prompt="@Strings.UseBlackBack">
            <settingConfig type="boolean"/>
         </setting>
-        <setting propertyKey="@Properties.z1BgColor" title="@Strings.Z1BgColor" prompt="@Strings.PromptZ1BgColor">
+        <setting propertyKey="@Properties.z1BgColor" title="@Strings.Z1BgColor" prompt="@Strings.Z1BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -118,7 +118,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z1FgColor" title="@Strings.Z1FgColor" prompt="@Strings.PromptZ1FgColor">
+        <setting propertyKey="@Properties.z1FgColor" title="@Strings.Z1FgColor" prompt="@Strings.Z1FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -136,7 +136,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z2BgColor" title="@Strings.Z2BgColor" prompt="@Strings.PromptZ2BgColor">
+        <setting propertyKey="@Properties.z2BgColor" title="@Strings.Z2BgColor" prompt="@Strings.Z2BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -154,7 +154,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z2FgColor" title="@Strings.Z2FgColor" prompt="@Strings.PromptZ2FgColor">
+        <setting propertyKey="@Properties.z2FgColor" title="@Strings.Z2FgColor" prompt="@Strings.Z2FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -172,7 +172,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z3BgColor" title="@Strings.Z3BgColor" prompt="@Strings.PromptZ3BgColor">
+        <setting propertyKey="@Properties.z3BgColor" title="@Strings.Z3BgColor" prompt="@Strings.Z3BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -190,7 +190,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z3FgColor" title="@Strings.Z3FgColor" prompt="@Strings.PromptZ3FgColor">
+        <setting propertyKey="@Properties.z3FgColor" title="@Strings.Z3FgColor" prompt="@Strings.Z3FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -208,7 +208,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z4BgColor" title="@Strings.Z4BgColor" prompt="@Strings.PromptZ4BgColor">
+        <setting propertyKey="@Properties.z4BgColor" title="@Strings.Z4BgColor" prompt="@Strings.Z4BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -226,7 +226,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z4FgColor" title="@Strings.Z4FgColor" prompt="@Strings.PromptZ4FgColor">
+        <setting propertyKey="@Properties.z4FgColor" title="@Strings.Z4FgColor" prompt="@Strings.Z4FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -244,7 +244,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z5BgColor" title="@Strings.Z5BgColor" prompt="@Strings.PromptZ5BgColor">
+        <setting propertyKey="@Properties.z5BgColor" title="@Strings.Z5BgColor" prompt="@Strings.Z5BgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
@@ -262,7 +262,7 @@
            		<listEntry value="13">@Strings.PinkColor</listEntry>
            </settingConfig>
         </setting>
-        <setting propertyKey="@Properties.z5FgColor" title="@Strings.Z5FgColor" prompt="@Strings.PromptZ5FgColor">
+        <setting propertyKey="@Properties.z5FgColor" title="@Strings.Z5FgColor" prompt="@Strings.Z5FgColor">
            <settingConfig type="list">
            		<listEntry value="0">@Strings.WhiteColor</listEntry>
            		<listEntry value="1">@Strings.LightGrayColor</listEntry>
