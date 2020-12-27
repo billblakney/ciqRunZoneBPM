@@ -447,7 +447,7 @@ class RunZoneField extends Ui.DataField
 
 //      setFixedTestValues(info); // uncomment this for testing
 //      setTestValues(info); // uncomment this for testing
-      setTestZonesValues(); // uncomment this for testing
+//      setTestZonesValues(); // uncomment this for testing
    }
 
    function setTestZonesValues()
@@ -602,16 +602,14 @@ class RunZoneField extends Ui.DataField
 */
    }
 
-   /*-------------------------------------------------------------------------
-    *------------------------------------------------------------------------*/
-
    /*
-    * Gets the pace font.
+    * Gets the heartRate font.
     */
    function getHeartRateFont(heartRate)
    {
       return Gfx.FONT_NUMBER_HOT;
    }
+
    /*
     * Gets the timer font.
     */
