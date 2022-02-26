@@ -491,11 +491,11 @@ class RunZoneField extends Ui.DataField
 //      pace = 9*60;
 
       //basics3 - adaptive font
-//      heartRate = 158;
-//      currentTime = "12:00pm";
-//      duration = 2*3600 + 8*60 + 8;
-//      distance = "26.12";
-//      pace = 4*60 + 54;
+      heartRate = 158;
+      currentTime = "12:00pm";
+      duration = 2*3600 + 8*60 + 8;
+      distance = "26.12";
+      pace = 4*60 + 54;
 
       //basics4 - lap pace
 //      heartRate = 165;

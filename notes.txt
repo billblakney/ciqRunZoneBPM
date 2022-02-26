@@ -33,20 +33,20 @@ Sometimes the App Editor settings don't take properly in the Device Simulator.
 
 
 New devices
-D2 Air X10
-Descend Mk2 S
-Enduro
-peix (Gen 2)
-Forerunner 55
-Forerunner 945 LTE
-fenix 6 Pro System 5 Preview
-fenix 7
-fenix 7S
-fenix 7X
-Instinct 2/Soar/Dual Power/dezl Edition
-Instinct 2S/Soar/Dual Power
-Venu 2
-Venu 2 Plus
-Venu 2 System 5 Preview
-Venu 2S
+D2 Air X10 .......... d2air: 390x390_round
+Descend Mk2 S ....... ?????: 240x240_round
+Enduro .............. ?????: 280x280_round
+epix (Gen 2) ........ ?????: 416x416_round -DONE
+Forerunner 55 ....... ?????: 208x208_round
+Forerunner 945 LTE .. ?????: 240x240_round
+fenix 6 Pro System 5 Preview ... ?????: 260x260_round
+fenix 7 ............. ?????: 260x260_round
+fenix 7S ............ ?????: 240x240_round
+fenix 7X ............ ?????: 280x280_round
+Instinct 2/Solar/Dual Power/dezl Edition ... ?????: 176x176_semi-octagon
+Instinct 2S/Solar/Dual Power             ... ?????: 163x156_semi-octagon
+Venu 2                   ... venu2:               416x416_round -DONE
+Venu 2 Plus              ... venu2plus:           416x416_round -DONE
+Venu 2 System 5 Preview  ... venu2system5preview: 416x416_round -DONE
+Venu 2S                  ... venu2s:              360x360_round
 
