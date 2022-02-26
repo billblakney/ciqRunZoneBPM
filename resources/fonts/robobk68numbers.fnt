@@ -1,0 +1,17 @@
+info face="Roboto Bk" size=68 bold=1 italic=0 charset="" unicode=1 stretchH=160 smooth=1 aa=4 padding=0,0,0,0 spacing=1,1 outline=0
+common lineHeight=109 base=87 scaleW=256 scaleH=256 pages=1 packed=0 alphaChnl=1 redChnl=0 greenChnl=0 blueChnl=0
+page id=0 file="robobk68numbers_0.png"
+chars count=13
+char id=45   x=63    y=68    width=17    height=12    xoffset=3     yoffset=52    xadvance=24    page=0  chnl=15
+char id=46   x=244   y=0     width=10    height=13    xoffset=3     yoffset=73    xadvance=17    page=0  chnl=15
+char id=48   x=93    y=0     width=29    height=67    xoffset=2     yoffset=20    xadvance=32    page=0  chnl=15
+char id=49   x=214   y=0     width=18    height=66    xoffset=5     yoffset=20    xadvance=32    page=0  chnl=15
+char id=50   x=153   y=0     width=30    height=66    xoffset=1     yoffset=20    xadvance=32    page=0  chnl=15
+char id=51   x=0     y=0     width=30    height=67    xoffset=2     yoffset=20    xadvance=32    page=0  chnl=15
+char id=52   x=0     y=68    width=31    height=65    xoffset=1     yoffset=21    xadvance=32    page=0  chnl=15
+char id=53   x=184   y=0     width=29    height=66    xoffset=2     yoffset=21    xadvance=32    page=0  chnl=15
+char id=54   x=31    y=0     width=30    height=67    xoffset=2     yoffset=20    xadvance=32    page=0  chnl=15
+char id=55   x=32    y=68    width=30    height=65    xoffset=1     yoffset=21    xadvance=32    page=0  chnl=15
+char id=56   x=62    y=0     width=30    height=67    xoffset=1     yoffset=20    xadvance=32    page=0  chnl=15
+char id=57   x=123   y=0     width=29    height=67    xoffset=2     yoffset=20    xadvance=32    page=0  chnl=15
+char id=58   x=233   y=0     width=10    height=52    xoffset=3     yoffset=34    xadvance=17    page=0  chnl=15

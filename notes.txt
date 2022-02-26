@@ -48,5 +48,5 @@ Instinct 2S/Solar/Dual Power             ... ?????: 163x156_semi-octagon
 Venu 2                   ... venu2:               416x416_round -DONE
 Venu 2 Plus              ... venu2plus:           416x416_round -DONE
 Venu 2 System 5 Preview  ... venu2system5preview: 416x416_round -DONE
-Venu 2S                  ... venu2s:              360x360_round
+Venu 2S                  ... venu2s:              360x360_round -DONE
 
