@@ -1,0 +1,11 @@
+round_208x208.fr55
+round_218x218.fenix3
+round_240x240.fenix5
+round_260x260.fenix6
+round_280x280.fenix7x - could improve
+round_360x360.venu2s
+round_390x390.venu
+round_416x416.venu2
+semiround_215x180.fr230
+rectangle_205x148.fr920xt
+rectangle_240x240.venusq
