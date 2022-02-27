@@ -27,7 +27,8 @@ fenix5x.sourcePath=source;source-round_240x240_cfont
 fenix5xplus.sourcePath=source;source-round_240x240_cfont
 fenix6.sourcePath=source;source-round_260x260_cfont
 fenix6pro.sourcePath=source;source-round_260x260_cfont
-fenix6prosystem5preview.sourcePath=source;source-round_260x260_cfont
+# fenix6prosystem5preveiw doesn't want to run.
+# fenix6prosystem5preview.sourcePath=source;source-round_260x260_cfont
 fenix6s.sourcePath=source;source-round_240x240_cfont
 fenix6spro.sourcePath=source;source-round_240x240_cfont
 fenix6xpro.sourcePath=source;source-round_280x280_cfont
@@ -38,6 +39,7 @@ fr230.sourcePath=source;source-semiround_215x180
 fr235.sourcePath=source;source-semiround_215x180
 fr245.sourcePath=source;source-round_240x240_cfont
 fr245m.sourcePath=source;source-round_240x240_cfont
+fr55.sourcePath=source;source-round_208x208_cfont
 fr630.sourcePath=source;source-semiround_215x180
 fr645.sourcePath=source;source-round_240x240_cfont
 fr735xt.sourcePath=source;source-semiround_215x180
@@ -46,6 +48,8 @@ fr920xt.sourcePath=source;source-rectangle_205x148
 fr935.sourcePath=source;source-round_240x240_cfont
 fr945.sourcePath=source;source-round_240x240_cfont
 fr945lte.sourcePath=source;source-round_240x240_cfont
+# instinct2 <- layout to funky
+# instinct2s <- layout to funky
 legacyherocaptainmarvel.sourcePath=source;source-round_218x218_cfont
 legacyherofirstavenger.sourcePath=source;source-round_260x260_cfont
 legacysagadarthvader.sourcePath=source;source-round_260x260_cfont
