@@ -446,7 +446,7 @@ class RunZoneField extends Ui.DataField
       //battery = Sys.getSystemStats().battery;
 
 //      setFixedTestValues(info); // uncomment this for testing
-      setTestValues(info); // uncomment this for testing
+//      setTestValues(info); // uncomment this for testing
 //      setTestZonesValues(); // uncomment this for testing
    }
 
@@ -519,6 +519,7 @@ class RunZoneField extends Ui.DataField
    /*
     * Set test values for items to be displayed.
     */
+    /*
    function setTestValues(info)
    {
       var testCounter = cycleCounter;
@@ -569,6 +570,7 @@ class RunZoneField extends Ui.DataField
          pace = null; // ----
       }
    }
+   */
 
    /*
     */
