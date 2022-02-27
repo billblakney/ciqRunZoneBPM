@@ -31,7 +31,7 @@ class DeviceField extends RunZoneField
       fontNumberMed = Ui.loadResource(Rez.Fonts.robobk76numbers);
       fontNumberHot = Ui.loadResource(Rez.Fonts.robobk84numbers);
 
-      yRow0Label = 35;   // zone area
+      yRow0Label = 39;   // zone area
       yTopLine = 70;     // ----------
       yRow1Label = 90;   // timer/BPM label
       yRow1Number = 150; // timer/BPM value
@@ -54,6 +54,14 @@ class DeviceField extends RunZoneField
       xRow2Col2Label = 288;  // pace label
       xRow2Col2Num = 301;    // pace value
       xRow3Label = 210;      // time
+   }
+
+   /*
+    * Gets the zone font.
+    */
+   function getZoneFont()
+   {
+      return Gfx.FONT_MEDIUM;
    }
 
    /*
