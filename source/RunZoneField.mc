@@ -491,11 +491,11 @@ class RunZoneField extends Ui.DataField
       pace = 9*60;
 
       //basics3 - marathon
-//      heartRate = 158;
-//      currentTime = "12:00pm";
-//      duration = 2*3600 + 8*60 + 8;
-//      distance = "26.12";
-//      pace = 4*60 + 54;
+      heartRate = 158;
+      currentTime = "12:00pm";
+      duration = 2*3600 + 8*60 + 8;
+      distance = "26.12";
+      pace = 4*60 + 54;
 
       //basics4 - lap pace
       heartRate = 166;
@@ -505,11 +505,11 @@ class RunZoneField extends Ui.DataField
       pace = 6*60 + 18;
 
       //basics4 - avg pace
-      heartRate = 128;
-      currentTime = "12:00pm";
-      duration = 54*60;
-      distance = "6.00";
-      pace = *60;
+//      heartRate = 128;
+//      currentTime = "12:00pm";
+//      duration = 54*60;
+//      distance = "6.00";
+//      pace = 9*60;
 
       //basics5 - avg pace
    }

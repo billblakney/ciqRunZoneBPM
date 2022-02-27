@@ -59,11 +59,12 @@ class DeviceField extends RunZoneField
     */
    function getTimerFont(duration)
    {
-      if (duration < 3600) {
-         return fontNumberHot;
-      } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
-      }
+//      if (duration < 3600) {
+//         return fontNumberHot;
+//      } else {
+//         return Gfx.FONT_NUMBER_MEDIUM;
+//      }
+      return fontNumberHot;
    }
 
    /*
