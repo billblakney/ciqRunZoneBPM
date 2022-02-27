@@ -33,21 +33,22 @@ Sometimes the App Editor settings don't take properly in the Device Simulator.
 
 
 New devices
+
+Forerunner 55 ....... ?????: 208x208_round
+fenix 6 Pro System 5 Preview ... fenix6prosystem5preview: 260x260_round -issue
+
 D2 Air X10 .......... d2air:       390x390_round -DONE
 Descent Mk2 S ....... descentmk2s: 240x240_round -DONE
-Enduro .............. ?????: 280x280_round
-epix (Gen 2) ........ ?????: 416x416_round -DONE
-Forerunner 55 ....... ?????: 208x208_round
-Forerunner 945 LTE .. fr945lte: 240x240_round -DONE
-fenix 6 Pro System 5 Preview ... ?????: 260x260_round
-fenix 7 ............. ?????: 260x260_round
-fenix 7S ............ ?????: 240x240_round
-fenix 7X ............ ?????: 280x280_round
-
-Venu 2                   ... venu2:               416x416_round -DONE
-Venu 2 Plus              ... venu2plus:           416x416_round -DONE
-Venu 2 System 5 Preview  ... venu2system5preview: 416x416_round -DONE
-Venu 2S                  ... venu2s:              360x360_round -DONE
+Enduro .............. enduro:      280x280_round -DONE
+epix (Gen 2) ........ epix2:       416x416_round -DONE
+Forerunner 945 LTE .. fr945lte:    240x240_round -DONE
+fenix 7 ............. fenix7:      260x260_round -DONE
+fenix 7S ............ fenix7s:     240x240_round -DONE
+fenix 7X ............ fenix7x:     280x280_round -DONE
+Venu 2 .............. venu2:       416x416_round -DONE
+Venu 2 Plus ......... venu2plus:   416x416_round -DONE
+Venu 2 Sys 5 Prev ... venu2system5preview: 416x416_round -DONE
+Venu 2S ............. venu2s:              360x360_round -DONE
 
 Instinct 2/Solar/Dual Power/dezl Edition ... ?????: 176x176_semi-octagon
 Instinct 2S/Solar/Dual Power             ... ?????: 163x156_semi-octagon

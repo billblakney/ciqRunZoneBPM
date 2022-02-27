@@ -11,6 +11,7 @@ using Toybox.UserProfile as Profile;
  */
 class DeviceField extends RunZoneField
 {
+   var fontNumberMed = null;
    var fontNumberHot = null;
    /*
     * Constructor.
@@ -27,7 +28,8 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
 
-      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk76numbers);
+      fontNumberMed = Ui.loadResource(Rez.Fonts.robobk76numbers);
+      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk84numbers);
 
       yRow0Label = 35;   // zone area
       yTopLine = 70;     // ----------
@@ -49,8 +51,8 @@ class DeviceField extends RunZoneField
       xRow1Col2Num = 312;    // BPM value
       xRow2Col1Label = 120;  // dist label
       xRow2Col1Num = 120;    // dist value
-      xRow2Col2Label = 281;  // pace label
-      xRow2Col2Num = 305;    // pace value
+      xRow2Col2Label = 288;  // pace label
+      xRow2Col2Num = 301;    // pace value
       xRow3Label = 210;      // time
    }
 
@@ -59,14 +61,12 @@ class DeviceField extends RunZoneField
     */
    function getTimerFont(duration)
    {
-   /*
       if (duration < 3600) {
          return fontNumberHot;
       } else {
-         return Gfx.FONT_NUMBER_MEDIUM;
+         return fontNumberMed;
       }
-      */
-      return fontNumberHot;
+//      return fontNumberHot;
    }
 
    /*
