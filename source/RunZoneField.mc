@@ -186,10 +186,10 @@ class RunZoneField extends Ui.DataField
       var zones = Profile.getHeartRateZones(sport);
 
       beginZone1 = zones[0];
-      beginZone2 = zones[1] + 1;
-      beginZone3 = zones[2] + 1;
-      beginZone4 = zones[3] + 1;
-      beginZone5 = zones[4] + 1;
+      beginZone2 = zones[1];
+      beginZone3 = zones[2];
+      beginZone4 = zones[3];
+      beginZone5 = zones[4];
 //      Sys.println("beginZone1: " + beginZone1);
 //      Sys.println("beginZone2: " + beginZone2);
 //      Sys.println("beginZone3: " + beginZone3);
