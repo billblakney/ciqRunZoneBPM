@@ -28,8 +28,8 @@ class DeviceField extends RunZoneField
    {
       RunZoneField.onLayout(dc);
       
-      fontNumberMedium = Ui.loadResource(Rez.Fonts.robobk40numbers);
-      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk48numbers);
+      fontNumberMedium = Ui.loadResource(Rez.Fonts.robobk48numbers);
+      fontNumberHot = Ui.loadResource(Rez.Fonts.robobk55numbers);
 
       yRow0Label = 20;   // zone area
       yTopLine = 40;     // ----------
@@ -42,17 +42,17 @@ class DeviceField extends RunZoneField
       yRow3Label = 235;  // time
 
       xTopLine = 147;
-      xBottomLine = 130;
+      xBottomLine = 132;
 
       xRow0Label = 133;
-      xRow1Col1Label = 84;
-      xRow1Col1Num = 78;
-      xRow1Col2Label = 190;
-      xRow1Col2Num = 192;
-      xRow2Col1Label = 77;
-      xRow2Col1Num = 70;
-      xRow2Col2Label = 183;
-      xRow2Col2Num = 187;
+      xRow1Col1Label = 84;  // timer label
+      xRow1Col1Num = 76;    // timer value
+      xRow1Col2Label = 190; // BPM label
+      xRow1Col2Num = 192;   // BPM value
+      xRow2Col1Label = 77;  // dist label
+      xRow2Col1Num = 72;    // dist value
+      xRow2Col2Label = 183; // pace label
+      xRow2Col2Num = 189;   // pace value
       xRow3Label = 132;
    }
 

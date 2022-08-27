@@ -39,6 +39,10 @@ fr230.sourcePath=source;source-semiround_215x180
 fr235.sourcePath=source;source-semiround_215x180
 fr245.sourcePath=source;source-round_240x240_cfont
 fr245m.sourcePath=source;source-round_240x240_cfont
+fr255.sourcePath=source;source-round_260x260_cfont
+fr255m.sourcePath=source;source-round_260x260_cfont
+fr255s.sourcePath=source;source-round_218x218_cfont
+fr255sm.sourcePath=source;source-round_218x218_cfont
 fr55.sourcePath=source;source-round_208x208_cfont
 fr630.sourcePath=source;source-semiround_215x180
 fr645.sourcePath=source;source-round_240x240_cfont
@@ -48,6 +52,7 @@ fr920xt.sourcePath=source;source-rectangle_205x148
 fr935.sourcePath=source;source-round_240x240_cfont
 fr945.sourcePath=source;source-round_240x240_cfont
 fr945lte.sourcePath=source;source-round_240x240_cfont
+fr955.sourcePath=source;source-round_260x260_cfont
 # instinct2 <- layout to funky
 # instinct2s <- layout to funky
 legacyherocaptainmarvel.sourcePath=source;source-round_218x218_cfont
