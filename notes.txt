@@ -6,6 +6,23 @@ To see all branches, run "gitk --all"
 From a Git Bash term, run git-gui.
 
 **************************************************
+Adding new (and updated) watch types
+**************************************************
+In Eclipse, ConnectIQ->Open SDK Manager
+Optionally update SDK version in the SDK tab.
+In Devices tab, click the ->| download symbol for any new watch types, or
+watch types marked with the update symbol (swirling arrows).
+Restart Eclipse to pickup new entries in manifest.xml.
+Open manifest.xml.
+In the Build Targets tab of the Manifest Editor (which is opned by double-
+clicking on manifest.xml in the Project Explorer pane), select the new
+watch types to build for.
+Add entries in monkey.jungle for the new watch types.
+To do a build for testing, select Project->Clean (with build only selected
+targets) and press Clean.
+
+
+**************************************************
 To Build via Eclipse.
 **************************************************
 Three ways to do a build:
