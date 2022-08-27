@@ -21,6 +21,11 @@ Add entries in monkey.jungle for the new watch types.
 To do a build for testing, select Project->Clean (with build only selected
 targets) and press Clean.
 
+**************************************************
+Pushing to github
+**************************************************
+git push origin master
+git push origin <tag>  # if want to push a tag, too.
 
 **************************************************
 To Build via Eclipse.
